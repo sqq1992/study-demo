@@ -2,9 +2,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+//
+import "./modules/virtualDom/index";
+
 
 //letcode
-import "./modules/letcode/BinarySearch";
+// import "./modules/letcode/BinarySearch";
 
 
 
