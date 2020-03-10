@@ -3,14 +3,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 //
-// import "./modules/virtualDom/index";
+import "./modules/virtualDom/index";
+import './modules/virtualDom2/testVirtual2';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
 
 //letcode
 // import "./modules/letcode/BinarySearch";
-import './modules/letcode/TwoPoints';
+// import './modules/letcode/TwoPoints';
 
 
 
