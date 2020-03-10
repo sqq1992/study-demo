@@ -3,16 +3,23 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 //
-import "./modules/virtualDom/index";
-import './modules/virtualDom2/testVirtual2';
+// import "./modules/virtualDom/index";
+// import './modules/virtualDom2/testVirtual2';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
 
+
+//compute
+import './modules/compute/sort';
+
 //letcode
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
+import './modules/letcode/SlideWindow';
 
+//interview
+import './modules/interview';
 
 
 
