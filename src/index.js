@@ -11,15 +11,15 @@ import ReactDOM from 'react-dom';
 
 
 //compute
-import './modules/compute/sort';
+// import './modules/compute/sort';
 
 //letcode
-// import "./modules/letcode/BinarySearch";
+import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
-import './modules/letcode/SlideWindow';
+// import './modules/letcode/SlideWindow';
 
 //interview
-import './modules/interview';
+// import './modules/interview';
 
 
 
