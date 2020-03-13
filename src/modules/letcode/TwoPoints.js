@@ -99,3 +99,39 @@
     console.log('threeSumClosest', threeSumClosest([1,2,4,8,16,32,64,128], 82));
 }
 
+
+//75
+{
+
+
+    var sortColors = function(nums) {
+
+        let left = 0;
+        let right = nums.length - 1;
+        let currentIndex = 0;
+
+        while (currentIndex <= right) {
+            let cur = nums[currentIndex];
+
+            if (cur === 0) {
+                nums[currentIndex] = nums[left];
+                nums[left++] = cur;
+                currentIndex++;
+            } else if (cur === 2) {
+                nums[currentIndex] = nums[right];
+                nums[right--] = cur;
+            }else {
+                currentIndex++;
+            }
+
+
+        }
+
+        return nums;
+    };
+
+    console.log('sortColors', sortColors([1, 2, 0]));
+
+
+}
+

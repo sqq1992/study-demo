@@ -14,8 +14,8 @@ import ReactDOM from 'react-dom';
 // import './modules/compute/sort';
 
 //letcode
-import "./modules/letcode/BinarySearch";
-// import './modules/letcode/TwoPoints';
+// import "./modules/letcode/BinarySearch";
+import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 
 //interview
