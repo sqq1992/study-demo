@@ -15,8 +15,12 @@ import ReactDOM from 'react-dom';
 
 //letcode
 // import "./modules/letcode/BinarySearch";
-import './modules/letcode/TwoPoints';
+// import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
+// import './modules/letcode/greedCompute';
+// import './modules/letcode/Array';
+// import './modules/letcode/Regex.js';
+import './modules/letcode/Stack.js';
 
 //interview
 // import './modules/interview';

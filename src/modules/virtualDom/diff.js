@@ -31,9 +31,51 @@ function dfs(oldNode, newNode, index, patches) {
 }
 
 function diffChildren(oldChild, newChild, index, patches) {
+    let oldListKeys = getListKeys(oldChild);
+    let newListKeys = getListKeys(newChild);
+    let listChanges = [];
+    let listKeys = [];
+
+    oldListKeys.forEach((elem, index) => {
+        let tempKeyIndex = newListKeys.indexOf(elem);
+        if (tempKeyIndex === -1) {
+            listKeys.push(null);
+        } else {
+            listKeys.push(elem);
+        }
+    });
+
+    let listKeyLen = listKeys.length;
+    for(let i=listKeyLen-1;i>=0;i--) {
+        if(!listKeys[i]){
+            listKeys.splice(i, 1);
+            listChanges.push({
+                type: StateEnums.Remove,
+                index: i
+            })
+        }
+    }
 
 
+    newListKeys.forEach((elem,index)=>{
+        let tempKeyIndex = listKeys.indexOf(elem);
 
+        if(tempKeyIndex===-1){
+            listChanges.push({
+                type: StateEnums.Insert,
+                index: index
+            })
+        }else {
+
+            if(tempKeyIndex!==index) {
+
+
+            }
+
+
+        }
+
+    })
 
 
 }
@@ -61,4 +103,18 @@ function diffProps(oldProps, newProps) {
 
 
     return changes;
+}
+
+function getListKeys(list) {
+    let listArr = [];
+    list.forEach((elem, index) => {
+        let tempKey;
+        if (isString(elem)) {
+            tempKey = elem;
+        } else {
+            tempKey = elem.key;
+        }
+        listArr.push(tempKey);
+    });
+    return listArr;
 }
