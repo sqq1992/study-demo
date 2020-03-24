@@ -91,3 +91,50 @@
     console.log('dailyTemperatures', dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
 
 }
+
+
+//844
+{
+
+    var backspaceCompare = function(S, T) {
+
+        var temFunc = function (str) {
+            var result = [];
+            for(let i=0,j=str.length;i<j;i++) {
+                if(str[i]==="#"){
+                    result.pop();
+                }else {
+                    result.push(str[i]);
+                }
+            }
+
+            return result.join('');
+        };
+
+
+        return temFunc(S) === temFunc(T);
+    };
+}
+
+
+//1047
+{
+
+    var removeDuplicates = function(S) {
+        let stack = [];
+
+        for(let i=0,j=S.length;i<j;i++) {
+            let tempStr = S[i];
+            if(!stack.length && stack[stack.length-1]===tempStr){
+                stack.pop();
+            }else {
+                stack.push(tempStr);
+            }
+        }
+
+        return stack.join('');
+    };
+
+
+
+}

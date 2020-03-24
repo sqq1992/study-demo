@@ -40,40 +40,43 @@
 //275
 {
     var hIndex = function(citations) {
-
-        if(citations.length===0){
+        let staticIndex = citations.length - 1;
+        if(citations.length===0 || citations[staticIndex]===0){
             return 0;
-        }else if(citations.length<=1){
-            return 1;
         }
 
 
-        let len = citations.length;
+        let maxLen = 1;
         let left = 0;
-        let right = len-1;
-        let h = citations[len - 1];
 
+        let right = citations.length - 1;
 
-        while (left<=right){
+        while (left<=right) {
             let middleIndex = Math.floor((right - left) / 2) + left;
-            let tempVal = citations[middleIndex];
-            let rightNums = right - middleIndex + 1;
+            let middleValue = citations[middleIndex];
+            let rightNums = staticIndex - middleIndex + 1;
 
-            if(rightNums>=tempVal) {
-                h = Math.min(h, middleIndex);
+            if (middleValue >= rightNums) {
+                maxLen = Math.max(maxLen, staticIndex - middleIndex + 1);
             }
 
-            if(tempVal>rightNums){
-                right--;
+
+            if(middleValue<=rightNums){
+                left = middleIndex + 1;
             }else {
-                left++;
+                right = middleIndex - 1;
             }
+
+
 
         }
 
-        return len - h;
+        return maxLen;
+
+
+
     };
 
-    console.log('hIndex', hIndex([0,1,3,5,6]));
+    console.log('hIndex', hIndex([11,15]));
 
 }
