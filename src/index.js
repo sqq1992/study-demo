@@ -23,6 +23,11 @@ import "./modules/letcode/Recursion";
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
 
+
+//structureAndCompute 数据结构与算法
+import './modules/structureAndCompute/tenthChapter';
+
+
 //interview
 // import './modules/interview';
 
