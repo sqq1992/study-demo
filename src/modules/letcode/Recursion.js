@@ -239,3 +239,36 @@ Bst.prototype.init = function (dataList) {
 
 
 }
+
+
+//101
+{
+
+    var isSymmetric = function(root) {
+
+        let tempFunc = (leftRoot, rightRoot) => {
+
+            if(leftRoot===null && rightRoot===null){
+                return true;
+            }else if (leftRoot && rightRoot && leftRoot.val === rightRoot.val) {
+                let l1 = tempFunc(leftRoot.left, rightRoot.right);
+                let r1 = tempFunc(leftRoot.right, rightRoot.left);
+
+                return l1 && r1;
+            }
+
+
+            return false;
+        };
+
+
+        if(root){
+            return tempFunc(root.left, root.right);
+
+        }else {
+            return true;
+        }
+    };
+
+
+}
