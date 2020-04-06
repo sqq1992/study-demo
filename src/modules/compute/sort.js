@@ -1,6 +1,6 @@
 
 
-
+//冒泡
 {
 
     let testData = [3, 2, 100, 33, 66];
@@ -45,4 +45,15 @@
     }
 
     console.log('optimizeBubble', optimizeBubble(testData));
+}
+
+
+//快速
+{
+
+
+
+
+
+
 }

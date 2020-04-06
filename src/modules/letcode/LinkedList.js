@@ -4,6 +4,22 @@ function Node(val) {
     this.next = null;
 }
 
+
+class NodeList {
+    constructor(arr) {
+        let head = new Node(arr.shift());
+
+        let next = head;
+        arr.forEach((elem)=>{
+            next.next = new Node(elem);
+            next = next.next;
+        })
+
+        return head;
+    }
+}
+
+
 function LList(val) {
     this.head = new Node(val);
 }
@@ -88,3 +104,145 @@ console.log('11', testList1.head);
     };
 
 }
+
+
+//148
+{
+    var sortList = function(head) {
+
+        let swap = function (nowObj, previousObj) {
+            let tempVal = previousObj.val;
+            previousObj.val = nowObj.val;
+            nowObj.val = tempVal;
+        };
+
+        let partion = function (begin) {
+
+            let val = begin.val;
+            let p = begin;
+            let q = begin.next;
+
+            while (q!==null){
+
+                if(q.val<val){
+                    p = p.next;
+                    swap(q, p);
+                }
+
+                q = q.next;
+            }
+            swap(p, begin);
+            return p;
+        };
+
+        let tempSort = function (begin, end = null) {
+
+            if (begin !== end) {
+                let part = partion(begin);
+                tempSort(begin, part);
+                tempSort(part.next, end);
+            }
+
+        };
+
+        tempSort(head);
+
+        return head;
+    };
+}
+
+
+//141
+{
+    var hasCycle = function(head) {
+
+        if(!head){
+            return false;
+        }
+
+        let fast = head.next;
+        let slow = head;
+
+        while (fast!==slow){
+
+            if(fast===null || fast.next===null){
+                return false;
+            }
+
+
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+
+        return true;
+    };
+
+}
+
+
+//142
+{
+
+    var detectCycle = function(head) {
+        let record = new Map();
+        let tempNode = head;
+
+        while (tempNode!==null){
+
+            if(record.get(tempNode)){
+
+                return tempNode;
+
+            }else {
+                record.set(tempNode, true);
+            }
+
+            tempNode = tempNode.next;
+        }
+
+        return null;
+    };
+
+
+}
+
+
+
+//86
+{
+
+    var partition = function(head, x) {
+
+        let before_head = new ListNode(0);
+        let beforeHead = before_head;
+        let after_head = new ListNode(0);
+        let afterHead = after_head;
+
+
+        while (head!==null){
+
+            if(head.val<x){
+                beforeHead.next = head;
+                beforeHead = beforeHead.next;
+            }else {
+                afterHead.next = head;
+                afterHead = afterHead.next;
+            }
+
+            head = head.next;
+        }
+
+        afterHead.next = null;
+        beforeHead.next = after_head.next;
+        before_head = before_head.next;
+
+        return before_head;
+    };
+
+
+
+}
+
+
+

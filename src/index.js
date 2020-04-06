@@ -16,18 +16,22 @@ import ReactDOM from 'react-dom';
 //letcode
 // import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
-// import './modules/letcode/TwoPoints';
+import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-import './modules/letcode/LinkedList';
+// import './modules/letcode/LinkedList';
 
 
 //structureAndCompute 数据结构与算法
 // import './modules/structureAndCompute/tenthChapter';
 // import './modules/structureAndCompute/sixthChapter';
+
+
+//fourth compute 算法4
+// import './modules/fourthCompute/firstChapter';
 
 //interview
 // import './modules/interview';
