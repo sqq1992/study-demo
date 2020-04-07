@@ -245,4 +245,61 @@ console.log('11', testList1.head);
 }
 
 
+//1019
+{
+
+    var nextLargerNodes = function(head) {
+
+        //1
+        // let q = head;
+        // let result = [];
+        // while (q!==null){
+        //     let tempNext = q.next;
+        //     let tempVal = 0;
+        //     while (tempNext !== null){
+        //         if(tempNext.val>q.val){
+        //             tempVal = tempNext.val;
+        //             break;
+        //         }
+        //         tempNext = tempNext.next;
+        //     }
+        //     result.push(tempVal);
+        //     q = q.next;
+        // }
+        //
+        // return result;
+
+        //-------------------------->
+        //2
+        let stack = [];
+        let count = 0;
+        let res = [];
+
+
+        while (head!==null){
+
+            while (stack.length && stack[stack.length-1].val<head.val){
+                let tempObj = stack.pop();
+                res[tempObj.key] = head.val;
+            }
+            stack.push({
+                key: count,
+                val: head.val
+            });
+            count++;
+            head = head.next;
+        }
+
+        for(let i=0,j=stack.length;i<j;i++) {
+            res[stack[i].key] = 0;
+        }
+        return res;
+
+    };
+
+    let test2 = new NodeList([2, 1, 5]);
+    console.log('nextLargerNodes', nextLargerNodes(test2));
+
+}
+
 

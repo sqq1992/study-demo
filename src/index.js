@@ -14,9 +14,9 @@ import ReactDOM from 'react-dom';
 // import './modules/compute/sort';
 
 //letcode
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
-import './modules/letcode/TwoPoints';
+// import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
@@ -28,6 +28,7 @@ import './modules/letcode/TwoPoints';
 //structureAndCompute 数据结构与算法
 // import './modules/structureAndCompute/tenthChapter';
 // import './modules/structureAndCompute/sixthChapter';
+// import './modules/structureAndCompute/fourthChapter';
 
 
 //fourth compute 算法4
