@@ -12,9 +12,10 @@ import ReactDOM from 'react-dom';
 
 //compute
 // import './modules/compute/sort';
+import './modules/compute/copy';
 
 //letcode
-import "./modules/letcode/Recursion";
+// import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
