@@ -185,23 +185,48 @@ console.log('11', testList1.head);
 {
 
     var detectCycle = function(head) {
-        let record = new Map();
-        let tempNode = head;
 
-        while (tempNode!==null){
+        //1
+        // let record = new Map();
+        // let tempNode = head;
+        //
+        // while (tempNode!==null){
+        //
+        //     if(record.get(tempNode)){
+        //
+        //         return tempNode;
+        //
+        //     }else {
+        //         record.set(tempNode, true);
+        //     }
+        //
+        //     tempNode = tempNode.next;
+        // }
+        //
+        // return null;
 
-            if(record.get(tempNode)){
 
-                return tempNode;
-
-            }else {
-                record.set(tempNode, true);
-            }
-
-            tempNode = tempNode.next;
-        }
-
-        return null;
+        //2
+        // let slow = head;
+        // let fast = head.next;
+        //
+        // while (slow!==fast){
+        //
+        //
+        //     if(fast===null || fast.next===null){
+        //         return null;
+        //     }else if(slow===fast){
+        //         return slow;
+        //     }
+        //
+        //     slow = slow.next;
+        //     fast = fast.next;
+        //
+        //
+        // }
+        //
+        //
+        // return null
     };
 
 
@@ -302,4 +327,39 @@ console.log('11', testList1.head);
 
 }
 
+//876
+{
+
+    var middleNode = function(head) {
+
+        // 1
+        // let arr = [];
+        // while (head!==null){
+        //     arr.push(head);
+        //     head = head.next;
+        // }
+        // let len = arr.length;
+        //
+        // return arr[Math.floor(len / 2)];
+
+
+        //2
+        let slow = head;
+        let fast = head;
+
+        while (fast && fast.next!==null){
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+        }
+
+
+        return slow;
+    };
+
+
+
+
+}
 

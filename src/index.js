@@ -8,14 +8,15 @@ import ReactDOM from 'react-dom';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
+// import './modules/es6/promise/promise';
 
 
 //compute
 // import './modules/compute/sort';
-import './modules/compute/copy';
+// import './modules/compute/copy';
 
 //letcode
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';

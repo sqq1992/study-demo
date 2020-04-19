@@ -270,5 +270,81 @@ Bst.prototype.init = function (dataList) {
         }
     };
 
+}
+
+
+//617
+{
+
+
+    var mergeTrees = function(t1, t2) {
+
+        if(t1===null){
+            return t2;
+        }
+
+        if(t2===null){
+            return t1;
+        }
+
+        t1.val += t2.val;
+
+        t1.left = mergeTrees(t1.left, t2.left);
+        t1.right = mergeTrees(t1.right, t2.right);
+        return t1;
+    };
+
 
 }
+
+
+//965
+{
+    var isUnivalTree = function(root) {
+
+
+        let leftFlag = root.left === null || ((root.left.val === root.val) && (isUnivalTree(root.left)));
+        let rightFlag = root.right === null || ((root.right.val === root.val) && (isUnivalTree(root.right)));
+
+
+        return leftFlag && rightFlag;
+
+    };
+}
+
+
+
+//98
+{
+
+    var isValidBST = function(root) {
+
+
+        let tempFunc = (tempRoot, lower, upper) => {
+
+            if(tempRoot===null) return true;
+
+            let val = tempRoot.val;
+
+            if(lower!==null && val<=lower) return false;
+            if(upper!==null && val>=upper) return false;
+
+            if(!tempFunc(tempRoot.right, val, upper)) return false;
+            if(!tempFunc(tempRoot.left,lower,val)) return false;
+
+            return true;
+        };
+
+
+        return tempFunc(root, null, null);
+    };
+
+
+}
+
+
+
+
+
+
+
