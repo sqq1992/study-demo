@@ -148,5 +148,40 @@
 }
 
 
+//845
+{
+    var longestMountain = function(A) {
+        let len = A.length;
+        let base = 0;
+        let end = 0;
+        let result = 0;
 
+        while (base<len) {
+            end = base;
+
+
+            if(end+1<len && A[end]<A[end+1]) {
+
+                while (end+1<len && A[end]<A[end+1]){
+                    end++;
+                }
+
+                if(end+1<len && A[end]>A[end+1]){
+
+                    while (end+1<len && A[end]>A[end+1]){
+                        end++;
+                    }
+                    result = Math.max(result, end - base + 1);
+                }
+
+            }
+
+            base = Math.max(end, base + 1);
+
+        }
+
+        return result;
+
+    };
+}
 

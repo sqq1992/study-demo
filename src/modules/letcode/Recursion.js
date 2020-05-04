@@ -344,6 +344,95 @@ Bst.prototype.init = function (dataList) {
 
 
 
+//814
+{
+
+    let temp1 = new node(1);
+    let temp2 = new node(0);
+    let temp3 = new node(0);
+    let temp4 = new node(1);
+    temp1.right = temp2;
+    temp2.left = temp3;
+    temp2.right = temp4;
+
+
+    var pruneTree = function(root) {
+
+        if(!root){
+            return null;
+        }
+
+
+        if(root){
+            root.left = pruneTree(root.left);
+            root.right = pruneTree(root.right);
+
+            if(root.left===null && root.right===null && root.val===0) {
+                root = null;
+            }
+
+        }
+
+
+
+
+        return root
+    };
+
+    console.log('pruneTree', pruneTree(temp1));
+
+}
+
+//1008
+{
+
+    var bstFromPreorder = function(preorder) {
+
+        let root = null;
+
+        for(let i=0,j=preorder.length;i<j;i++) {
+            let tempVal = preorder[i];
+            let tempNode = new TreeNode(tempVal);
+
+            if(!root){
+                root = tempNode;
+            }else {
+
+                let current = root;
+                let parent;
+
+                while (true){
+
+                    parent = current;
+
+                    if(tempVal<current.val){
+                        current = current.left;
+                        if(current===null){
+                            parent.left = tempNode;
+                            break;
+                        }
+                    }else {
+                        current = current.right;
+                        if(current===null){
+                            parent.right = tempNode;
+                            break;
+                        }
+                    }
+
+                }
+
+
+            }
+
+
+        }
+
+
+        return root;
+    };
+
+
+}
 
 
 

@@ -228,3 +228,43 @@
     console.log('kthSmallest', kthSmallest(testArr, 8));
 
 }
+
+//658
+{
+
+    var findClosestElements = function(arr, k, x) {
+        let len = arr.length;
+        let min = arr[0];
+        let max = arr[len - 1];
+
+        if(x<=min){
+            return arr.slice(0, k);
+        }else if(x>=max){
+            return arr.slice(-k);
+        }
+
+        let left = 0;
+        let right = len - k;
+        let res = [];
+
+        while (left<=right){
+            let mid = Math.floor((left + right) / 2);
+
+            if(x-arr[mid]>arr[mid+k]-x){
+                left = mid + 1;
+            }else {
+                right = mid - 1;
+            }
+
+        }
+
+        for(let i=left;i<left+k;i++){
+            res.push(arr[i]);
+        }
+
+        return res;
+    };
+
+
+
+}

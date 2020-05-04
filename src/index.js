@@ -16,8 +16,8 @@ import ReactDOM from 'react-dom';
 // import './modules/compute/copy';
 
 //letcode
-import "./modules/letcode/Recursion";
-// import "./modules/letcode/BinarySearch";
+// import "./modules/letcode/Recursion";
+import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
@@ -31,6 +31,7 @@ import "./modules/letcode/Recursion";
 // import './modules/structureAndCompute/tenthChapter';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
+// import './modules/structureAndCompute/thirteenthChapter';
 
 
 //fourth compute 算法4
