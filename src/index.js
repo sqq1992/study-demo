@@ -17,7 +17,7 @@ import ReactDOM from 'react-dom';
 
 //letcode
 // import "./modules/letcode/Recursion";
-import "./modules/letcode/BinarySearch";
+// import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
@@ -38,7 +38,8 @@ import "./modules/letcode/BinarySearch";
 // import './modules/fourthCompute/firstChapter';
 
 //interview
-// import './modules/interview';
+import './modules/interview';
+import Bfc from "./modules/css/bfc/Bfc";
 
 
 
@@ -49,7 +50,7 @@ class App  extends Component{
 
         return (
             <div>
-                h1{aa}
+                <Bfc />
             </div>
         )
     }
