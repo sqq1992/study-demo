@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
-// import './modules/es6/promise/promise';
+import './modules/es6/promise/promise';
 
 
 //compute
@@ -38,9 +38,11 @@ import ReactDOM from 'react-dom';
 // import './modules/fourthCompute/firstChapter';
 
 //interview
-import './modules/interview';
-import Bfc from "./modules/css/bfc/Bfc";
+// import './modules/interview';
+// import Bfc from "./modules/css/bfc/Bfc";
 
+//hooks
+import UseState from './modules/hooks/UseState';
 
 
 
@@ -50,7 +52,8 @@ class App  extends Component{
 
         return (
             <div>
-                <Bfc />
+                <UseState />
+                {/*<Bfc />*/}
             </div>
         )
     }

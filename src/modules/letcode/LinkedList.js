@@ -363,3 +363,33 @@ console.log('11', testList1.head);
 
 }
 
+//19
+{
+
+    let test3 = new NodeList([1]);
+    var removeNthFromEnd = function (head, n) {
+
+        //1
+        let len = 0;
+        let first = head;
+
+        while (first !== null) {
+            len++;
+            first = first.next;
+        }
+
+        len = len - n - 1;
+
+        let second = head;
+        while (len > 0) {
+            len--;
+            second = second.next;
+        }
+        second.next = second.next.next;
+
+
+        return head;
+    };
+
+    console.log('removeNthFromEnd', removeNthFromEnd(test3,1));
+}

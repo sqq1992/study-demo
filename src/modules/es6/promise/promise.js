@@ -170,31 +170,31 @@
     };
 
 
-    let test2 = new MyPromise(function (resolve,reject) {
-        setTimeout(() => {
-            console.log('start-1');
-            reject('error-step-2');
-        }, 3000);
-
-    }).then((json)=>{
-        console.log(json);
-        return new MyPromise((resove,rejected)=>{
-            rejected('error-step-3');
-        });
-    },(error)=>{
-        console.log(error);
-        return "error-step-3";
-    }).then((json)=>{
-        console.log(json);
-        return 'step-4';
-    },(error)=>{
-        console.log(error);
-        return "error-step-4";
-    }).then((json)=>{
-        console.log(json);
-    },(error)=>{
-        console.log(error);
-    })
+    // let test2 = new MyPromise(function (resolve,reject) {
+    //     setTimeout(() => {
+    //         console.log('start-1');
+    //         reject('error-step-2');
+    //     }, 3000);
+    //
+    // }).then((json)=>{
+    //     console.log(json);
+    //     return new MyPromise((resove,rejected)=>{
+    //         rejected('error-step-3');
+    //     });
+    // },(error)=>{
+    //     console.log(error);
+    //     return "error-step-3";
+    // }).then((json)=>{
+    //     console.log(json);
+    //     return 'step-4';
+    // },(error)=>{
+    //     console.log(error);
+    //     return "error-step-4";
+    // }).then((json)=>{
+    //     console.log(json);
+    // },(error)=>{
+    //     console.log(error);
+    // })
 
 
 
