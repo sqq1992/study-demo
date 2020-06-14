@@ -1,5 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, createContext} from 'react';
 import {userMouseMove, useUrlLoader} from "./combineHooks";
+import InnerUseState from "./InnerUseState";
+
+
+export const UseStateContext = createContext({count: 100});
 
 function UseState() {
     //1
@@ -44,10 +48,16 @@ function UseState() {
         }
     });
 
+    //4 传递子组件的值
+    let childrenValue = {
+        count,
+    };
+
+
     return (
         <div>
             <p>You clicked {count} times</p>
-            <button onClick={()=>{
+            <button onClick={() => {
                 setCount(count + 1);
                 countRef.current++;
             }}>
@@ -55,7 +65,7 @@ function UseState() {
             </button>
             <button onClick={handleShowCount}>alert</button>
             <div>
-                <input type="text" ref={inputRef} />
+                <input type="text" ref={inputRef}/>
             </div>
             {/*<div>*/}
             {/*    x:{position.x}*/}
@@ -63,15 +73,19 @@ function UseState() {
             {/*</div>*/}
             <div>
 
-                {loading?(
+                {loading ? (
                     <div>loading狗中</div>
-                ):(
-                    <div style={{width:"300px"}}>
-                        <img src={data.message} style={{width:"100%"}} alt=""/>
+                ) : (
+                    <div style={{width: "300px"}}>
+                        <img src={data.message} style={{width: "100%"}} alt=""/>
                     </div>
                 )}
 
             </div>
+            <UseStateContext.Provider value={childrenValue}>
+                <InnerUseState />
+                <div>333</div>
+            </UseStateContext.Provider>
         </div>
     );
 }

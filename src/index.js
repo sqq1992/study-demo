@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
 //
 // import "./modules/virtualDom/index";
 // import './modules/virtualDom2/testVirtual2';
