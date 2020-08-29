@@ -6,6 +6,13 @@ function resturnItem<T>(para:T):T {
 }
 console.log('resturnItem', resturnItem('1992'));
 
+//1-1: 泛型类型
+function test1<T>(arg:T[]):T[] {
+    console.log(arg.length);
+    return arg;
+}
+
+
 //2 多个类型参数
 function swap<T, U>(arr: [T, U]): [U, T] {
     return [arr[1], arr[0]];
@@ -48,3 +55,9 @@ const stack1 = new Stack<number>();
 function getValue(obj: object, key: string) {
     return obj[key];
 }
+
+//6-1 obj中存在key的约束
+function getValue2<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
+}
+getValue2({a:1},'a')
