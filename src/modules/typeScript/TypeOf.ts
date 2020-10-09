@@ -1,35 +1,39 @@
 
 
-//1
-interface Person {
-    name:string,
-    age:number
+//类型运算主题
+
+//1. 集合运算
+
+type Type1 = "a" | "b";
+type Type2 = "b" | "c";
+type Type3 = Type1 & Type2;
+type Type4 = Type1 | Type2;
+
+//2. 索引签名
+interface props {
+    [key: string]: number;
 }
+const test1: props = {a: 2};
 
-const person = {} as Person
+//3. 类型键入
+type User = {
+    userId: string
+    friendList: {
+        fristName: string
+        lastName: string
+    }[]
+}
+type userIdType = User['userId'];
 
-person.name = "sun";
 
+//4. typeof value
+let str1 = "fooooo";
+type type1 = typeof str1;
 
-//2 字面量类型守卫
-type Foo = {
-    name:'sun1992',
-    age: 24;
+//5 keyof
+type User2 = {
+    id: string;
+    name: string;
 };
 
-
-//3 类型推断-数组类型
-class Animal {}
-
-class Bee extends Animal{}
-
-class Lion extends Animal{}
-
-class Extra {}
-
-const List1:Animal[] = [new Bee(), new Lion()];
-
-//4 类型推断-
-window.onmousedown = function (event) {
-    console.log(event.aaa)
-}
+type UserKeys = keyof User2;
