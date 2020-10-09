@@ -1,13 +1,14 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
 //
 // import "./modules/virtualDom/index";
 // import './modules/virtualDom2/testVirtual2';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
-import './modules/es6/promise/promise';
+// import './modules/es6/promise/promise';
 
 
 //compute
@@ -41,9 +42,10 @@ import './modules/es6/promise/promise';
 // import Bfc from "./modules/css/bfc/Bfc";
 
 //hooks
-import UseState from './modules/hooks/UseState';
+// import UseState from './modules/hooks/UseState';
 
-
+//react define
+import reactIndex from './modules/react/reactIndex';
 
 class App  extends Component{
     render() {
@@ -51,7 +53,7 @@ class App  extends Component{
 
         return (
             <div>
-                <UseState />
+                {/*<UseState />*/}
                 {/*<Bfc />*/}
             </div>
         )
