@@ -61,3 +61,14 @@ function getValue2<T, K extends keyof T>(obj: T, key: K) {
     return obj[key];
 }
 getValue2({a:1},'a')
+
+
+//测试列子 1  record
+type testKeys1 = "pet" | "dog" | 'bird';
+interface petInterface {
+    name: string;
+    age: number;
+}
+type testKeys1_1 = Record<testKeys1, petInterface>;
+
+//
