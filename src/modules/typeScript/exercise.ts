@@ -77,3 +77,18 @@ function logPerson(person: Person) {
 }
 
 //4
+declare let myPoint: { x: number; y: number };
+
+//5
+type words = "a" | "b" | "c";
+type w<T> = T extends words ? true : false;
+type wa = w<"a">;
+
+//6
+// interface Test {
+//     name: string;
+//     age: number;
+// }
+// interface Test2 extends Test{
+//     name: string | number
+// }
