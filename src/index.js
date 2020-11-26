@@ -33,6 +33,8 @@ import ReactDOM from 'react-dom';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
 
+// javascript设计模式
+
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -40,12 +42,13 @@ import ReactDOM from 'react-dom';
 //interview
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
+import Flex from './modules/css/flex/Flex';
 
 //hooks
 // import UseState from './modules/hooks/UseState';
 
 //react define
-import reactIndex from './modules/react/reactIndex';
+// import reactIndex from './modules/react/reactIndex';
 
 class App  extends Component{
     render() {
@@ -55,6 +58,7 @@ class App  extends Component{
             <div>
                 {/*<UseState />*/}
                 {/*<Bfc />*/}
+                <Flex />
             </div>
         )
     }

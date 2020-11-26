@@ -29,17 +29,17 @@ interface Fish {
     layEggs()
 }
 
-function getSmallPet(): Fish | Bird {
-
-}
-
-let pet = getSmallPet();
-pet.layEggs();
-if(isFish(pet)){
-    pet.swim()
-}else {
-    pet.fly()
-}
+// function getSmallPet(): Fish | Bird {
+//
+// }
+//
+// let pet = getSmallPet();
+// pet.layEggs();
+// if(isFish(pet)){
+//     pet.swim()
+// }else {
+//     pet.fly()
+// }
 
 //3-1: 类型保护
 function isFish(pet:Fish | Bird): pet is Fish {
