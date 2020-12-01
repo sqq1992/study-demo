@@ -36,7 +36,9 @@ import ReactDOM from 'react-dom';
 // javascript设计模式
 // import './modules/jsDesign/prototype'
 // import './modules/jsDesign/factory';
-import './modules/jsDesign/single';
+// import './modules/jsDesign/single';
+// import Strategies from "./modules/jsDesign/strategies";
+import "./modules/jsDesign/proxy";
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -61,6 +63,7 @@ class App  extends Component{
                 {/*<UseState />*/}
                 {/*<Bfc />*/}
                 {/*<Flex />*/}
+                {/*<Strategies />*/}
             </div>
         )
     }
