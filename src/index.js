@@ -34,9 +34,9 @@ import ReactDOM from 'react-dom';
 // import './modules/structureAndCompute/thirteenthChapter';
 
 // javascript设计模式
-import './modules/jsDesign/prototype'
+// import './modules/jsDesign/prototype'
 // import './modules/jsDesign/factory';
-// import './modules/jsDesign/single';
+import './modules/jsDesign/single';
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
