@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import store from './modules/redux/store';
 
 //
 // import "./modules/virtualDom/index";
@@ -14,6 +16,7 @@ import ReactDOM from 'react-dom';
 //compute
 // import './modules/compute/sort';
 // import './modules/compute/copy';
+// import './modules/compute/middleWare';
 
 //letcode
 // import "./modules/letcode/Recursion";
@@ -38,7 +41,8 @@ import ReactDOM from 'react-dom';
 // import './modules/jsDesign/factory';
 // import './modules/jsDesign/single';
 // import Strategies from "./modules/jsDesign/strategies";
-import "./modules/jsDesign/proxy";
+// import "./modules/jsDesign/proxy";
+import './modules/jsDesign/defineEvent'
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -54,12 +58,17 @@ import "./modules/jsDesign/proxy";
 //react define
 // import reactIndex from './modules/react/reactIndex';
 
+//redux
+// import './modules/redux/demoRedux';
+// import TestRedux from "./modules/redux/TestRedux";
+
 class App  extends Component{
     render() {
         let aa = "sun1992";
 
         return (
             <div>
+                {/*<TestRedux />*/}
                 {/*<UseState />*/}
                 {/*<Bfc />*/}
                 {/*<Flex />*/}
@@ -69,4 +78,6 @@ class App  extends Component{
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}>
+    <App />
+</Provider>, document.getElementById('root'));
