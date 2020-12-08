@@ -42,7 +42,9 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/single';
 // import Strategies from "./modules/jsDesign/strategies";
 // import "./modules/jsDesign/proxy";
-import './modules/jsDesign/defineEvent'
+// import './modules/jsDesign/defineEvent'
+// import Command from './modules/jsDesign/command';
+import './modules/jsDesign/combination';
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -68,6 +70,7 @@ class App  extends Component{
 
         return (
             <div>
+                {/*<Command />*/}
                 {/*<TestRedux />*/}
                 {/*<UseState />*/}
                 {/*<Bfc />*/}
