@@ -42,7 +42,7 @@ const middleware1 = ({ dispatch, getState }) => next => action => {
 
 const middleware2 = ({ dispatch, getState }) => next => action => {
     console.log('middleware2 start');
-    // next(action);
+    next(action);
     console.log('middleware2 end');
 }
 

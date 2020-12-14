@@ -16,7 +16,7 @@ import store from './modules/redux/store';
 //compute
 // import './modules/compute/sort';
 // import './modules/compute/copy';
-// import './modules/compute/middleWare';
+import './modules/compute/middleWare';
 
 //letcode
 // import "./modules/letcode/Recursion";
@@ -44,7 +44,7 @@ import store from './modules/redux/store';
 // import "./modules/jsDesign/proxy";
 // import './modules/jsDesign/defineEvent'
 // import Command from './modules/jsDesign/command';
-import './modules/jsDesign/combination';
+// import './modules/jsDesign/combination';
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
