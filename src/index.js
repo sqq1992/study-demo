@@ -45,7 +45,7 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/defineEvent'
 // import Command from './modules/jsDesign/command';
 // import './modules/jsDesign/combination';
-import './modules/jsDesign/template';
+// import './modules/jsDesign/template';
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -63,6 +63,7 @@ import './modules/jsDesign/template';
 
 //redux
 // import './modules/redux/demoRedux';
+import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
 
 class App  extends Component{
