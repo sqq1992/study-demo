@@ -18,6 +18,10 @@ import store from './modules/redux/store';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
 
+//webpack
+import './modules/webpack/testWebpack';
+
+
 //letcode
 // import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
@@ -63,7 +67,7 @@ import store from './modules/redux/store';
 
 //redux
 // import './modules/redux/demoRedux';
-import './modules/redux/demoRedux2'
+// import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
 
 class App  extends Component{
