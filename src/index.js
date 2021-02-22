@@ -14,12 +14,12 @@ import store from './modules/redux/store';
 
 
 //compute
-// import './modules/compute/sort';
+import './modules/compute/sort';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
 
 //webpack
-import './modules/webpack/testWebpack';
+// import './modules/webpack/testWebpack';
 
 
 //letcode
@@ -39,6 +39,7 @@ import './modules/webpack/testWebpack';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
+import './modules/structureAndCompute/twelfthChapter';
 
 // javascript设计模式
 // import './modules/jsDesign/prototype'

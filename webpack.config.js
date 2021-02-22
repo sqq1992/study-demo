@@ -5,6 +5,7 @@ const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CustomPlugin = require('./plugins/customPlugin')
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
@@ -18,9 +19,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.html')
         }),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css'
-        }),
+
+        new CustomPlugin(
+            stats => {console.info('编译成功2!')},
+            err => {console.error('编译失败!')}
+        ),
         // new CleanWebpackPlugin()
     ],
     devServer: {

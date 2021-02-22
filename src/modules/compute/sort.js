@@ -47,13 +47,40 @@
     console.log('optimizeBubble', optimizeBubble(testData));
 }
 
-
-//快速
+//2.1选择排序
 {
 
+    function choseSort(arr) {
 
 
+        for(let i=0,j=arr.length;i<j;i++) {
+            let min = i;
+            let flag = false;
 
+            for(let m=min+1;m<j;m++) {
+                if(arr[i]>arr[m]){
+                    min = m;
+                    flag = true;
+                }
+            }
 
+            if(flag){
+                let tempVal = arr[i];
+                arr[i] = arr[min];
+                arr[min] = tempVal;
+            }
+
+        }
+
+        return arr;
+    }
+
+    console.log('choseSort', choseSort([5, 2, 100, 32, 1]));
 
 }
+
+
+
+
+
+
