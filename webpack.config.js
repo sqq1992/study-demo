@@ -20,10 +20,10 @@ module.exports = {
             template: path.resolve(__dirname, 'src/index.html')
         }),
 
-        new CustomPlugin(
-            stats => {console.info('编译成功2!')},
-            err => {console.error('编译失败!')}
-        ),
+        // new CustomPlugin(
+        //     stats => {console.info('编译成功2!')},
+        //     err => {console.error('编译失败!')}
+        // ),
         // new CleanWebpackPlugin()
     ],
     devServer: {

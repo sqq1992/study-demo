@@ -1,4 +1,38 @@
 
+//二分搜索法
+
+//744
+{
+
+    var nextGreatestLetter = function(letters, target) {
+        let max = letters.length;
+
+
+        if(letters[max-1]<=target){
+            return letters[0];
+        }
+
+
+        let start = 0;
+        let end = max-1;
+
+        while (start<end) {
+            let mid = start + Math.floor((end - start) / 2);
+
+            if(letters[mid]>target){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+
+        return letters[end]
+
+    };
+
+    // console.log('nextGreatestLetter', nextGreatestLetter(["c", "f", "j"], 'j'));
+}
+
 
 //977
 {
@@ -25,6 +59,43 @@
 
     // console.log('sortedSquares', sortedSquares([-4, -1, 0, 3, 10]));
 }
+
+
+//367
+{
+
+    var isPerfectSquare = function(num) {
+
+        if(num===1){
+            return true;
+        }
+
+
+        let start = 0;
+        let end = num;
+
+        while (start<end){
+            let mid = start + Math.floor((end - start) / 2);
+            let sum = mid * mid;
+
+
+            if(sum===num){
+                return true;
+            }else if(sum>num){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+
+
+        return false;
+    };
+
+    console.log('isPerfectSquare', isPerfectSquare(9));
+}
+
+
 
 //344
 {
@@ -134,6 +205,50 @@
 
 
 }
+
+//852
+{
+
+    var peakIndexInMountainArray = function(arr) {
+
+        let i = 0;
+
+        while (arr[i]>arr[i+1]){
+            i++;
+        }
+
+        return i;
+    };
+
+}
+
+//475
+{
+
+    var findRadius = function(houses, heaters) {
+
+        let arr = [];
+        heaters.forEach((elem)=>{
+
+            houses.forEach((smallElem,smallIndex)=>{
+
+                let distance = Math.abs(elem - smallElem);
+                if(arr[smallIndex]===undefined){
+                    arr.push(distance);
+                }else {
+                    arr[smallIndex] = Math.min(arr[smallIndex], distance);
+                }
+
+            })
+
+        })
+        return Math.max.apply(null, arr);
+    };
+
+
+    console.log('findRadius',findRadius([1,2,3,4],[1,4]))
+}
+
 
 
 //881

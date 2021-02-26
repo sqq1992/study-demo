@@ -14,7 +14,7 @@ import store from './modules/redux/store';
 
 
 //compute
-import './modules/compute/sort';
+// import './modules/compute/sort';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
 
@@ -25,7 +25,7 @@ import './modules/compute/sort';
 //letcode
 // import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
-// import './modules/letcode/TwoPoints';
+import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
@@ -39,7 +39,7 @@ import './modules/compute/sort';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
-import './modules/structureAndCompute/twelfthChapter';
+// import './modules/structureAndCompute/twelfthChapter';
 
 // javascript设计模式
 // import './modules/jsDesign/prototype'
