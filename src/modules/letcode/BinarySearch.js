@@ -1,37 +1,104 @@
 
 
-//857
+//744
 {
-    let minEatingSpeed = function(piles, H) {
 
-        let sortedPiles = piles.sort((a, b) => {
-            return a - b;
-        });
-        let sumPiles = piles.reduce((prev, next) => {
-            return prev + next;
-        }, 0);
-        let minSpeed = Math.ceil(sumPiles / H);
-        let maxSpeed = sortedPiles[sortedPiles.length - 1];
-        let resultSpeed = maxSpeed;
+    var nextGreatestLetter = function(letters, target) {
+        let max = letters.length;
 
-        while (minSpeed<=maxSpeed){
 
-            let tempMidSpeed = Math.floor((maxSpeed - minSpeed) / 2) + minSpeed;
-            let needHours = piles.reduce((prev, next) => {
-                return prev + Math.ceil(next / tempMidSpeed);
-            }, 0);
-
-            if(needHours>H){
-                minSpeed = tempMidSpeed + 1;
-            }else {
-                maxSpeed = tempMidSpeed - 1;
-                resultSpeed = Math.min(resultSpeed, tempMidSpeed);
-            }
-
+        if(letters[max-1]<=target){
+            return letters[0];
         }
 
-        return resultSpeed;
+
+        let start = 0;
+        let end = max-1;
+
+        while (start<end) {
+            let mid = start + Math.floor((end - start) / 2);
+
+            if(letters[mid]>target){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+
+        return letters[end]
+
     };
+
+    // console.log('nextGreatestLetter', nextGreatestLetter(["c", "f", "j"], 'j'));
+}
+
+
+//367
+{
+
+    var isPerfectSquare = function(num) {
+
+        if(num===1){
+            return true;
+        }
+
+
+        let start = 0;
+        let end = num;
+
+        while (start<end){
+            let mid = start + Math.floor((end - start) / 2);
+            let sum = mid * mid;
+
+
+            if(sum===num){
+                return true;
+            }else if(sum>num){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+
+
+        return false;
+    };
+
+    // console.log('isPerfectSquare', isPerfectSquare(9));
+}
+
+//857
+{
+    // let minEatingSpeed = function(piles, H) {
+    //
+    //     let sortedPiles = piles.sort((a, b) => {
+    //         return a - b;
+    //     });
+    //     let sumPiles = piles.reduce((prev, next) => {
+    //         return prev + next;
+    //     }, 0);
+    //     let minSpeed = Math.ceil(sumPiles / H);
+    //     let maxSpeed = sortedPiles[sortedPiles.length - 1];
+    //     let resultSpeed = maxSpeed;
+    //
+    //     while (minSpeed<=maxSpeed){
+    //
+    //         let tempMidSpeed = Math.floor((maxSpeed - minSpeed) / 2) + minSpeed;
+    //         let needHours = piles.reduce((prev, next) => {
+    //             return prev + Math.ceil(next / tempMidSpeed);
+    //         }, 0);
+    //
+    //         if(needHours>H){
+    //             minSpeed = tempMidSpeed + 1;
+    //         }else {
+    //             maxSpeed = tempMidSpeed - 1;
+    //             resultSpeed = Math.min(resultSpeed, tempMidSpeed);
+    //         }
+    //
+    //     }
+    //
+    //     return resultSpeed;
+    // };
 
     // console.log('minEatingSpeed', minEatingSpeed([30,11,23,4,20], 5));
 
@@ -87,50 +154,47 @@
 
     var searchRange = function(nums, target) {
 
-        let left = 0;
-        let len = nums.length;
-        let right = nums.length - 1;
-        let flag = false;
-        let middleIndex;
         let start = 0;
-        let end = 0;
+        let len = nums.length;
+        let end = nums.length - 1;
+        let flag = false;
+        let mid;
 
+        while (start<=end) {
 
-        while (left<=right) {
-            middleIndex = Math.floor((right - left) / 2) + left;
-            let middleVal = nums[middleIndex];
+            mid = Math.floor((start + end) / 2);
+            let midVal = nums[mid];
 
-            if(middleVal===target){
+            if(midVal===target){
                 flag = true;
                 break;
-            }else if(middleVal>target){
-                right = middleIndex - 1;
-            }else {
-                left = middleIndex+1;
+            }else if(midVal<target){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
             }
         }
-
 
         if(!flag){
             return [-1, -1];
         }
 
-        start = middleIndex;
-        end = middleIndex;
+        start = mid;
+        end = mid;
 
-
-        while (start-1>=0 && nums[start-1]===target){
+        while ((start-1)>=0 && nums[start-1]===target){
             start--;
         }
 
-        while (end+1<=len-1 && nums[end+1]===target){
+        while ((end+1)<=len-1 && nums[end+1]===target){
             end++;
         }
 
         return [start, end];
     };
 
-    console.log('searchRange', searchRange([5, 7, 7, 8, 8, 10], 8));
+    // console.log('searchRange', searchRange([2, 2], 2));
+
 
 
     var findLeft1 = function (nums, target) {
@@ -201,31 +265,55 @@
 }
 
 
+//875
+{
+
+
+    var minEatingSpeed = function(piles, H) {
+
+
+
+
+        piles = piles.sort((a, b) => {
+            return a - b
+        });
+        let sumPiles = piles.reduce((prev, next) => {
+            return prev + next;
+        }, 0);
+
+        let min = Math.ceil(sumPiles / H);
+        let max = piles[piles.length - 1];
+        let minSpeed = max;
+
+        while (min<=max){
+
+            let tempMid = Math.floor((min + max) / 2);
+            let tempHour = piles.reduce((prev, next) => {
+                return prev + Math.ceil(next / tempMid);
+            }, 0);
+
+
+            if(tempHour>H){
+                min = tempMid + 1;
+            }else {
+                max = tempMid - 1;
+                minSpeed = Math.min(minSpeed, tempMid);
+            }
+        }
+
+
+        return minSpeed;
+    };
+
+    console.log('minEatingSpeed', minEatingSpeed([3, 6, 7, 11], 8));
+}
+
+
 //378
 {
 
 
-    var kthSmallest = function(matrix, k) {
-        let nums = matrix.reduce((prev, next) => {
-            return prev.concat(next)
-        }, []).sort((a, b) => {
-            return a - b;
-        });
-        let formatNums = [...new Set(nums)];
-        let left = 0;
-        let right = formatNums.length - 1;
 
-
-        return nums[k - 1];
-    };
-
-    var testArr = [
-        [1, 5, 9],
-        [10, 11, 13],
-        [12, 13, 15]
-    ];
-
-    console.log('kthSmallest', kthSmallest(testArr, 8));
 
 }
 

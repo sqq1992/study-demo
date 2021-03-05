@@ -1,36 +1,32 @@
 
-//二分搜索法
+//双指针
 
-//744
+
+
+//167
 {
 
-    var nextGreatestLetter = function(letters, target) {
-        let max = letters.length;
-
-
-        if(letters[max-1]<=target){
-            return letters[0];
-        }
-
+    var twoSum = function(numbers, target) {
 
         let start = 0;
-        let end = max-1;
+        let end = numbers.length - 1;
 
         while (start<end) {
-            let mid = start + Math.floor((end - start) / 2);
 
-            if(letters[mid]>target){
-                end = mid;
+            let sum = numbers[start] + numbers[end];
+            if(sum===target){
+                return [start + 1, end + 1];
+            }else if(sum>target){
+                end--;
             }else {
-                start = mid + 1;
+                start++;
             }
         }
 
-        return letters[end]
 
+        return [-1, -1];
     };
 
-    // console.log('nextGreatestLetter', nextGreatestLetter(["c", "f", "j"], 'j'));
 }
 
 
@@ -60,45 +56,9 @@
     // console.log('sortedSquares', sortedSquares([-4, -1, 0, 3, 10]));
 }
 
-
-//367
-{
-
-    var isPerfectSquare = function(num) {
-
-        if(num===1){
-            return true;
-        }
-
-
-        let start = 0;
-        let end = num;
-
-        while (start<end){
-            let mid = start + Math.floor((end - start) / 2);
-            let sum = mid * mid;
-
-
-            if(sum===num){
-                return true;
-            }else if(sum>num){
-                end = mid;
-            }else {
-                start = mid + 1;
-            }
-        }
-
-
-        return false;
-    };
-
-    console.log('isPerfectSquare', isPerfectSquare(9));
-}
-
-
-
 //344
 {
+
     var reverseString = function(s) {
         let left = 0;
         let right = s.length - 1;
@@ -307,5 +267,87 @@
     };
 
 
+
+}
+
+//medium----------------------------------
+
+//567
+{
+    var checkInclusion = function(s1, s2) {
+
+
+        let start = 0;
+        let s1Len = s1.length;
+        let len = s2.length;
+        let end = 0;
+        let s1Record = new Map();
+        let s2Record = new Map();
+        for(let i=0,j=s1.length;i<j;i++) {
+            s1Record.set(s1[i], (s1Record.get(s1[i]) || 0) + 1);
+        }
+
+        let isEqual = function (s1RecordObj,s2RecordObj) {
+
+            for(let [key,value] of s1RecordObj){
+                if(s2RecordObj.get(key)!==value){
+                    return false;
+                }
+            }
+
+            return true;
+        };
+
+
+        while (end<len) {
+
+            if (end - start + 1 > s1Len) {
+                s2Record.set(s2[start], s2Record.get(s2[start]) - 1);
+                start++;
+            }
+
+            s2Record.set(s2[end], (s2Record.get(s2[end]) || 0) + 1);
+
+
+            if(end-start+1===s1Len && isEqual(s1Record,s2Record)){
+                return true;
+            }
+
+            end++;
+        }
+
+
+        return false;
+    };
+}
+
+//3
+{
+    var lengthOfLongestSubstring = function(s) {
+
+        let start = 0;
+        let end = 0;
+        let len = s.length;
+        let record = new Map();
+        let maxLen = 0;
+
+        while (end<len) {
+
+            if(record.has(s[end])){
+                let prevIndex = record.get(s[end]);
+                start = prevIndex < start ? start : prevIndex + 1;
+            }
+
+            maxLen = Math.max(end - start + 1, maxLen);
+            record.set(s[end], end);
+            end++;
+        }
+
+
+        return maxLen;
+    };
+
+
+    console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("pwwkew"));
 
 }

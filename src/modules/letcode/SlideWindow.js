@@ -32,7 +32,7 @@
         return result;
     };
 
-    console.log('intervalIntersection', intervalIntersection([[0, 2], [5, 10], [13, 23], [24, 25]], [[1, 5], [8, 12], [15, 24], [25, 26]]));
+    // console.log('intervalIntersection', intervalIntersection([[0, 2], [5, 10], [13, 23], [24, 25]], [[1, 5], [8, 12], [15, 24], [25, 26]]));
 
 }
 
@@ -67,7 +67,7 @@
     };
 
 
-    console.log('numSubarrayProductLessThanK', numSubarrayProductLessThanK([10, 5, 2, 6], 100));
+    // console.log('numSubarrayProductLessThanK', numSubarrayProductLessThanK([10, 5, 2, 6], 100));
 }
 
 
@@ -76,43 +76,82 @@
 
     var totalFruit = function(tree) {
 
+        let len = tree.length;
+        let start = 0;
+        let end = 0;
         let record = new Map();
         let count = 0;
-        let len = tree.length;
-        let right = 0;
         let maxLen = 0;
 
+        while (end<len) {
 
-
-        while (right<len) {
-            let tempStr = tree[right];
+            let tempStr = tree[end];
 
             if(!record.has(tempStr) && record.size===2){
                 let [x, y] = record.entries();
 
-                if(x[1]>y[1]) {
-                    record.delete(y[0]);
-                    count = right - y[1];
+                if(x[1]>y[1]){
+
                 }else {
-                    record.delete(x[0]);
-                    count = right - x[1];
+
                 }
 
-            }else {
-                count++;
+
             }
 
-            maxLen = Math.max(maxLen, count);
-            record.set(tempStr, right);
-            right++;
         }
-
-
-        return maxLen;
 
     };
 
-    console.log('totalFruit', totalFruit([1, 0, 1, 4, 1, 4, 1, 2, 3]));
+
+
+
+
+
+
+
+
+
+
+
+
+    // var totalFruit = function(tree) {
+    //
+    //     let record = new Map();
+    //     let count = 0;
+    //     let len = tree.length;
+    //     let right = 0;
+    //     let maxLen = 0;
+    //
+    //     while (right<len) {
+    //         let tempStr = tree[right];
+    //
+    //         if(!record.has(tempStr) && record.size===2){
+    //             let [x, y] = record.entries();
+    //
+    //             if(x[1]>y[1]) {
+    //                 record.delete(y[0]);
+    //                 count = right - y[1];
+    //             }else {
+    //                 record.delete(x[0]);
+    //                 count = right - x[1];
+    //             }
+    //
+    //         }else {
+    //             count++;
+    //         }
+    //
+    //         maxLen = Math.max(maxLen, count);
+    //         record.set(tempStr, right);
+    //         right++;
+    //     }
+    //
+    //
+    //     return maxLen;
+    //
+    // };
+
+    // console.log('totalFruit', totalFruit([1, 0, 1, 4, 1, 4, 1, 2, 3]));
 
 }
 
@@ -144,7 +183,7 @@
     };
 
 
-    console.log('longestOnes', longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2));
+    // console.log('longestOnes', longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2));
 }
 
 
