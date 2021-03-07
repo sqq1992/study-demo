@@ -3,199 +3,220 @@
 //test
 {
 
-    // let test1 = new Promise(function (resolve,reject) {
-    //     setTimeout(() => {
-    //         console.log('start-1');
-    //         // resolve('step-2');
-    //         reject('error-step-2');
-    //     }, 3000);
-    //
-    // }).then((json)=>{
-    //     console.log(json);
-    //     return new Promise((resolve,rejected)=>{
-    //         resolve('step-3');
-    //     })
-    // },(error)=>{
-    //     console.log(error);
-    //     return "error-step-3";
-    // }).then((json)=>{
-    //     console.log(json);
-    //     return 'step-4';
-    // },(error)=>{
-    //     console.log(error);
-    //     return "error-step-4";
-    // }).then((json)=>{
-    //     console.log(json);
-    // },(error)=>{
-    //     console.log(error);
-    // })
+
+
+
+
+
 }
+
 
 
 {
 
-    let MyPromise = function (execute) {
+    const PENDING = "PENDING";
+    const FULFILLED = "FULFILLED";
+    const REJECTED = "REJECTED";
 
-        this.status = "pending";
-        this.resolveCb = [];
-        this.rejectedCb = [];
-        this.result = null;
-        this.rejectResult = null;
-
-
-        let resolve = (result) => {
-            this.status = "resolve";
-            this.result = result;
-            this.resolveCb.forEach((elem)=>{
-                elem();
-            })
-        };
-
-        let rejected = (rejectResult) => {
-            this.status = "rejected";
-            this.rejectResult = rejectResult;
-            this.rejectedCb.forEach((elem)=>{
-                elem();
-            })
-        };
+    class MyPromise2{
+        constructor(executor) {
+            this.state = PENDING;
+            this.fulfilledQueue = [];
+            this.fulfilledValue = null;
+            this.rejectedQueue = [];
+            this.rejectedValue = null;
 
 
-        try {
-            execute(resolve, rejected);
-        }catch (e) {
-            rejected(e);
+            let resolve =  (value) =>{
+                if(this.state===PENDING){
+                    this.state = FULFILLED;
+                    this.fulfilledValue = value;
+                    while (this.fulfilledQueue.length){
+                        let callBack = this.fulfilledQueue.shift();
+                        callBack(this.fulfilledValue)
+                    }
+                }
+            };
+
+            let rejected = (value) => {
+                if(this.state===PENDING){
+                    this.state = REJECTED;
+                    this.rejectedValue = value;
+                    while (this.rejectedQueue.length){
+                        let callBack = this.rejectedQueue.shift();
+                        callBack(this.rejectedValue)
+                    }
+                }
+            };
+
+            try {
+                executor(resolve, rejected);
+            }catch (e) {
+                rejected(e)
+            }
         }
 
 
-    };
-
-    MyPromise.prototype.then = function (onFulfilled, onRejected) {
-        let _this = this;
-
-        onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (data) => {
-            return data;
-        };
-
-        onRejected = typeof onRejected === "function" ? onRejected : () => {
-            throw new Error();
-        };
-
-        let tempPromise = new MyPromise(function (resolve, reject) {
+        then(onFulfilled, onRejected) {
+            let _this = this;
+            onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (value) => {
+                return value;
+            };
+            onRejected = typeof onRejected === "function" ? onRejected : (error) => {
+                throw new Error(error);
+            };
 
 
-            if(_this.status==="resolve"){
-                setTimeout(() => {
-                    try {
-                        let tempResult = onFulfilled(_this.result);
-                        _this._handlePromise(tempPromise, tempResult, resolve, reject);
-                    }catch (e) {
-                        reject(e);
-                    }
+            let tempPromise = new MyPromise2(function (resolve,rejected) {
 
-                });
-            }else if(_this.status==="rejected"){
-                setTimeout(() => {
-                    try {
-                        let tempRejectResult = onRejected(_this.rejectResult);
-                        _this._handlePromise(tempPromise, tempRejectResult, resolve, reject);
-                    }catch (e) {
-                        reject(e);
-                    }
+                if(_this.state===PENDING){
 
-                });
-            }else if(_this.status==="pending"){
-                _this.resolveCb.push(() => {
+                    _this.fulfilledQueue.push((value)=>{
+                        setTimeout(() => {
+                            try {
+                                let resolveValue = onFulfilled(value);
+                                _this._handlePromise(resolveValue, tempPromise, resolve, rejected);
+                            }catch (e) {
+                                rejected(e);
+                            }
+                        });
+                    })
+
+                    _this.rejectedQueue.push((value)=>{
+                        setTimeout(() => {
+                            try {
+                                let rejectedValue = onRejected(value);
+                                _this._handlePromise(rejectedValue,tempPromise,resolve,rejected)
+                            }catch (e) {
+                                rejected(e);
+                            }
+                        });
+                    })
+
+                }else if(_this.state===FULFILLED){
+                    setTimeout(()=>{
+                        try {
+                            let resolveValue = onFulfilled(_this.fulfilledValue);
+                            _this._handlePromise(resolveValue, tempPromise, resolve, rejected);
+                        }catch (e) {
+                            rejected(e);
+                        }
+                    })
+
+                }else if(_this.state===REJECTED) {
                     setTimeout(() => {
                         try {
-                            let tempResult = onFulfilled(_this.result);
-                            _this._handlePromise(tempPromise, tempResult, resolve, reject);
+                            let rejectedValue = onRejected(_this.rejectedValue);
+                            _this._handlePromise(rejectedValue,tempPromise,resolve,rejected)
                         }catch (e) {
-                            reject(e);
+                            rejected(e);
                         }
-
                     });
-                });
-                _this.rejectedCb.push(()=>{
-                    setTimeout(() => {
-                        try {
-                            let tempRejectResult = onRejected(_this.rejectResult);
-                            _this._handlePromise(tempPromise, tempRejectResult, resolve, reject);
-                        }catch (e) {
-                            reject(e);
-                        }
+                }
 
-                    });
-                })
+
+            })
+
+            return tempPromise;
+        }
+
+
+        _handlePromise(currentValue, currentPromise, resolve, rejected) {
+
+            if(currentValue===currentPromise){
+                rejected(new TypeError('不能是同一个promise对象'))
             }
-        });
 
 
-        return tempPromise;
-    };
-
-    MyPromise.prototype._handlePromise = function (currentPromise,result,resolve,reject) {
-
-
-        if(result && (typeof result==="object" || typeof result==="function")){
-
-            let then = result.then;
-
-            if(typeof then==="function"){
-
-                then.call(result,(y)=>{
-                    this._handlePromise(currentPromise, y, resolve, reject);
-                },(x)=>{
-                    reject(x);
-                })
-
+            if(currentValue instanceof MyPromise2){
+                currentValue.then((json) => {
+                    this._handlePromise(json, currentPromise, resolve, rejected);
+                }, (json) => {
+                    rejected(json);
+                });
             }else {
                 try {
-                    resolve(result);
+                    resolve(currentValue);
                 }catch (e) {
-                    reject(e);
+                    rejected(e);
                 }
             }
 
-        }else {
-
-            try {
-                resolve(result);
-            }catch (e) {
-                reject(e);
-            }
-
         }
 
 
-    };
+        static resolve(params) {
+
+            return new MyPromise2(function (resolve, rejected) {
+
+                if(params instanceof MyPromise2){
+                    params.then(resolve, rejected);
+                }else {
+                    resolve(params);
+                }
+
+            });
+        }
+
+        static rejected(params){
+            return new MyPromise2(function (resolve,innerRejected) {
+                innerRejected(params);
+            })
+        }
+
+    }
 
 
-    // let test2 = new MyPromise(function (resolve,reject) {
-    //     setTimeout(() => {
-    //         console.log('start-1');
-    //         reject('error-step-2');
-    //     }, 3000);
-    //
+
+    //todo test
+    // let aa = new MyPromise2(function (resolve,rejected) {
+    //         setTimeout(() => {
+    //             console.log('step-1');
+    //             resolve('step-2');
+    //         }, 3000);
     // }).then((json)=>{
     //     console.log(json);
-    //     return new MyPromise((resove,rejected)=>{
-    //         rejected('error-step-3');
-    //     });
-    // },(error)=>{
-    //     console.log(error);
-    //     return "error-step-3";
+    //     return new MyPromise2(function (resolve,rejected) {
+    //         setTimeout(() => {
+    //             resolve('step-3');
+    //         }, 3000);
+    //     }).then((json)=>{
+    //         console.log('step-4')
+    //         return 'step-5';
+    //     })
+    // },(json)=>{
+    //     console.log('aa', json);
     // }).then((json)=>{
     //     console.log(json);
-    //     return 'step-4';
-    // },(error)=>{
-    //     console.log(error);
-    //     return "error-step-4";
+    //     return 'step-6';
     // }).then((json)=>{
     //     console.log(json);
-    // },(error)=>{
-    //     console.log(error);
+    //     return 'step-7';
     // })
+
+    //todo test2
+    // let test2 = Promise.resolve(44).then((json)=>{
+    //     console.log('test1', json);
+    // })
+    // let test22 = MyPromise2.resolve(44).then((json)=>{
+    //     console.log('MyPromise2.resolve', json);
+    // })
+
+
+    //todo test3
+    let test3 = Promise.reject(44).then(()=>{
+
+    },(json)=>{
+        console.log('Promise.reject', json);
+    })
+
+    let test33 = MyPromise2.rejected(44).then(()=>{
+    },(json)=>{
+        console.log('MyPromise2.reject', json);
+    })
+
 
 
 
 }
+

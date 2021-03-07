@@ -10,7 +10,10 @@ import store from './modules/redux/store';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
-// import './modules/es6/promise/promise';
+import './modules/es6/promise/promise';
+// import './modules/es6/promise/MyPromise';
+// import './modules/es6/prototype/prototype';
+// import './modules/es6/extraFuns/curring';
 
 
 //compute
@@ -26,7 +29,7 @@ import store from './modules/redux/store';
 // import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
-import './modules/letcode/SlideWindow';
+// import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';

@@ -1,5 +1,35 @@
 
+//3
+{
+    var lengthOfLongestSubstring = function(s) {
 
+
+        let start = 0;
+        let end = 0;
+        let len = s.length;
+        let record = new Map();
+        let maxLen = 0;
+
+        while (end<len) {
+            let tempStr = s[end];
+
+            if(record.has(tempStr)){
+                let prevIndex = record.get(tempStr);
+                start = start <= prevIndex ? prevIndex + 1 : start;
+            }
+
+            record.set(tempStr, end);
+            maxLen = Math.max(end - start + 1, maxLen);
+            end++
+        }
+
+        return maxLen;
+    };
+
+
+    console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("abcabcbb"));
+
+}
 
 //986
 {
@@ -77,7 +107,6 @@
     var totalFruit = function(tree) {
 
         let len = tree.length;
-        let start = 0;
         let end = 0;
         let record = new Map();
         let count = 0;
@@ -91,65 +120,23 @@
                 let [x, y] = record.entries();
 
                 if(x[1]>y[1]){
-
+                    record.delete(y[0]);
+                    count = end - y[1];
                 }else {
-
+                    record.delete(x[0]);
+                    count = end - x[1];
                 }
-
-
+            }else {
+                count++;
             }
 
+            record.set(tempStr, end);
+            end++;
+            maxLen = Math.max(maxLen, count);
         }
 
+        return maxLen;
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // var totalFruit = function(tree) {
-    //
-    //     let record = new Map();
-    //     let count = 0;
-    //     let len = tree.length;
-    //     let right = 0;
-    //     let maxLen = 0;
-    //
-    //     while (right<len) {
-    //         let tempStr = tree[right];
-    //
-    //         if(!record.has(tempStr) && record.size===2){
-    //             let [x, y] = record.entries();
-    //
-    //             if(x[1]>y[1]) {
-    //                 record.delete(y[0]);
-    //                 count = right - y[1];
-    //             }else {
-    //                 record.delete(x[0]);
-    //                 count = right - x[1];
-    //             }
-    //
-    //         }else {
-    //             count++;
-    //         }
-    //
-    //         maxLen = Math.max(maxLen, count);
-    //         record.set(tempStr, right);
-    //         right++;
-    //     }
-    //
-    //
-    //     return maxLen;
-    //
-    // };
 
     // console.log('totalFruit', totalFruit([1, 0, 1, 4, 1, 4, 1, 2, 3]));
 
