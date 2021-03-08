@@ -14,6 +14,7 @@ import store from './modules/redux/store';
 // import './modules/es6/promise/MyPromise';
 // import './modules/es6/prototype/prototype';
 // import './modules/es6/extraFuns/curring';
+// import './modules/es6/extraFuns/array';
 
 
 //compute
@@ -56,7 +57,7 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/template';
 
 //fourth compute 算法4
-import './modules/fourthCompute/firstChapter';
+// import './modules/fourthCompute/firstChapter';
 
 //interview
 // import './modules/interview/jsonUtils'

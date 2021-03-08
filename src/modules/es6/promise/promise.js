@@ -154,13 +154,32 @@
                 }else {
                     resolve(params);
                 }
-
             });
         }
 
         static rejected(params){
             return new MyPromise2(function (resolve,innerRejected) {
                 innerRejected(params);
+            })
+        }
+
+        static all(params){
+
+            return new MyPromise2(function (resolve,rejected) {
+                let result = [];
+                if(params.length===0){
+                    resolve(result);
+                }else {
+                    for(let i=0,j=params.length;i<j;i++) {
+                        MyPromise2.resolve(params[i]).then((json)=>{
+                            result[i] = json;
+
+                            if(i+1===params.length){
+                                resolve(result);
+                            }
+                        })
+                    }
+                }
             })
         }
 
@@ -204,18 +223,25 @@
 
 
     //todo test3
-    let test3 = Promise.reject(44).then(()=>{
+    // let test3 = Promise.reject(44).then(()=>{
+    //
+    // },(json)=>{
+    //     console.log('Promise.reject', json);
+    // })
+    //
+    // let test33 = MyPromise2.rejected(44).then(()=>{
+    // },(json)=>{
+    //     console.log('MyPromise2.reject', json);
+    // })
 
-    },(json)=>{
-        console.log('Promise.reject', json);
-    })
-
-    let test33 = MyPromise2.rejected(44).then(()=>{
-    },(json)=>{
-        console.log('MyPromise2.reject', json);
-    })
-
-
+    //todo test4
+    // Promise.all([2]).then((json)=>{
+    //     console.log('promise.all', json);
+    // })
+    //
+    // MyPromise2.all([2]).then((json)=>{
+    //     console.log('MyPromise2.all', json);
+    // })
 
 
 }
