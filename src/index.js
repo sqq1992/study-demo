@@ -10,7 +10,7 @@ import store from './modules/redux/store';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
-import './modules/es6/promise/promise';
+// import './modules/es6/promise/promise';
 // import './modules/es6/promise/MyPromise';
 // import './modules/es6/prototype/prototype';
 // import './modules/es6/extraFuns/curring';
@@ -56,7 +56,7 @@ import './modules/es6/promise/promise';
 // import './modules/jsDesign/template';
 
 //fourth compute 算法4
-// import './modules/fourthCompute/firstChapter';
+import './modules/fourthCompute/firstChapter';
 
 //interview
 // import './modules/interview/jsonUtils'
