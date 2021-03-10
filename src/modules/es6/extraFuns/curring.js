@@ -10,7 +10,6 @@
             var _inargs = slice.call(arguments);
             return fn.apply(null,_args.concat(_inargs))
         }
-
     }
 
 

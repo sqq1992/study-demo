@@ -92,15 +92,34 @@
     }
 
     //todo test
-    let person1 = object(person);
-    person1.color.push("third");
-    console.log('color-person1', person1.color);
+    // let person1 = object(person);
+    // person1.color.push("third");
+    // console.log('color-person1', person1.color);
+    //
+    //
+    // let person2 = object(person);
+    // console.log('color-person2', person2.color);
+    //
+    // let person3 = Object.create(person);
+    // console.log('color-person3', person3.color);
 
+}
 
-    let person2 = object(person);
-    console.log('color-person2', person2.color);
+// instanceOf
+{
 
-    let person3 = Object.create(person);
-    console.log('color-person3', person3.color);
+    function myInstanceOf(instanceOfObj,constructorFun) {
+        let resultPrototype = constructorFun.prototype;
+        let proto = instanceOfObj.__proto__;
+
+        while (proto){
+            if(proto===resultPrototype){
+                return true;
+            }
+            proto = proto.__proto__;
+        }
+
+        return false;
+    }
 
 }
