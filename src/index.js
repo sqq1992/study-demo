@@ -15,6 +15,7 @@ import store from './modules/redux/store';
 // import './modules/es6/prototype/prototype';
 // import './modules/es6/extraFuns/curring';
 // import './modules/es6/extraFuns/array';
+// import './modules/es6/extraFuns/debounceAndThrottle';
 
 
 //compute
