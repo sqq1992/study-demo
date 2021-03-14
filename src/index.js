@@ -38,6 +38,9 @@ import store from './modules/redux/store';
 // import './modules/letcode/Stack.js';
 // import './modules/letcode/LinkedList';
 
+//  JS高级程序设计(第四版)
+// import './modules/jsHigherDesign/8-Object';
+
 
 //structureAndCompute 数据结构与算法
 // import './modules/structureAndCompute/tenthChapter';
@@ -58,7 +61,7 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/template';
 
 //fourth compute 算法4
-// import './modules/fourthCompute/firstChapter';
+import './modules/fourthCompute/firstChapter';
 
 //interview
 // import './modules/interview/jsonUtils'

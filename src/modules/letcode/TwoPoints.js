@@ -1,6 +1,37 @@
 
 //双指针
 
+// 88
+{
+
+
+    var merge = function(nums1, m, nums2, n) {
+        let nums1Index = m-1;
+        let nums2Index = n - 1;
+        let len = m + n;
+
+        while (nums1Index>=0 && nums2Index>=0) {
+            len--;
+            nums1[len] = Math.max(nums1[nums1Index], nums2[nums2Index]);
+            if(nums1[nums1Index]>nums2[nums2Index]){
+                nums1Index--;
+            }else {
+                nums2Index--;
+            }
+        }
+
+        while (nums2Index>=0){
+            nums1[nums2Index] = nums2[nums2Index];
+            nums2Index--;
+        }
+
+        return nums1;
+    };
+
+    // console.log('merge', merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
+
+
+}
 
 
 //167

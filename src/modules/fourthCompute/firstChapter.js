@@ -66,6 +66,29 @@ CArray.prototype = {
 
     },
 
+    //希尔排序
+    shellSort:function(){
+        let arr = this.dataStore;
+        let len = arr.length;
+        let gaps = [5, 3, 1];
+
+
+        for(let g=0,gl=gaps.length;g<gl;g++) {
+            let tempGap = gaps[g];
+
+            for(let i=tempGap;i<len;i++){
+                let tempVal = arr[i];
+
+                for(var j=i;j>=tempGap && arr[j-tempGap]>tempVal;j-=tempGap){
+                    arr[j] = arr[j - tempGap];
+                }
+                arr[j] = tempVal;
+            }
+
+        }
+
+    },
+
 
     _exec: function (previousIndex, currentIndex) {
         let arr = this.dataStore;
@@ -83,5 +106,5 @@ CArray.prototype = {
 //
 var num1 = new CArray(100);
 num1.setData();
-num1.innsertSort();
+num1.shellSort();
 console.log(num1.toString());
