@@ -28,7 +28,7 @@ import store from './modules/redux/store';
 
 
 //letcode
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
@@ -61,7 +61,7 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/template';
 
 //fourth compute 算法4
-import './modules/fourthCompute/firstChapter';
+// import './modules/fourthCompute/firstChapter';
 
 //interview
 // import './modules/interview/jsonUtils'

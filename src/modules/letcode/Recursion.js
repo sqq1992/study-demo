@@ -12,6 +12,11 @@ Bst.prototype.init = function (dataList) {
 
     for(let i=0,j=dataList.length;i<j;i++) {
         let tempVal = dataList[i];
+
+        if(tempVal===null){
+            continue;
+        }
+
         let tempNode = new node(tempVal);
 
         if(!this.root) {
@@ -46,8 +51,72 @@ Bst.prototype.init = function (dataList) {
 };
 
 
+//107
+{
+    let temp1 = new node(1);
+    let temp2 = new node(2);
+    let temp3 = new node(3);
+    let temp4 = new node(4);
+    let temp5 = new node(5);
+
+    temp1.left = temp2;
+    temp1.right = temp3;
+    temp3.left = temp4;
+    temp3.right = temp5;
 
 
+    var levelOrderBottom = function(root) {
+
+
+        let stack = [root];
+        let result = [];
+        let index = 0;
+        while (stack.length) {
+
+            let tempNode = stack.pop();
+            if(tempNode){
+                result[index] = result[index] || [];
+                result[index].push(tempNode.val);
+            }
+
+            if(tempNode && (tempNode.left || tempNode.right)){
+                index++;
+                tempNode.right && stack.push(tempNode.right);
+                tempNode.left && stack.push(tempNode.left);
+            }
+        }
+
+
+        return result.reverse();
+    };
+
+
+    console.log('levelOrderBottom', levelOrderBottom(temp1));
+
+
+
+    // var bst1 = new Bst([3,9,20,null,null,15,7]);
+    // console.log('bst', bst1);
+    // var levelOrderBottom = function(root) {
+    //
+    //     let result = [];
+    //
+    //     let tempFunc = (tempRoot,index) => {
+    //
+    //         if(tempRoot){
+    //             result[index] = result[index] || [];
+    //             result[index].push(tempRoot.val);
+    //             tempFunc(tempRoot.left,index+1);
+    //             tempFunc(tempRoot.right,index+1);
+    //         }
+    //     };
+    //     tempFunc(root,0);
+    //     return result.reverse();
+    // };
+
+
+
+}
 
 
 //104
@@ -61,6 +130,15 @@ Bst.prototype.init = function (dataList) {
 
         return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     };
+
+    // var maxDepth = function(root) {
+    //
+    //     if(!root){
+    //         return 0;
+    //     }
+    //
+    //     return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    // };
 
 }
 
@@ -96,8 +174,8 @@ Bst.prototype.init = function (dataList) {
     var bst1 = new Bst([1, null, 2, 3]);
     console.log('bst', bst1);
 
-
     var preorderTraversal = function(root) {
+
         let result = [];
         let tempFunc = (tempRoot) => {
             if(tempRoot){
@@ -109,12 +187,36 @@ Bst.prototype.init = function (dataList) {
             }
         };
         tempFunc(root);
-
         return result;
     };
-
-
     console.log('preorderTraversal', preorderTraversal(bst1.root));
+
+
+
+
+
+
+
+
+
+    // var preorderTraversal = function(root) {
+    //     let result = [];
+    //     let tempFunc = (tempRoot) => {
+    //         if(tempRoot){
+    //             if(tempRoot.val!==null){
+    //                 result.push(tempRoot.val);
+    //             }
+    //             tempFunc(tempRoot.left);
+    //             tempFunc(tempRoot.right);
+    //         }
+    //     };
+    //     tempFunc(root);
+    //
+    //     return result;
+    // };
+
+
+    // console.log('preorderTraversal', preorderTraversal(bst1.root));
 }
 
 
