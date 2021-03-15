@@ -134,3 +134,132 @@
 
 
 }
+
+
+//class
+{
+
+    class Vehicle{
+        constructor() {
+            this.hasEngine = true;
+        }
+        static identity(){
+            console.log('Vehicle');
+        }
+    }
+
+    class Bus extends Vehicle{
+        constructor() {
+
+            super();
+            console.log(this instanceof Vehicle);
+            console.log(this);
+        }
+        static identity(){
+            super.identity();
+        }
+    }
+
+
+    //todo test
+    // new Bus();
+    // Bus.identity();
+
+}
+
+//抽象基类
+{
+
+    //抽象基类
+    class Vehicle{
+        constructor() {
+            console.log(new.target);
+
+
+            if(new.target===Vehicle){
+                throw new Error('Vehicle cannot be installed');
+            }
+
+            if(!this.foo){
+                throw new Error('foo');
+            }
+
+        }
+    }
+
+    //派生类
+    class Bus extends Vehicle {
+        foo(){}
+    }
+
+    class Van extends Vehicle {
+
+    }
+
+    //todo test
+    // new Bus();
+    // new Van();
+    // new Vehicle();
+
+}
+
+// 继承内置类型
+{
+
+    class SuperArray extends Array{
+        shuffle(){
+            for(let i=this.length-1;i>0;i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [this[i], this[j]] = [this[j], this[i]];
+            }
+        }
+    }
+
+
+    // let a = new SuperArray(1, 2, 3, 4, 5);
+    // a.shuffle();
+    // console.log(a);
+
+}
+
+//类混入
+{
+
+    class Vehicle{}
+
+    let FirstMin = (SuperClass) => {
+        return class extends SuperClass{
+            first(){
+                console.log('first')
+            }
+        }
+    };
+
+    let SecondMin = (SuperClass) => {
+        return class extends SuperClass{
+            second(){
+                console.log('second')
+            }
+        }
+    };
+
+    function Mix(BaseClass,...Mixins) {
+        return Mixins.reduce((prev, next) => {
+            return next(prev)
+        }, BaseClass);
+    }
+
+
+    class Bus extends Mix(Vehicle, FirstMin, SecondMin) {
+
+    }
+
+    //todo test
+    let a = new Bus();
+    a.first();
+    a.second();
+
+
+}
+
+
