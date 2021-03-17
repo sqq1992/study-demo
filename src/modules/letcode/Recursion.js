@@ -51,6 +51,87 @@ Bst.prototype.init = function (dataList) {
 };
 
 
+
+//102
+{
+
+    //1 递归
+    var levelOrder = function(root) {
+
+        let result = [];
+
+        let tempFunc = (tempRoot,index) => {
+            if(tempRoot){
+                result[index] = result[index] || [];
+                result[index].push(tempRoot.val);
+
+                tempFunc(tempRoot.left, index + 1);
+                tempFunc(tempRoot.right, index + 1);
+            }
+
+        };
+        tempFunc(root, 0);
+        return result;
+    };
+
+    //2 递归
+    var levelOrder2 = function(root) {
+
+        let result = [];
+        if(!root){
+            return result;
+        }
+
+        let stack = [root];
+
+        while (stack.length){
+            let children = [];
+            let max = stack.length;
+
+            for(let i=0;i<max;i++) {
+                let tempRoot = stack.pop();
+                children.push(tempRoot.val);
+
+                tempRoot.left && stack.unshift(tempRoot.left);
+                tempRoot.right && stack.unshift(tempRoot.right);
+            }
+
+            result.push(children);
+        }
+
+
+        return result;
+    };
+}
+
+
+//145
+{
+    var postorderTraversal = function(root) {
+
+        let result = [];
+        let stack = [root];
+
+        while (stack.length){
+            let tempRoot = stack.pop();
+
+            tempRoot.right && stack.push(tempRoot.right);
+            tempRoot.left && stack.push(tempRoot.left);
+            result.push(tempRoot.val);
+        }
+
+        return result;
+    };
+}
+
+
+
+
+
+
+
+
+
 //107
 {
     let temp1 = new node(1);
@@ -91,7 +172,7 @@ Bst.prototype.init = function (dataList) {
     };
 
 
-    console.log('levelOrderBottom', levelOrderBottom(temp1));
+    // console.log('levelOrderBottom', levelOrderBottom(temp1));
 
 
 

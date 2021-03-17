@@ -28,7 +28,7 @@ import store from './modules/redux/store';
 
 
 //letcode
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
@@ -40,15 +40,19 @@ import store from './modules/redux/store';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
-import './modules/jsHigherDesign/10-Function';
+// import './modules/jsHigherDesign/10-Function';
 
 
 //structureAndCompute 数据结构与算法
 // import './modules/structureAndCompute/tenthChapter';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
+// import './modules/structureAndCompute/fifthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
 // import './modules/structureAndCompute/twelfthChapter';
+
+//学习数据结构与算法  第三版
+// import './modules/structureAndComputeThird/fifthChapter';   //队列
 
 // javascript设计模式
 // import './modules/jsDesign/prototype'
