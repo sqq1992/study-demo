@@ -176,38 +176,87 @@
 
 //845
 {
-    var longestMountain = function(A) {
-        let len = A.length;
-        let base = 0;
-        let end = 0;
-        let result = 0;
+    var longestMountain = function(arr) {
 
-        while (base<len) {
-            end = base;
+        let len = arr.length;
+        let index = 1;
+        let maxLen = 0;
+        let increasing = 0;
+        let decreasing = 0;
+        while (index<len) {
+            increasing = 0;
+            decreasing = 0;
 
-
-            if(end+1<len && A[end]<A[end+1]) {
-
-                while (end+1<len && A[end]<A[end+1]){
-                    end++;
-                }
-
-                if(end+1<len && A[end]>A[end+1]){
-
-                    while (end+1<len && A[end]>A[end+1]){
-                        end++;
-                    }
-                    result = Math.max(result, end - base + 1);
-                }
-
+            while (index<len && arr[index]>arr[index-1]){
+                index++;
+                increasing++;
+            }
+            while (index<len && arr[index]<arr[index-1]){
+                index++;
+                decreasing++;
             }
 
-            base = Math.max(end, base + 1);
+            if(increasing>0 && decreasing>0){
+                maxLen = Math.max(maxLen, increasing + decreasing + 1);
+            }
+
+            while (index<len && arr[index]===arr[index-1]){
+                index++;
+            }
 
         }
 
-        return result;
-
+        return maxLen;
     };
+
+    console.log('longestMountain', longestMountain([0,2,0,2,1,2,3,4,4,1]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var longestMountain = function(A) {
+    //     let len = A.length;
+    //     let base = 0;
+    //     let end = 0;
+    //     let result = 0;
+    //
+    //     while (base<len) {
+    //         end = base;
+    //
+    //
+    //         if(end+1<len && A[end]<A[end+1]) {
+    //
+    //             while (end+1<len && A[end]<A[end+1]){
+    //                 end++;
+    //             }
+    //
+    //             if(end+1<len && A[end]>A[end+1]){
+    //
+    //                 while (end+1<len && A[end]>A[end+1]){
+    //                     end++;
+    //                 }
+    //                 result = Math.max(result, end - base + 1);
+    //             }
+    //
+    //         }
+    //
+    //         base = Math.max(end, base + 1);
+    //
+    //     }
+    //
+    //     return result;
+    //
+    // };
 }
 

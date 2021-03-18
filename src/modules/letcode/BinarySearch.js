@@ -1,4 +1,54 @@
 
+//15
+{
+    var threeSum = function(nums) {
+
+        let result = [];
+        nums = nums.sort((a, b) => {
+            return a - b
+        });
+
+        for(let i=0,j=nums.length;i<j;i++) {
+            let first = nums[i];
+
+            if(i>0 && nums[i]===nums[i-1]){
+                continue;
+            }
+
+
+            let left = i + 1;
+            let right = j - 1;
+
+            while (left<right) {
+                let leftVal = nums[left];
+                let rightVal = nums[right];
+                let sum = first + leftVal + rightVal;
+
+                if(sum===0){
+                    result.push([first, leftVal, rightVal]);
+                }
+
+                if(sum<=0){
+                    while (nums[left]===leftVal){
+                        left++;
+                    }
+                }
+
+                if(sum>=0){
+                    while (nums[right]===rightVal){
+                        right--;
+                    }
+                }
+            }
+
+        }
+
+        return result;
+    };
+
+
+}
+
 
 //744
 {

@@ -28,10 +28,10 @@ import store from './modules/redux/store';
 
 
 //letcode
-import "./modules/letcode/Recursion";
+// import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
-// import './modules/letcode/SlideWindow';
+import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
