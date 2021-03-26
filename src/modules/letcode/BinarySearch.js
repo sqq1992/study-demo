@@ -1,4 +1,55 @@
 
+//33
+{
+
+    var search = function(nums, target) {
+
+
+
+    };
+
+}
+
+
+//162
+{
+    var findPeakElement = function(nums) {
+
+        if(nums.length===1){
+            return 0;
+        }
+
+        let len = nums.length;
+        let index = -1;
+        let increasing = 0;
+        for(let i=1;i<len;i++) {
+            increasing = 0;
+
+            while (nums[i]>nums[i-1]) {
+                i++;
+                increasing++;
+            }
+
+            if ((nums[i] < nums[i - 1] || i >= len) && increasing >= 0) {
+                index = i - 1;
+                break;
+            }
+
+            while (nums[i]===nums[i-1]){
+                i++;
+            }
+
+        }
+
+        return index;
+    };
+
+    console.log('findPeakElement', findPeakElement([2, 1]));
+
+}
+
+
+
 //15
 {
     var threeSum = function(nums) {
@@ -156,43 +207,87 @@
 
 //275
 {
+
     var hIndex = function(citations) {
-        let staticIndex = citations.length - 1;
-        if(citations.length===0 || citations[staticIndex]===0){
-            return 0;
-        }
 
-
-        let maxLen = 1;
+        let len = citations.length;
         let left = 0;
-
-        let right = citations.length - 1;
+        let right = len - 1;
+        let staticRightIndex = len - 1;
+        let maxLen = 0;
 
         while (left<=right) {
-            let middleIndex = Math.floor((right - left) / 2) + left;
-            let middleValue = citations[middleIndex];
-            let rightNums = staticIndex - middleIndex + 1;
-
-            if (middleValue >= rightNums) {
-                maxLen = Math.max(maxLen, staticIndex - middleIndex + 1);
-            }
+            let midIndex = left + Math.floor((right - left) / 2);
+            let midVal = citations[midIndex];
+            let rightSumIndex = staticRightIndex - midIndex + 1;
 
 
-            if(middleValue<=rightNums){
-                left = middleIndex + 1;
+            if(midVal>=rightSumIndex) {
+                maxLen = Math.max(maxLen, rightSumIndex);
+                right--;
             }else {
-                right = middleIndex - 1;
+                left++;
             }
-
-
 
         }
+
 
         return maxLen;
 
-
-
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var hIndex = function(citations) {
+    //     let staticIndex = citations.length - 1;
+    //     if(citations.length===0 || citations[staticIndex]===0){
+    //         return 0;
+    //     }
+    //
+    //
+    //     let maxLen = 1;
+    //     let left = 0;
+    //
+    //     let right = citations.length - 1;
+    //
+    //     while (left<=right) {
+    //         let middleIndex = Math.floor((right - left) / 2) + left;
+    //         let middleValue = citations[middleIndex];
+    //         let rightNums = staticIndex - middleIndex + 1;
+    //
+    //         if (middleValue >= rightNums) {
+    //             maxLen = Math.max(maxLen, staticIndex - middleIndex + 1);
+    //         }
+    //
+    //
+    //         if(middleValue<=rightNums){
+    //             left = middleIndex + 1;
+    //         }else {
+    //             right = middleIndex - 1;
+    //         }
+    //
+    //
+    //
+    //     }
+    //
+    //     return maxLen;
+    //
+    //
+    //
+    // };
 
     // console.log('hIndex', hIndex([11,15]));
 
@@ -370,39 +465,45 @@
 //658
 {
 
-    var findClosestElements = function(arr, k, x) {
-        let len = arr.length;
-        let min = arr[0];
-        let max = arr[len - 1];
 
-        if(x<=min){
-            return arr.slice(0, k);
-        }else if(x>=max){
-            return arr.slice(-k);
-        }
 
-        let left = 0;
-        let right = len - k;
-        let res = [];
 
-        while (left<=right){
-            let mid = Math.floor((left + right) / 2);
-
-            if(x-arr[mid]>arr[mid+k]-x){
-                left = mid + 1;
-            }else {
-                right = mid - 1;
-            }
-
-        }
-
-        for(let i=left;i<left+k;i++){
-            res.push(arr[i]);
-        }
-
-        return res;
-    };
+    // var findClosestElements = function(arr, k, x) {
+    //     let len = arr.length;
+    //     let min = arr[0];
+    //     let max = arr[len - 1];
+    //
+    //     if(x<=min){
+    //         return arr.slice(0, k);
+    //     }else if(x>=max){
+    //         return arr.slice(-k);
+    //     }
+    //
+    //     let left = 0;
+    //     let right = len - k;
+    //     let res = [];
+    //
+    //     while (left<=right){
+    //         let mid = Math.floor((left + right) / 2);
+    //
+    //         if(x-arr[mid]>arr[mid+k]-x){
+    //             left = mid + 1;
+    //         }else {
+    //             right = mid - 1;
+    //         }
+    //
+    //     }
+    //
+    //     for(let i=left;i<left+k;i++){
+    //         res.push(arr[i]);
+    //     }
+    //
+    //     return res;
+    // };
 
 
 
 }
+
+
+

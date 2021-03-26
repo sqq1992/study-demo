@@ -115,6 +115,47 @@
         return null;
     };
 
+    Bst.prototype.remove = function (data) {
+        let root = this._removeNode(this.root, data);
+    };
+
+    Bst.prototype._getSmallest = function (node) {
+
+        if(node.left===null){
+            return node;
+        }
+        return this._getSmallest(node.left);
+    };
+
+    Bst.prototype._removeNode = function (node,data) {
+
+        if(node.data === data){
+
+            if(node.left===null && node.right===null){
+                return null;
+            }
+
+            if(node.left===null){
+                return node.right;
+            }
+
+            if(node.right === null){
+                return node.left;
+            }
+
+            let tempNode = this._getSmallest(node.right);
+            node.data = tempNode.data;
+            node.right = this._removeNode(node.right, tempNode.data);
+            return node;
+        }else if(data<node.data){
+            node.left = this._removeNode(node.left, data);
+            return node;
+        }else {
+            node.right = this._removeNode(node.right, data);
+            return node;
+        }
+
+    };
 
     //todo test
     // let testData = [3, 16, 22, 23, 37, 45, 99];
@@ -128,9 +169,11 @@
     // bst1.preOrder();
 
 
-    console.log('findMin', bst1.findMin());
-    console.log('findMax', bst1.findMax());
-    console.log('find', bst1.find(81));
+    // console.log('findMin', bst1.findMin());
+    // console.log('findMax', bst1.findMax());
+    // console.log('find', bst1.find(81));
+    console.log('remove', bst1.remove(22));
+    console.log('new', bst1.root);
 
 
     // bst1.remove(77);

@@ -19,6 +19,7 @@ import store from './modules/redux/store';
 
 
 //compute
+// import './modules/compute/binarySearch';
 // import './modules/compute/sort';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
@@ -28,10 +29,10 @@ import store from './modules/redux/store';
 
 
 //letcode
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
-import './modules/letcode/SlideWindow';
+// import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';

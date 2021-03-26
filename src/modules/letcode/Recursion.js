@@ -303,36 +303,31 @@ Bst.prototype.init = function (dataList) {
 
 //513
 {
-    var findBottomLeftValue = function (root) {
 
 
-        let tempFind = (tempRoot, index) => {
+    var findBottomLeftValue = function(root) {
 
-            if(tempRoot!==null){
-                while (tempRoot.left !== null) {
-                    tempRoot = tempRoot.left;
-                    index++;
-                }
-                return {
-                    val: tempRoot.val,
-                    index
-                }
+
+        let queue = [root];
+        let node;
+        while (queue.length) {
+            node = queue.shift();
+
+            if(node.right!==null){
+                queue.push(node.right);
             }
 
-            return {
-
+            if(node.left!==null){
+                queue.push(node.left);
             }
 
-        };
-        let leftObj = tempFind(root.left, 1);
-        let rightObj = tempFind(root.right, 1);
-
-
-        if(leftObj.index>rightObj.index){
-            return leftObj.val;
         }
-        return rightObj.val;
-    };
+
+
+        return node.val
+
+    }
+
 }
 
 
@@ -617,6 +612,43 @@ Bst.prototype.init = function (dataList) {
 
 }
 
+
+//701
+{
+
+    var insertIntoBST = function(root, val) {
+
+        var tempNode = new TreeNode(val);
+
+        let current = root;
+        while (true) {
+
+            if(val<current.val){
+
+                if(current.left===null){
+                    current.left = tempNode;
+                    break;
+                }else {
+                    current = current.left;
+                }
+
+            }else {
+                if(current.right===null){
+                    current.right = tempNode;
+                    break;
+                }else {
+                    current = current.right;
+                }
+            }
+
+
+        }
+
+
+        return root;
+    };
+
+}
 
 
 
