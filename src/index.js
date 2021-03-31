@@ -29,7 +29,7 @@ import store from './modules/redux/store';
 
 
 //letcode
-import "./modules/letcode/Recursion";
+// import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
@@ -37,7 +37,7 @@ import "./modules/letcode/Recursion";
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-// import './modules/letcode/LinkedList';
+import './modules/letcode/LinkedList';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
@@ -54,6 +54,7 @@ import "./modules/letcode/Recursion";
 
 //学习数据结构与算法  第三版
 // import './modules/structureAndComputeThird/fifthChapter';   //队列
+// import './modules/structureAndComputeThird/sixthChapter';   //链表
 
 // javascript设计模式
 // import './modules/jsDesign/prototype'

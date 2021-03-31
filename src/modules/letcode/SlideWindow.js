@@ -1,4 +1,50 @@
 
+
+//76
+{
+    var minWindow = function(s, t) {
+
+
+        let left = 0;
+        let right = 0;
+        let len = s.length;
+        let tArray = t.split('');
+        let minStr = '';
+
+        while (right <= len) {
+
+            let cacheStr = s.slice(left, right);
+            let tempStr = cacheStr;
+            let isMatch = tArray.every((elem) => {
+                let tempIndex = tempStr.indexOf(elem);
+                tempStr = tempStr.slice(0, tempIndex) + tempStr.slice(tempIndex + 1);
+
+                return tempIndex!==-1;
+            });
+
+            if(isMatch){
+                if(minStr===""){
+                    minStr = cacheStr;
+                }else {
+                    minStr = cacheStr.length < minStr.length ? cacheStr : minStr;
+                }
+                left++;
+            }else {
+                right++;
+            }
+
+
+        }
+
+
+        return minStr;
+
+    };
+
+    console.log('minWindow', minWindow("ADOBECODEBANC", "ABC"));
+}
+
+
 //3
 {
     var lengthOfLongestSubstring = function(s) {

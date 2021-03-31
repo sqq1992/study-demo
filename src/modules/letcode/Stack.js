@@ -6,24 +6,58 @@
 
     var nextGreaterElement = function(nums1, nums2) {
 
-        let stack = [];
         let record = new Map();
-        for(let i=0,j=nums2.length;i<j;i++) {
-            while(stack.length>=1 && stack[stack.length-1]<nums2[i]){
-                let tempKey = stack.pop();
-                record.set(tempKey, nums2[i]);
+        let stack = [];
+
+
+        for (let i=0,j=nums2.length;i<j;i++) {
+            let tempVal = nums2[i];
+
+            while (stack.length>0 && nums2[stack[stack.length-1]]<tempVal) {
+                let tempIndex = stack.pop();
+                record.set(nums2[tempIndex], tempVal);
             }
-            stack.push(nums2[i]);
+
+            stack.push(i);
         }
 
         return nums1.map((elem)=>{
+
             if(record.has(elem)){
                 return record.get(elem);
+            }else {
+                return -1;
             }
-            return -1
+
         })
 
+
+
     };
+
+
+
+    //
+    // var nextGreaterElement = function(nums1, nums2) {
+    //
+    //     let stack = [];
+    //     let record = new Map();
+    //     for(let i=0,j=nums2.length;i<j;i++) {
+    //         while(stack.length>=1 && stack[stack.length-1]<nums2[i]){
+    //             let tempKey = stack.pop();
+    //             record.set(tempKey, nums2[i]);
+    //         }
+    //         stack.push(nums2[i]);
+    //     }
+    //
+    //     return nums1.map((elem)=>{
+    //         if(record.has(elem)){
+    //             return record.get(elem);
+    //         }
+    //         return -1
+    //     })
+    //
+    // };
 
     // console.log('nextGreaterElement',nextGreaterElement([1,3,5,2,4],[6,5,4,3,2,1,7]))
 
@@ -33,24 +67,47 @@
 {
 
     var nextGreaterElements = function(nums) {
+
         let stack = [];
         let len = nums.length;
-        let res = Array.from(nums).fill(-1);
+        let result = Array.from(nums).fill(-1);
 
-        for(let i=0,j=len*2;i<j;i++) {
+        for (let i=0,j=len*2;i<j;i++) {
             let index = i % len;
-            let str = nums[index];
+            let val = nums[index];
 
-            while(stack.length && nums[stack[stack.length-1]]<str) {
-                res[stack.pop()] = nums[index];
+            while (stack.length>0 && nums[stack[stack.length-1]]<val) {
+                let tempIndex = stack.pop();
+                result[tempIndex] = val;
             }
 
             stack.push(index);
         }
 
-
-        return res;
+        return result;
     };
+
+
+
+    // var nextGreaterElements = function(nums) {
+    //     let stack = [];
+    //     let len = nums.length;
+    //     let res = Array.from(nums).fill(-1);
+    //
+    //     for(let i=0,j=len*2;i<j;i++) {
+    //         let index = i % len;
+    //         let str = nums[index];
+    //
+    //         while(stack.length && nums[stack[stack.length-1]]<str) {
+    //             res[stack.pop()] = nums[index];
+    //         }
+    //
+    //         stack.push(index);
+    //     }
+    //
+    //
+    //     return res;
+    // };
 
 
     console.log('nextGreaterElements',nextGreaterElements([1,2,1]))
@@ -125,25 +182,67 @@
 //739
 {
 
+
     var dailyTemperatures = function(T) {
+
+
         let stack = [];
         let result = Array.from(T).fill(0);
 
         for(let i=0,j=T.length;i<j;i++) {
-            let tempNum = T[i];
+            let tempVal = T[i];
 
-            while (stack.length && T[stack[stack.length-1]]<tempNum){
+            while (stack.length>0 && T[stack[stack.length-1]]<tempVal) {
                 let tempIndex = stack.pop();
                 result[tempIndex] = i - tempIndex;
             }
-
-
             stack.push(i);
         }
 
 
         return result;
+
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var dailyTemperatures = function(T) {
+    //     let stack = [];
+    //     let result = Array.from(T).fill(0);
+    //
+    //     for(let i=0,j=T.length;i<j;i++) {
+    //         let tempNum = T[i];
+    //
+    //         while (stack.length && T[stack[stack.length-1]]<tempNum){
+    //             let tempIndex = stack.pop();
+    //             result[tempIndex] = i - tempIndex;
+    //         }
+    //
+    //
+    //         stack.push(i);
+    //     }
+    //
+    //
+    //     return result;
+    // };
 
 
 

@@ -4,6 +4,10 @@ function Node(val) {
     this.next = null;
 }
 
+function ListNode(val) {
+    this.val = val;
+    this.next = null;
+}
 
 class NodeList {
     constructor(arr) {
@@ -43,11 +47,132 @@ LList.prototype = {
     }
 };
 
-var testList1 = new LList(1);
-testList1.insert(2, 1);
-testList1.insert(1, 2);
-testList1.insert(1, 1);
-console.log('11', testList1.head);
+// var testList1 = new LList(1);
+// testList1.insert(2, 1);
+// testList1.insert(1, 2);
+// testList1.insert(1, 1);
+// console.log('11', testList1.head);
+
+
+//92
+{
+
+    var reverseBetween = function(head, left, right) {
+
+        let tempFunc = (tempHead) => {
+            let tempPre = null;
+            let tempCur = tempHead;
+
+            while (tempCur!==null) {
+                let tempNext = tempCur.next;
+                tempCur.next = tempPre;
+                tempPre = tempCur;
+                tempCur = tempNext;
+            }
+        };
+
+        let tempNode = new ListNode(-1);
+        tempNode.next = head;
+
+        let pre = tempNode;
+        for(let i=0;i<left-1;i++) {
+            pre = pre.next;
+        }
+
+        let rightNode = pre;
+        for(let i=0;i<right-left+1;i++) {
+            rightNode = rightNode.next;
+        }
+
+
+        let leftNode = pre.next;
+        let curr = rightNode.next;
+
+
+        pre.next = null;
+        rightNode.next = null;
+
+
+        tempFunc(leftNode)
+
+
+        pre.next = rightNode;
+        leftNode.next = curr;
+        return tempNode.next;
+    };
+
+
+
+
+    var reverseBetween2 = function(head, left, right) {
+        let dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+
+
+        let pre = dummyNode;
+        for(let i=0;i<left-1;i++){
+            pre = pre.next;
+        }
+
+
+        let cur = pre.next;
+        for(let i=0;i<right-left;i++){
+            let next = cur.next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next
+        }
+
+        return dummyNode.next;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var reverseBetween2 = function(head, left, right) {
+    //
+    //     let dummyNode = new ListNode(-1);
+    //     dummyNode.next = head;
+    //
+    //     let pre = dummyNode;
+    //     for (let i=0;i<left-1;i++) {
+    //         pre = pre.next;
+    //     }
+    //
+    //     let cur = pre.next;
+    //     for (let i=0;i<right-left;i++) {
+    //         let next = cur.next;
+    //         cur.next = next.next;
+    //         next.next = pre.next;
+    //         pre.next = next;
+    //     }
+    //
+    //     return dummyNode.next;
+    // };
+
+
+
+
+
+
+    //todo test
+    let reverse1 = new NodeList([1, 2, 3, 4, 5, 6, 7, 8]);
+    console.log('list1', reverse1);
+    console.log('list1-reverse', reverseBetween2(reverse1, 1, 5));
+
+
+
+}
+
 
 //237
 {
@@ -89,19 +214,59 @@ console.log('11', testList1.head);
 //206
 {
 
+
     var reverseList = function(head) {
 
         let prev = null;
-        let curr = head;
-        while (curr!==null){
-            let tempNext = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = tempNext;
+        let current = head;
+
+        while (current!==null) {
+            let tempNext = current.next;
+            current.next = prev;
+            prev = current;
+            current = tempNext;
         }
 
         return prev;
     };
+
+
+    //todo test
+    // let list1 = new NodeList([1, 2, 3, 4, 5]);
+    // console.log('list1', list1);
+    // console.log('list1-reverse', reverseList(list1));
+
+
+    // var reverseList = function(head) {
+    //
+    //     let prev = null;
+    //     let current = head;
+    //     while (current!==null) {
+    //
+    //         let tempNext = current.next;
+    //         current.next = prev;
+    //         prev = current;
+    //         current = tempNext;
+    //
+    //     }
+    //
+    //
+    //     return prev;
+    // };
+
+    // var reverseList = function(head) {
+    //
+    //     let prev = null;
+    //     let curr = head;
+    //     while (curr!==null){
+    //         let tempNext = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr = tempNext;
+    //     }
+    //
+    //     return prev;
+    // };
 
 }
 
@@ -391,5 +556,5 @@ console.log('11', testList1.head);
         return head;
     };
 
-    console.log('removeNthFromEnd', removeNthFromEnd(test3,1));
+    // console.log('removeNthFromEnd', removeNthFromEnd(test3,1));
 }

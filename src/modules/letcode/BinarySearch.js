@@ -5,8 +5,49 @@
     var search = function(nums, target) {
 
 
+        let left = 0;
+        let right = nums.length - 1;
+        let firstVal = nums[0];
+        let lastVal = nums[right];
 
+        while (left<=right) {
+            let mid = left + Math.floor((right - left) / 2);
+            let midVal = nums[mid];
+
+            if(midVal===target){
+                return mid;
+            }
+
+            if(firstVal<=midVal) {
+
+                if(firstVal<=target && target<midVal){
+                    right = mid - 1;
+                }else {
+                    left = mid + 1;
+                }
+
+            }else {
+
+                if(midVal<target && target<=lastVal){
+                    left = mid + 1;
+                }else {
+                    right = mid - 1;
+                }
+
+
+            }
+
+
+
+
+
+        }
+
+
+        return -1;
     };
+
+    // console.log('search', search([4, 5, 6, 7, 0, 1, 2], 3));
 
 }
 
@@ -44,7 +85,7 @@
         return index;
     };
 
-    console.log('findPeakElement', findPeakElement([2, 1]));
+    // console.log('findPeakElement', findPeakElement([2, 1]));
 
 }
 
