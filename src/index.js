@@ -23,6 +23,7 @@ import store from './modules/redux/store';
 // import './modules/compute/sort';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
+// import './modules/compute/back';
 
 //webpack
 // import './modules/webpack/testWebpack';
@@ -37,7 +38,8 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-import './modules/letcode/LinkedList';
+// import './modules/letcode/LinkedList';
+import './modules/letcode/Back';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
