@@ -38,8 +38,9 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-// import './modules/letcode/LinkedList';
-import './modules/letcode/Back';
+import './modules/letcode/LinkedList';
+// import './modules/letcode/Back';
+// import './modules/letcode/Dp';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
