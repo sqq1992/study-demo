@@ -57,85 +57,107 @@ LList.prototype = {
 //92
 {
 
+    // var reverseBetween = function(head, left, right) {
+    //
+    //     let tempFunc = (tempHead) => {
+    //         let tempPre = null;
+    //         let tempCur = tempHead;
+    //
+    //         while (tempCur!==null) {
+    //             let tempNext = tempCur.next;
+    //             tempCur.next = tempPre;
+    //             tempPre = tempCur;
+    //             tempCur = tempNext;
+    //         }
+    //     };
+    //
+    //     let tempNode = new ListNode(-1);
+    //     tempNode.next = head;
+    //
+    //     let pre = tempNode;
+    //     for(let i=0;i<left-1;i++) {
+    //         pre = pre.next;
+    //     }
+    //
+    //     let rightNode = pre;
+    //     for(let i=0;i<right-left+1;i++) {
+    //         rightNode = rightNode.next;
+    //     }
+    //
+    //
+    //     let leftNode = pre.next;
+    //     let curr = rightNode.next;
+    //
+    //
+    //     pre.next = null;
+    //     rightNode.next = null;
+    //
+    //
+    //     tempFunc(leftNode)
+    //
+    //
+    //     pre.next = rightNode;
+    //     leftNode.next = curr;
+    //     return tempNode.next;
+    // };
+    //
+    //
+    //
+    //
+    // var reverseBetween2 = function(head, left, right) {
+    //
+    //     let dummyNode = new ListNode(-1);
+    //     dummyNode.next = head;
+    //
+    //
+    //     let preNode = dummyNode;
+    //     for (let i=0;i<left-1;i++) {
+    //         preNode = preNode.next;
+    //     }
+    //
+    //     let curNode = preNode.next;
+    //     for (let i=0;i<right-left;i++) {
+    //         let next = curNode.next;
+    //         curNode.next = next.next;
+    //         next.next = preNode.next;
+    //         preNode.next = next;
+    //     }
+    //
+    //
+    //     return dummyNode.next;
+    //
+    // };
+
+
+
     var reverseBetween = function(head, left, right) {
 
-        let tempFunc = (tempHead) => {
-            let tempPre = null;
-            let tempCur = tempHead;
 
-            while (tempCur!==null) {
-                let tempNext = tempCur.next;
-                tempCur.next = tempPre;
-                tempPre = tempCur;
-                tempCur = tempNext;
-            }
+        let reverseN = (head,n) => {
+            let successor = null;
+
+            let tempFunc = (head, n) => {
+
+                if(n===1){
+                    successor = head.next;
+                    return head;
+                }
+
+                let last = tempFunc(head.next, n - 1);
+                head.next.next = head;
+                head.next = successor;
+                return last;
+            };
+
         };
 
-        let tempNode = new ListNode(-1);
-        tempNode.next = head;
-
-        let pre = tempNode;
-        for(let i=0;i<left-1;i++) {
-            pre = pre.next;
+        if(left===1){
+            return reverseN(head, right);
         }
 
-        let rightNode = pre;
-        for(let i=0;i<right-left+1;i++) {
-            rightNode = rightNode.next;
-        }
-
-
-        let leftNode = pre.next;
-        let curr = rightNode.next;
-
-
-        pre.next = null;
-        rightNode.next = null;
-
-
-        tempFunc(leftNode)
-
-
-        pre.next = rightNode;
-        leftNode.next = curr;
-        return tempNode.next;
+        head.next = reverseBetween(head.next, left - 1, right - 1);
+        return head;
     };
-
-
-
-
-    var reverseBetween2 = function(head, left, right) {
-        let dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-
-
-        let pre = dummyNode;
-        for(let i=0;i<left-1;i++){
-            pre = pre.next;
-        }
-
-
-        let cur = pre.next;
-        for(let i=0;i<right-left;i++){
-            let next = cur.next;
-            cur.next = next.next;
-            next.next = pre.next;
-            pre.next = next
-        }
-
-        return dummyNode.next;
-    };
-
-
-
-
-
-
-
-
-
-
-
 
 
     // var reverseBetween2 = function(head, left, right) {
@@ -170,7 +192,6 @@ LList.prototype = {
     console.log('list1-reverse', reverseBetween2(reverse1, 1, 5));
 
 
-
 }
 
 
@@ -192,21 +213,55 @@ LList.prototype = {
 
 //83
 {
+
+
     var deleteDuplicates = function(head) {
 
-        if(head == null) {
-            return head
-        }
-        let headItem = head
-        while(headItem.next != null) {
-            if(headItem.val == headItem.next.val) {
-                headItem.next = headItem.next.next
-            } else {
-                headItem = headItem.next
+        if(head===null) return null;
+
+        let left = head;
+        let right = head.next;
+
+        while (right!==null){
+
+            if(left.val!==right.val) {
+
+                left.next = right;
+                left = left.next;
             }
+            right = right.next;
+
         }
-        return head
+
+        left.next = null;
+        return head;
     };
+
+
+
+
+
+
+
+
+
+
+
+    // var deleteDuplicates = function(head) {
+    //
+    //     if(head == null) {
+    //         return head
+    //     }
+    //     let headItem = head
+    //     while(headItem.next != null) {
+    //         if(headItem.val == headItem.next.val) {
+    //             headItem.next = headItem.next.next
+    //         } else {
+    //             headItem = headItem.next
+    //         }
+    //     }
+    //     return head
+    // };
 
 }
 
@@ -214,20 +269,33 @@ LList.prototype = {
 //206
 {
 
-
     var reverseList = function(head) {
 
-        let prev = null;
-        let curr = head;
-        while (curr!==null){
-            let next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
+        if(head===null || head.next===null) return head;
 
-        return prev;
+        let last = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return last;
     };
+
+
+    // var reverseList = function(head) {
+    //
+    //     let prev = null;
+    //     let curr = head;
+    //     while (curr!==null){
+    //         let next = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr = next;
+    //     }
+    //
+    //     return prev;
+    // };
+
+
+
 
 
     //todo test
@@ -266,6 +334,31 @@ LList.prototype = {
     //
     //     return prev;
     // };
+
+}
+
+//206-2
+{
+
+    var reverseList = function(head,n) {
+
+        let successor = null;
+
+        let tempFunc = (head,n) => {
+            if(n===1){
+                successor = head.next;
+                return head;
+            }
+
+            let last = tempFunc(head.next, n - 1);
+            head.next.next = head;
+            head.next = successor;
+            return last;
+        };
+
+
+        return tempFunc(head, n);
+    };
 
 }
 

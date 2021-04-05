@@ -1,5 +1,30 @@
 
 
+//26
+{
+
+    var removeDuplicates = function(nums) {
+        let len = nums.length;
+        if(len===0) return 0;
+
+        let left = 0;
+        let right = 1;
+
+        while (right<len){
+
+            if(nums[right]!==nums[left]){
+                left++;
+                nums[left] = nums[right];
+            }
+
+            right++;
+        }
+
+        return left + 1;
+    };
+
+}
+
 
 //17
 {

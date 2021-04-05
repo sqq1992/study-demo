@@ -6,16 +6,22 @@
 {
 
 
-    // var fib = function(n) {
-    //
-    //     if(n===1){
-    //         return 1;
-    //     }else if(n<1){
-    //         return 0;
-    //     }
-    //
-    //     return fib(n - 1) + fib(n - 2);
-    // };
+    var fib = function(n) {
+        if(n===0) return 0;
+
+        let dp = new Array(n+1);
+        dp.fill(0, 0, n + 1);
+
+
+        dp[1] = dp[2] = 1;
+
+        for (let i=3;i<=n;i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+
+        return dp[n];
+    };
 
     var fib2 = function (n) {
 
@@ -92,9 +98,285 @@
     var coinChange = function(coins, amount) {
 
 
+        let dp = new Array(amount + 1);
+        dp.fill(amount + 1, 0, amount + 1);
+        let len = dp.length;
+
+        dp[0] = 0;
+        for (let i=0;i<len;i++) {
+
+            for (let coin of coins){
+                if(i-coin<0) continue;
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+            }
+
+        }
+
+        return dp[amount] === amount + 1 ? -1 : dp[amount];
+    };
+
+
+
+
+
+
+
+    // var coinChange = function(coins, amount) {
+    //
+    //     let dp = (remain) => {
+    //
+    //         if(remain===0) return 0;
+    //         if(remain<0){
+    //             return -1;
+    //         }
+    //
+    //         let res = amount + 1;
+    //         for (let coin of coins){
+    //             let tempVal = dp(remain - coin);
+    //
+    //             if(tempVal===-1) continue;
+    //
+    //             res = Math.min(res, 1 + tempVal);
+    //         }
+    //
+    //         return res !== amount + 1 ? res : -1;
+    //     };
+    //
+    //
+    //     return dp(amount);
+    // };
+
+
+    var coinChange2 = function(coins, amount) {
+
+        let dp = new Array(amount + 1);
+        dp.fill(amount + 1, 0, amount + 1);
+
+
+        dp[0] = 0;
+        for (let i=0,j=dp.length;i<j;i++) {
+            for (let coin of coins){
+                if(i-coin){
+                    continue;
+                }
+                dp[i] = Math.min(dp[i], 1+dp[i - coin]);
+            }
+        }
+
+        return dp[amount] === amount + 1 ? -1 : dp[amount];
+    };
+
+    // console.log('coinChange', coinChange([1, 2, 5], 11));
+    // console.log('coinChange2', coinChange2([1, 2, 5], 11));
+
+}
+
+
+//300
+{
+
+    var lengthOfLIS = function(nums) {
+        let len = nums.length;
+        let dp = new Array(len);
+        dp.fill(1, 0, len);
+
+        dp[0] = 1;
+
+        for (let i=1;i<len;i++) {
+
+            for (let j=0;j<i;j++) {
+                if(nums[i]>nums[j]){
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+
+        }
+
+        return len < 2 ? 1 : Math.max(...dp);
+    };
+
+
+
+    // var lengthOfLIS = function(nums) {
+    //
+    //     let dp = new Array(nums.length);
+    //     dp.fill(1, 0, nums.length);
+    //
+    //
+    //     for (let i=1;i<nums.length;i++) {
+    //
+    //         for (let j=0;j<i;j++) {
+    //             if(nums[i]>nums[j]){
+    //                 dp[i] = Math.max(dp[i], dp[j] + 1);
+    //             }
+    //         }
+    //
+    //     }
+    //
+    //     return nums.length < 2 ? nums.length : Math.max(...dp);
+    // };
+
+    console.log('lengthOfLIS', lengthOfLIS([10,9,2,5,3,7,101,18]));
+
+}
+
+
+
+//121
+{
+
+    var maxProfit = function(prices) {
+
+        let n = prices.length;
+        if(n<=1){
+            return 0;
+        }
+
+        let dp = new Array(n);
+        dp.fill([0, 0], 0, n);
+
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+
+        for (let i=1;i<n;i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], -prices[i]);
+        }
+
+        return dp[n - 1][0];
+    };
+
+    // console.log('maxProfit',maxProfit( [7,1,5,3,6,4]))
+
+}
+
+//122
+{
+
+    var maxProfit = function(prices) {
+        let n = prices.length;
+
+        if(n<=1){
+            return 0;
+        }
+
+        let dp = new Array(n);
+        dp.fill([0, 0], 0, n);
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+
+        for (let i=1;i<n;i++) {
+
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+
+        }
+
+        return dp[n - 1][0];
+
+    };
+    // console.log('maxProfit',maxProfit( [7,1,5,3,6,4]))
+
+}
+
+
+//309
+{
+
+    var maxProfit = function(prices) {
+
+
+
+        let n = prices.length;
+
+        if (n < 2) {
+            return 0;
+        }
+        if (n === 2) {
+            return Math.max(prices[1] - prices[0], 0)
+        }
+        let dp = new Array(n);
+        for (let i = 0; i < n; i++) {
+            dp[i] = [0, 0]
+        }
+        // base case
+        // dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        dp[1][0] = Math.max(
+            dp[0][0],
+            dp[0][1] + prices[1]
+        )
+        dp[1][1] = Math.max(
+            dp[0][1],
+            dp[0][0] - prices[1]
+        );
+
+        // 状态转移
+        for (let i = 2; i < n; i++) {
+            dp[i][0] = Math.max(
+                dp[i - 1][0],
+                dp[i - 1][1] + prices[i]
+            )
+            dp[i][1] = Math.max(
+                dp[i - 1][1],
+                dp[i - 2][0] - prices[i]   // 买被限制在卖一天后了
+            )
+        }
+
+        return dp[n - 1][0];
+
+
+
 
 
     };
+
+    var maxProfit2 = (prices) => {
+
+        let n = prices.length;
+
+        if(n<=1){
+            return 0;
+        }
+
+        let dp = [];
+        for (let i=0;i<n;i++) {
+            dp.push([0, 0]);
+        }
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        dp[1][0] = Math.max(dp[0][0], dp[0][1] + prices[1]);
+        dp[1][1] = Math.max(dp[0][1], dp[0][0] - prices[1]);
+
+        for (let i=2;i<n;i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i-1][1],dp[i-2][0]-prices[i])
+        }
+
+        return dp[n - 1][0];
+
+    };
+
+    // console.log('maxProfit', maxProfit([1, 2, 3, 0, 2]));
+    console.log('maxProfit2', maxProfit2([1, 2, 3, 0, 2]));
+
+}
+
+
+//123
+{
+
+
+
+}
+
+
+//124
+{
+
 
 
 }
