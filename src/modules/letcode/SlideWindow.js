@@ -259,18 +259,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     // var longestMountain = function(A) {
     //     let len = A.length;
     //     let base = 0;
@@ -306,3 +294,39 @@
     // };
 }
 
+//42
+{
+    var trap = function(height) {
+
+        let len = height.length;
+        if(len<=2){
+            return 0;
+        }
+
+        let res = 0;
+
+
+        let leftMax = new Array(len);
+        let rightMax = new Array(len);
+
+        leftMax[0] = height[0];
+        rightMax[len - 1] = height[len - 1];
+
+
+        for (let i = 1; i < len; i++) {
+            leftMax[i] = Math.max(height[i], leftMax[i - 1]);
+        }
+
+        for (let i=len-2;i>=0;i--) {
+            rightMax[i] = Math.max(height[i], rightMax[i + 1]);
+        }
+
+        for (let i=1;i<len;i++) {
+            res += Math.min(leftMax[i], rightMax[i]) - height[i];
+        }
+
+        return res;
+    };
+
+    // console.log('trap', trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
+}
