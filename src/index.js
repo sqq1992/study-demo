@@ -39,7 +39,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-// import './modules/letcode/LinkedList';
+import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Dp';
 
@@ -49,7 +49,7 @@ import store from './modules/redux/store';
 
 
 //structureAndCompute 数据结构与算法
-import './modules/structureAndCompute/tenthChapter';
+// import './modules/structureAndCompute/tenthChapter';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/fifthChapter';
@@ -85,6 +85,8 @@ import './modules/structureAndCompute/tenthChapter';
 
 //react define
 // import reactIndex from './modules/react/reactIndex';
+import ReactPortals from './modules/react/ReactPortals';
+
 
 //redux
 // import './modules/redux/demoRedux';
@@ -93,7 +95,6 @@ import './modules/structureAndCompute/tenthChapter';
 
 class App  extends Component{
     render() {
-        let aa = "sun1992";
 
         return (
             <div>
@@ -103,6 +104,7 @@ class App  extends Component{
                 {/*<Bfc />*/}
                 {/*<Flex />*/}
                 {/*<Strategies />*/}
+                <ReactPortals />
             </div>
         )
     }
