@@ -91,9 +91,55 @@ CArray.prototype = {
 
             arr[inner] = temp;
         }
+    },
 
 
+    // 归并排序
+    combineSort:function () {
+
+        let arr = this.dataStore;
+
+        let merge = (left,right) => {
+
+            const result = [];
+
+            while (left.length && right.length){
+                if(left[0]<right[0]){
+                    result.push(left.shift())
+                }else {
+                    result.push(right.shift())
+                }
+            }
+
+            while (left.length){
+                result.push(left.shift())
+            }
+
+            while (right.length){
+                result.push(right.shift())
+            }
+
+            return result;
+        };
+
+        let mergerSort = (arr) => {
+
+            let len = arr.length;
+            if(len<2){
+                return arr;
+            }
+
+            let middleIndex = Math.floor(len / 2);
+            let left = arr.slice(0, middleIndex);
+            let right = arr.slice(middleIndex);
+
+
+            return merge(mergerSort(left), mergerSort(right));
+        };
+
+        this.dataStore = mergerSort(arr);
     }
+
 
 
 };
@@ -101,5 +147,5 @@ CArray.prototype = {
 //
 var num1 = new CArray(100);
 num1.setData();
-num1.insertSort();
+num1.combineSort();
 console.log(num1.toString());

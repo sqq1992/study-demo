@@ -57,7 +57,6 @@ LList.prototype = {
 //92
 {
 
-
     var reverseBetween = function(head, left, right) {
 
         let reverseN = function (head, n) {
@@ -85,10 +84,6 @@ LList.prototype = {
         head.next = reverseBetween(head.next, left - 1, right - 1);
         return head;
     };
-
-
-
-
 
     // var reverseBetween = function(head, left, right) {
     //
@@ -214,15 +209,10 @@ LList.prototype = {
     // };
 
 
-
-
-
-
     //todo test
     let reverse1 = new NodeList([1, 2, 3, 4, 5, 6, 7, 8]);
     console.log('list1', reverse1);
-    console.log('list1-reverse', reverseBetween2(reverse1, 1, 5));
-
+    // console.log('list1-reverse', reverseBetween2(reverse1, 1, 5));
 
 }
 
@@ -415,37 +405,72 @@ LList.prototype = {
 
 //141
 {
+
     var hasCycle = function(head) {
 
-        if(!head){
-            return false;
-        }
-
-        let fast = head.next;
+        let fast = head;
         let slow = head;
 
-        while (fast!==slow){
-
-            if(fast===null || fast.next===null){
-                return false;
-            }
-
+        while (fast!==null && fast.next!==null){
 
             fast = fast.next.next;
             slow = slow.next;
+
+            if(fast===slow) return true;
         }
 
-
-        return true;
+        return false;
     };
 
-}
+    // var hasCycle = function(head) {
+    //
+    //     if(!head){
+    //         return false;
+    //     }
+    //
+    //     let fast = head.next;
+    //     let slow = head;
+    //
+    //     while (fast!==slow){
+    //
+    //         if(fast===null || fast.next===null){
+    //             return false;
+    //         }
+    //
+    //
+    //         fast = fast.next.next;
+    //         slow = slow.next;
+    //     }
+    //
+    //
+    //     return true;
+    // };
 
+}
 
 //142
 {
 
     var detectCycle = function(head) {
+
+        let fast = head;
+        let slow = head;
+
+        while (fast !== null && fast.next !== null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast === slow) break;
+        }
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+
+        slow = head;
+        while (slow !== fast) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
 
         //1
         // let record = new Map();
@@ -593,33 +618,16 @@ LList.prototype = {
 
     var middleNode = function(head) {
 
-        // 1
-        // let arr = [];
-        // while (head!==null){
-        //     arr.push(head);
-        //     head = head.next;
-        // }
-        // let len = arr.length;
-        //
-        // return arr[Math.floor(len / 2)];
-
-
-        //2
-        let slow = head;
         let fast = head;
+        let slow = head;
 
-        while (fast && fast.next!==null){
-
-            slow = slow.next;
+        while (fast!==null && fast.next!==null){
             fast = fast.next.next;
-
+            slow = slow.next;
         }
-
 
         return slow;
     };
-
-
 
 
 }
@@ -627,29 +635,20 @@ LList.prototype = {
 //19
 {
 
-    let test3 = new NodeList([1]);
+
     var removeNthFromEnd = function (head, n) {
 
-        //1
-        let len = 0;
-        let first = head;
-
-        while (first !== null) {
-            len++;
-            first = first.next;
+        let fast = head;
+        let slow = head;
+        while (n-->0){
+            fast = fast.next;
         }
 
-        len = len - n - 1;
-
-        let second = head;
-        while (len > 0) {
-            len--;
-            second = second.next;
+        while (fast!==null){
+            fast = fast.next;
+            slow = slow.next;
         }
-        second.next = second.next.next;
-
-
-        return head;
+        return slow;
     };
 
     // console.log('removeNthFromEnd', removeNthFromEnd(test3,1));

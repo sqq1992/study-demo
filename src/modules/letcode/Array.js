@@ -131,4 +131,59 @@
 
 }
 
+//402
+{
+
+    var removeKdigits = function(num, k) {
+
+        let stack = [];
+
+        for (let i=0,j=num.length;i<j;i++) {
+
+            while (k>0 && stack.length && stack[stack.length-1]>num[i]){
+                stack.pop();
+                k--;
+            }
+            stack.push(num[i]);
+        }
+
+        for (;k>0;k--){
+            stack.pop();
+        }
+
+
+        let result = stack.join('').replace(/\b(0+)/gi, '');
+
+        return result.length === 0 ? '0' : result;
+    };
+
+    // console.log('removeKdigits', removeKdigits("112", 1));
+
+}
+
+
+//316
+{
+
+    var removeDuplicateLetters = function(s) {
+
+        let stack = [];
+
+        for (let i=0,j=s.length;i<j;i++) {
+            let val = s[i];
+
+            if(stack.includes(val)) continue;
+            while (stack.length && stack[stack.length-1]>val && s.indexOf(stack[stack.length-1],i+1)>-1){
+                stack.pop();
+            }
+            stack.push(val);
+        }
+
+        return stack.join('');
+    };
+
+
+    console.log('removeDuplicateLetters', removeDuplicateLetters("cbacdcbc"));
+
+}
 
