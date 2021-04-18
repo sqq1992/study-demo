@@ -110,7 +110,7 @@
     // };
 
 
-    console.log('nextGreaterElements',nextGreaterElements([1,2,1]))
+    // console.log('nextGreaterElements',nextGreaterElements([1,2,1]))
 }
 
 
@@ -175,7 +175,7 @@
         }, 0);
     };
 
-    console.log('calPoints', calPoints(["5","-2","4","C","D","9","+","+"]));
+    // console.log('calPoints', calPoints(["5","-2","4","C","D","9","+","+"]));
 }
 
 
@@ -204,26 +204,6 @@
 
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // var dailyTemperatures = function(T) {
     //     let stack = [];
     //     let result = Array.from(T).fill(0);
@@ -243,23 +223,6 @@
     //
     //     return result;
     // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     var dailyTemperatures = function(T) {
 
@@ -281,7 +244,7 @@
         return result;
 
     };
-    console.log('dailyTemperatures', dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
+    // console.log('dailyTemperatures', dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
 
 }
 
@@ -329,5 +292,89 @@
     };
 
 
+
+}
+
+//321
+{
+
+    var maxNumber = function(nums1, nums2, k) {
+
+
+        let getMaxArr = function (arr, remain) {
+
+            let stack = [];
+            let k = arr.length - remain;
+            for (let i=0,j=arr.length;i<j;i++) {
+                while (stack.length && k>0 && stack[stack.length-1]<arr[i]){
+                    stack.pop();
+                    k--;
+                }
+                stack.push(arr[i]);
+            }
+
+            for (;k>0;k--){
+                stack.pop();
+            }
+
+            return stack;
+        };
+
+        let res = "0";
+        for (let i=0;i<=k;i++) {
+            let maxNums1 = getMaxArr(nums1, i);
+            let maxNums2 = getMaxArr(nums2, k-i);
+
+            if(maxNums1.length+maxNums2.length===k) {
+                let cur = [];
+                while (maxNums1.length && maxNums2.length) {
+                    cur.push(maxNums1[0] >= maxNums2[0] && maxNums1 > maxNums1 ? maxNums1.shift() : maxNums2.shift());
+                }
+                cur = [...cur, ...maxNums1, ...maxNums2];
+                res = cur > res ? cur : res;
+            }
+
+
+        }
+
+        return res;
+    };
+
+
+    var maxNumber2 = function(nums1, nums2, k) {
+
+        var getLargestKdigits = function (num, remian) {  // 402.题逻辑
+            const stack = [];
+            let k = num.length - remian;
+            for (let i = 0; i < num.length; i++) {
+                while (k > 0 && stack.length && num[i] > stack[stack.length - 1]) {
+                    stack.pop();
+                    k--;
+                }
+                stack.push(num[i]);
+            }
+            return stack.slice(0, remian);
+        };
+
+        let res = "0";
+        for (let i = 0; i <= k; i++) {
+            const max1 = getLargestKdigits(nums1, i);
+            const max2 = getLargestKdigits(nums2, k - i);
+            if (max1.length + max2.length === k) {
+                let cur = [];
+                while (max1.length && max2.length) {
+                    cur.push(
+                        max1[0] >= max2[0] && max1 > max2 ? max1.shift() : max2.shift()
+                    );
+                }
+                cur = [...cur, ...max1, ...max2];
+                res = cur > res ? cur : res;
+            }
+        }
+        return res;
+    };
+
+    console.log('maxNumber', maxNumber([3,4,6,5], [9,1,2,5,8,3], 5));
+    console.log('maxNumber', maxNumber2([3,4,6,5], [9,1,2,5,8,3], 5));
 
 }

@@ -947,8 +947,70 @@ Bst.prototype.init = function (dataList) {
 {
     var deleteNode = function(root, key) {
 
+        let getSmallest = (root) => {
+            while (root && root.left!==null){
+                root = root.left;
+            }
+            return root
+        };
+
+        let removeNode = function (node,val) {
+
+            if(!node){
+                return node;
+            }
+
+            if(node.val===val){
+
+                if(node.left===null && node.right===null){
+                    return null;
+                }
+
+                if(node.left && node.right===null){
+                    return node.left;
+                }
+
+                if(node.right && node.left===null){
+                    return node.right;
+                }
 
 
+                let smallestNode = getSmallest(node.right);
+                node.val = smallestNode.val;
+                node.right = removeNode(node.right, smallestNode.val);
+                return node;
+            }else if(node.val>val) {
+                node.left = removeNode(node.left, val);
+                return node;
+            }else if(node.val<val) {
+                node.right = removeNode(node.right, val);
+                return node;
+            }
 
+
+        };
+
+        let formatRoot = removeNode(root, key);
+        return formatRoot;
     };
+}
+
+//236
+{
+
+    var lowestCommonAncestor = function(root, p, q) {
+
+        if(root===null) return root;
+        if(root===p || root===q) return root;
+
+        let left = lowestCommonAncestor(root.left, p, q);
+        let right = lowestCommonAncestor(root.right, p, q);
+
+        if(left!==null && right!==null) return root;
+
+        if(left===null && right===null) return null;
+
+        return left === null ? right : left;
+    };
+
 }

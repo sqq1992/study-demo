@@ -653,3 +653,39 @@ LList.prototype = {
 
     // console.log('removeNthFromEnd', removeNthFromEnd(test3,1));
 }
+
+//222
+{
+    var countNodes = function(root) {
+
+        if(!root){
+            return 0;
+        }
+
+        let leftCounts = countNodes(root.left);
+        let rightCounts = countNodes(root.right);
+
+        return leftCounts + rightCounts + 1;
+    };
+}
+
+//234
+{
+
+    var isPalindrome = function(head) {
+
+        let left = head;
+        let tempFunc = (right) => {
+            if(right===null) return true;
+            let res = tempFunc(right.next);
+
+
+            res = res && (right.val === left.val);
+            left = left.next;
+            return res;
+        };
+
+        return tempFunc(head);
+    };
+
+}

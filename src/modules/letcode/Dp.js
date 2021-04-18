@@ -1,6 +1,38 @@
 
 // 动态规划
 
+//204
+{
+
+    var countPrimes = function(n) {
+
+        let array = new Array(n);
+        array.fill(true, 0, n);
+
+
+        for (let i=2;i*i<n;i++) {
+
+            if(array[i]){
+                for (let j=i*i;j<n;j+=i) {
+                    array[j] = false;
+                }
+            }
+
+        }
+
+        let count = 0;
+        for (let i=2;i<n;i++){
+            if(array[i]) count++;
+        }
+
+        return count;
+    };
+
+
+    // console.log('countPrimes',countPrimes(5000000))
+
+}
+
 
 //509
 {
@@ -216,7 +248,7 @@
     //     return nums.length < 2 ? nums.length : Math.max(...dp);
     // };
 
-    console.log('lengthOfLIS', lengthOfLIS([10,9,2,5,3,7,101,18]));
+    // console.log('lengthOfLIS', lengthOfLIS([10,9,2,5,3,7,101,18]));
 
 }
 
@@ -361,7 +393,7 @@
     };
 
     // console.log('maxProfit', maxProfit([1, 2, 3, 0, 2]));
-    console.log('maxProfit2', maxProfit2([1, 2, 3, 0, 2]));
+    // console.log('maxProfit2', maxProfit2([1, 2, 3, 0, 2]));
 
 }
 
