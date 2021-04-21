@@ -31,7 +31,7 @@ import store from './modules/redux/store';
 
 //letcode
 // import "./modules/letcode/Queue";
-import "./modules/letcode/Recursion";
+// import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
@@ -49,7 +49,7 @@ import "./modules/letcode/Recursion";
 
 
 //structureAndCompute 数据结构与算法
-import './modules/structureAndCompute/tenthChapter';
+// import './modules/structureAndCompute/tenthChapter';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/fifthChapter';
@@ -59,6 +59,7 @@ import './modules/structureAndCompute/tenthChapter';
 //学习数据结构与算法  第三版
 // import './modules/structureAndComputeThird/fifthChapter';   //队列
 // import './modules/structureAndComputeThird/sixthChapter';   //链表
+// import './modules/structureAndComputeThird/ninthChapter';   //递归
 
 // javascript设计模式
 // import './modules/jsDesign/prototype'

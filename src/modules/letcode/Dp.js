@@ -39,18 +39,15 @@
 
 
     var fib = function(n) {
-        if(n===0) return 0;
 
         let dp = new Array(n+1);
-        dp.fill(0, 0, n + 1);
-
+        dp.fill(0, 0, n+1);
 
         dp[1] = dp[2] = 1;
 
-        for (let i=3;i<=n;i++) {
+        for (let i=3;i<=n;i++){
             dp[i] = dp[i - 1] + dp[i - 2];
         }
-
 
         return dp[n];
     };
@@ -129,23 +126,28 @@
 
     var coinChange = function(coins, amount) {
 
-
         let dp = new Array(amount + 1);
         dp.fill(amount + 1, 0, amount + 1);
-        let len = dp.length;
 
         dp[0] = 0;
-        for (let i=0;i<len;i++) {
 
-            for (let coin of coins){
+
+        for (let i=0;i<=amount;i++) {
+
+            for (let coin of coins) {
+
                 if(i-coin<0) continue;
-                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
             }
 
         }
 
-        return dp[amount] === amount + 1 ? -1 : dp[amount];
+
+        return dp[amount] !== amount + 1 ? dp[amount] : -1;
     };
+
+
+
 
 
 
@@ -179,27 +181,28 @@
     // };
 
 
-    var coinChange2 = function(coins, amount) {
-
-        let dp = new Array(amount + 1);
-        dp.fill(amount + 1, 0, amount + 1);
-
-
-        dp[0] = 0;
-        for (let i=0,j=dp.length;i<j;i++) {
-            for (let coin of coins){
-                if(i-coin){
-                    continue;
-                }
-                dp[i] = Math.min(dp[i], 1+dp[i - coin]);
-            }
-        }
-
-        return dp[amount] === amount + 1 ? -1 : dp[amount];
-    };
+    // var coinChange = function(coins, amount) {
+    //
+    //     let dp = new Array(amount + 1);
+    //     dp.fill(amount + 1, 0, amount + 1);
+    //
+    //
+    //     dp[0] = 0;
+    //     for (let i=0,j=dp.length;i<j;i++) {
+    //         for (let coin of coins){
+    //             if(i-coin){
+    //                 continue;
+    //             }
+    //             dp[i] = Math.min(dp[i], 1+dp[i - coin]);
+    //         }
+    //     }
+    //
+    //     return dp[amount] === amount + 1 ? -1 : dp[amount];
+    // };
 
     // console.log('coinChange', coinChange([1, 2, 5], 11));
     // console.log('coinChange2', coinChange2([1, 2, 5], 11));
+    // console.log('coinChange', coinChange([1, 2, 5], 100));
 
 }
 
@@ -208,24 +211,58 @@
 {
 
     var lengthOfLIS = function(nums) {
+
         let len = nums.length;
         let dp = new Array(len);
         dp.fill(1, 0, len);
 
-        dp[0] = 1;
-
         for (let i=1;i<len;i++) {
-
-            for (let j=0;j<i;j++) {
-                if(nums[i]>nums[j]){
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+            for (let m=0;m<i;m++) {
+                if(nums[i]>nums[m]){
+                    dp[i] = Math.max(dp[i], dp[m] + 1);
                 }
             }
-
         }
 
         return len < 2 ? 1 : Math.max(...dp);
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var lengthOfLIS = function(nums) {
+    //     let len = nums.length;
+    //     let dp = new Array(len);
+    //     dp.fill(1, 0, len);
+    //
+    //     dp[0] = 1;
+    //
+    //     for (let i=1;i<len;i++) {
+    //
+    //         for (let j=0;j<i;j++) {
+    //             if(nums[i]>nums[j]){
+    //                 dp[i] = Math.max(dp[i], dp[j] + 1);
+    //             }
+    //         }
+    //
+    //     }
+    //
+    //     return len < 2 ? 1 : Math.max(...dp);
+    // };
 
 
 
@@ -394,6 +431,46 @@
 
     // console.log('maxProfit', maxProfit([1, 2, 3, 0, 2]));
     // console.log('maxProfit2', maxProfit2([1, 2, 3, 0, 2]));
+
+}
+
+//72
+{
+
+    var minDistance = function(word1, word2) {
+        let m = word1.length, n = word2.length;
+
+        // 初始化一个 (m+1) * (n+1)大小的数组
+        let dp = new Array(m + 1);
+        for (let i = 0; i < m + 1; i++) {
+            dp[i] = new Array(n + 1).fill(0)
+        }
+        for (let i = 1; i <= m; i++) {
+            dp[i][0] = i;
+        }
+        for (let j = 1; j <= n; j++){
+            dp[0][j] = j;
+        }
+
+
+        // 自底向上求解
+        for (let i = 1; i <= m; i++) {
+            for (let j = 1; j <= n; j++) {
+                if (word1[i - 1] === word2[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1]
+                else
+                    dp[i][j] = Math.min(
+                        dp[i - 1][j] + 1,  //  删除
+                        dp[i][j - 1] + 1,       // 插入
+                        dp[i - 1][j - 1] + 1     // 替换
+                    )
+            }
+        }
+        // 储存着整个 s1 和 s2 的最小编辑距离
+        return dp[m][n];
+    };
+
+    console.log('minDistance', minDistance('intention', 'execution'));
 
 }
 

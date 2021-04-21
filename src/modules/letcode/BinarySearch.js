@@ -458,8 +458,6 @@
     var minEatingSpeed = function(piles, H) {
 
 
-
-
         piles = piles.sort((a, b) => {
             return a - b
         });
@@ -505,6 +503,41 @@
 
 //658
 {
+
+
+
+
+    var findClosestElements = function(arr, k, x) {
+
+        let len = arr.length;
+        let left = 0;
+        let right = len-k;
+        let res = [];
+
+        while (left<right){
+            let mid = left + Math.floor((right - left) / 2);
+
+            if(x-arr[mid]>arr[mid+k]-x){
+                left = mid + 1;
+            }else {
+                right = mid;
+            }
+
+        }
+
+        for (let i=left,j=left+k;i<j;i++) {
+            res.push(arr[i]);
+        }
+
+        return res;
+    };
+
+
+
+
+
+
+
 
 
 

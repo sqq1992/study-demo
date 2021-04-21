@@ -138,6 +138,32 @@ CArray.prototype = {
         };
 
         this.dataStore = mergerSort(arr);
+    },
+
+
+    quickSort: function () {
+
+        let tempFunc = (array) => {
+
+            if(array.length<2){
+                return array;
+            }
+
+            let left = [];
+            let right = [];
+            let contrast = array.pop();
+
+            array.forEach((elem)=>{
+                if(elem<contrast){
+                    left.push(elem);
+                }else {
+                    right.push(elem);
+                }
+            })
+
+            return [...tempFunc(left), contrast, ...tempFunc(right)];
+        };
+        this.dataStore = tempFunc(this.dataStore);
     }
 
 
@@ -147,5 +173,5 @@ CArray.prototype = {
 //
 var num1 = new CArray(100);
 num1.setData();
-num1.combineSort();
+num1.quickSort();
 console.log(num1.toString());
