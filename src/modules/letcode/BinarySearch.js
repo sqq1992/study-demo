@@ -1,4 +1,58 @@
 
+//704
+{
+
+    var search = function(nums, target) {
+
+
+        let left = 0;
+        let right = nums.length - 1;
+
+
+        while (left<=right) {
+
+            let mid = left + Math.floor((right - left) / 2);
+
+            if(nums[mid]===target){
+                return mid;
+            }else if(nums[mid]>target){
+                right = mid - 1;
+            }else if(nums[mid]<target){
+                left = mid + 1;
+            }
+
+        }
+
+        return -1;
+    };
+
+
+    var search2 = function(nums, target) {
+
+        let left = 0;
+        let right = nums.length;
+
+        while (left<right) {
+
+            let mid = left + Math.floor((right - left) / 2);
+
+            if(nums[mid]===target){
+                return mid;
+            }else if(nums[mid]>target){
+                right = mid;
+            }else if(nums[mid]<target){
+                left = mid + 1;
+            }
+
+        }
+
+        return -1;
+    }
+
+
+
+}
+
 //33
 {
 
@@ -340,113 +394,119 @@
 
     var searchRange = function(nums, target) {
 
-        let start = 0;
-        let len = nums.length;
-        let end = nums.length - 1;
-        let flag = false;
-        let mid;
+        let searchBound = function (nums,target,isLeft) {
 
-        while (start<=end) {
-
-            mid = Math.floor((start + end) / 2);
-            let midVal = nums[mid];
-
-            if(midVal===target){
-                flag = true;
-                break;
-            }else if(midVal<target){
-                start = mid + 1;
-            }else{
-                end = mid - 1;
-            }
-        }
-
-        if(!flag){
-            return [-1, -1];
-        }
-
-        start = mid;
-        end = mid;
-
-        while ((start-1)>=0 && nums[start-1]===target){
-            start--;
-        }
-
-        while ((end+1)<=len-1 && nums[end+1]===target){
-            end++;
-        }
-
-        return [start, end];
-    };
-
-    // console.log('searchRange', searchRange([2, 2], 2));
+            let left = 0;
+            let right = nums.length;
 
 
+            while (left<right) {
 
-    var findLeft1 = function (nums, target) {
-        let left = 0;
-        let right = nums.length;
+                let mid = left + Math.floor((right - left) / 2);
+                let midVal = nums[mid];
 
-        while (left<right) {
-            let mid = left + Math.floor((right - left) / 2);
+                if(midVal===target){
 
-            if(nums[mid]===target){
-                right = mid;
-            }else if(nums[mid]>target){
-                right = mid - 1;
-            }else {
-                left = mid + 1;
+                    if(isLeft){
+                        right = mid;
+                    }else {
+                        left = mid + 1;
+                    }
+
+                }else if(midVal>target){
+
+                    if(isLeft){
+                        right = mid;
+                    }else {
+                        right = mid;
+                    }
+
+                }else if(midVal<target){
+
+                    if(isLeft){
+                        left = mid + 1;
+                    }else {
+                        left = mid + 1;
+                    }
+                }
+
             }
 
 
-        }
 
-        return nums[left] === target ? left : -1;
-    };
-
-    var findLeft2 = function (nums, target) {
-        let left = 0;
-        let right = nums.length - 1;
-
-        while (left<=right) {
-            let mid = left + Math.floor((right - left) / 2);
-            if(nums[mid]===target){
-                right = mid - 1;
-            }else if(nums[mid]>target){
-                right = mid - 1;
-            }else {
-                left = mid + 1;
+            if(isLeft){
+                return nums[left] === target ? left : -1;
             }
+            return nums[left - 1] === target ? left - 1 : -1;
+        };
+
+        let leftIndex = searchBound(nums, target, true);
+        let rightIndex = searchBound(nums, target, false);
+
+
+        if(leftIndex!==-1 || rightIndex!==-1){
+            return [leftIndex, rightIndex];
         }
 
-        return nums[left] === target ? left : -1;
+        return [-1, -1];
     };
 
-    var findRight1 = function (nums, target) {
-        let left = 0;
-        let right = nums.length;
-
-        while (left<right) {
-            let mid = left + Math.floor((right - left) / 2);
-
-            if(nums[mid]===target){
-                left = mid + 1;
-            }else if(nums[mid]>target){
-                right = mid;
-            }else {
-                left = mid + 1;
-            }
 
 
-        }
 
-        return left - 1;
-    };
 
-    // console.log('findLeft', findLeft1([0, 1, 2, 2, 2, 3, 4], 2));
-    // console.log('findLeft2', findLeft2([0, 1, 2, 2, 2, 3, 4], 2));
-    // console.log('findRight1', findRight1([0, 1, 2, 2, 2, 2,2, 3, 4], 2));
 
+
+
+
+
+
+
+
+
+
+    // var searchRange = function(nums, target) {
+    //
+    //     let start = 0;
+    //     let len = nums.length;
+    //     let end = nums.length - 1;
+    //     let flag = false;
+    //     let mid;
+    //
+    //     while (start<=end) {
+    //
+    //         mid = Math.floor((start + end) / 2);
+    //         let midVal = nums[mid];
+    //
+    //         if(midVal===target){
+    //             flag = true;
+    //             break;
+    //         }else if(midVal<target){
+    //             start = mid + 1;
+    //         }else{
+    //             end = mid - 1;
+    //         }
+    //     }
+    //
+    //     if(!flag){
+    //         return [-1, -1];
+    //     }
+    //
+    //     start = mid;
+    //     end = mid;
+    //
+    //     while ((start-1)>=0 && nums[start-1]===target){
+    //         start--;
+    //     }
+    //
+    //     while ((end+1)<=len-1 && nums[end+1]===target){
+    //         end++;
+    //     }
+    //
+    //     return [start, end];
+    // };
+
+    console.log('searchRange', searchRange([2, 2], 2));
 
 }
 

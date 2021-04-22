@@ -19,7 +19,7 @@ import store from './modules/redux/store';
 
 
 //compute
-// import './modules/compute/binarySearch';
+import './modules/compute/binarySearch';
 // import './modules/compute/sort';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
@@ -32,7 +32,7 @@ import store from './modules/redux/store';
 //letcode
 // import "./modules/letcode/Queue";
 // import "./modules/letcode/Recursion";
-// import "./modules/letcode/BinarySearch";
+import "./modules/letcode/BinarySearch";
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
@@ -86,7 +86,8 @@ import store from './modules/redux/store';
 
 //react define
 // import reactIndex from './modules/react/reactIndex';
-import ReactPortals from './modules/react/ReactPortals';
+// import ReactPortals from './modules/react/ReactPortals';
+import SuspenseTest from './modules/react/SuspenseTest';
 
 
 //redux
@@ -105,7 +106,8 @@ class App  extends Component{
                 {/*<Bfc />*/}
                 {/*<Flex />*/}
                 {/*<Strategies />*/}
-                <ReactPortals />
+                <SuspenseTest />
+                {/*<ReactPortals />*/}
             </div>
         )
     }
