@@ -331,21 +331,6 @@
 
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // var hIndex = function(citations) {
     //     let staticIndex = citations.length - 1;
     //     if(citations.length===0 || citations[staticIndex]===0){
@@ -514,7 +499,6 @@
 //875
 {
 
-
     var minEatingSpeed = function(piles, H) {
 
 
@@ -550,6 +534,61 @@
     };
 
     console.log('minEatingSpeed', minEatingSpeed([3, 6, 7, 11], 8));
+}
+
+//1011
+{
+
+    var shipWithinDays = function(weights, D) {
+
+        let groups = Math.ceil(weights.length / D);
+        let min = weights[0];
+        let max = weights.slice(-groups).reduce((prev, next) => {
+            return prev + next;
+        }, 0);
+        let minLoad = max;
+
+        while (min<=max){
+
+            let tempMid = Math.floor((min + max) / 2);
+
+            let combineObj = weights.reduce((prev, next) => {
+
+                let isUpdateDay;
+                if(prev.remain<=next){
+
+                    isUpdateDay = true;
+                }else {
+                    isUpdateDay = false;
+                }
+
+
+                // let isUpdateDay = prev.remain <= next;
+
+
+                return {
+                    needDays: isUpdateDay ? prev.needDays + 1 : prev.needDays,
+                    remain: isUpdateDay ? tempMid : prev.remain - next
+                };
+            }, {
+                needDays: 0,
+                remain: tempMid,
+            });
+
+            if(combineObj.needDays>D){
+                min = tempMid + 1;
+            }else {
+                max = tempMid - 1;
+                minLoad = Math.min(minLoad, tempMid);
+            }
+
+        }
+
+        return minLoad;
+    };
+
+    // console.log('shipWithinDays', shipWithinDays([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
+
 }
 
 
