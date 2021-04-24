@@ -227,23 +227,6 @@
         return len < 2 ? 1 : Math.max(...dp);
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // var lengthOfLIS = function(nums) {
     //     let len = nums.length;
     //     let dp = new Array(len);
@@ -438,39 +421,85 @@
 {
 
     var minDistance = function(word1, word2) {
-        let m = word1.length, n = word2.length;
 
-        // 初始化一个 (m+1) * (n+1)大小的数组
-        let dp = new Array(m + 1);
-        for (let i = 0; i < m + 1; i++) {
-            dp[i] = new Array(n + 1).fill(0)
+        let word1Len = word1.length;
+        let word2Len = word2.length;
+
+        let dp = new Array(word1Len + 1);
+        for (let i=0;i<=word1Len;i++) {
+            dp[i] = new Array(word2Len + 1).fill(0);
         }
-        for (let i = 1; i <= m; i++) {
+
+        for (let i=1;i<=word1Len;i++) {
             dp[i][0] = i;
         }
-        for (let j = 1; j <= n; j++){
-            dp[0][j] = j;
+
+        for (let i=1;i<=word2Len;i++) {
+            dp[0][i] = i;
         }
 
 
-        // 自底向上求解
-        for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-                if (word1[i - 1] === word2[j - 1])
-                    dp[i][j] = dp[i - 1][j - 1]
-                else
+        for (let i=1;i<=word1Len;i++) {
+
+            for (let j=1;j<=word2Len;j++) {
+
+                if(word1[i-1]===word2[j-1]){
+                    dp[i][j] = dp[i - 1][j - 1];
+                }else {
                     dp[i][j] = Math.min(
-                        dp[i - 1][j] + 1,  //  删除
-                        dp[i][j - 1] + 1,       // 插入
-                        dp[i - 1][j - 1] + 1     // 替换
+                        dp[i-1][j]+1,
+                        dp[i][j-1]+1,
+                        dp[i-1][j-1]+1,
                     )
+                }
             }
+
         }
-        // 储存着整个 s1 和 s2 的最小编辑距离
-        return dp[m][n];
+
+        return dp[word1Len][word2Len];
+
     };
 
     console.log('minDistance', minDistance('intention', 'execution'));
+
+}
+
+
+//53
+{
+
+    var maxSubArray = function(nums) {
+        let len = nums.length;
+        let dp = [...nums];
+
+        for (let i=1;i<len;i++) {
+            dp[i] = Math.max(dp[i], dp[i] + dp[i - 1]);
+        }
+
+        return Math.max(...dp);
+    };
+    // console.log('maxSubArray', maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+}
+
+//516
+{
+    var longestPalindromeSubseq = function(s) {
+        let len = s.length;
+        let dp = new Array(len);
+        dp.fill(1, 0, len);
+
+        for (let i=1;i<len;i++) {
+            for (let m=0;m<i;m++) {
+                if(s[i]===s[m]){
+                    dp[i] = Math.max(dp[i], 1 + dp[m]);
+                }
+            }
+        }
+
+        return Math.max(...dp);
+    };
+
+    // console.log('longestPalindromeSubseq', longestPalindromeSubseq('aabaa'));
 
 }
 

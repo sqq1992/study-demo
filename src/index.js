@@ -91,6 +91,7 @@ import store from './modules/redux/store';
 // import ReactState from './modules/react/ReactState';
 // import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
+// import ReactSequence from './modules/react/ReactSequence';
 
 
 //redux
@@ -115,6 +116,7 @@ class App  extends Component{
                 {/*<ReactState />*/}
                 {/*<ReactPublicState />*/}
                 {/*<ReactUseMemo />*/}
+                {/*<ReactSequence />*/}
             </div>
         )
     }

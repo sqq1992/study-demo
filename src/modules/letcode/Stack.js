@@ -117,7 +117,6 @@
 //20
 {
 
-
     var isValid = function (s) {
 
         let stack = [];
@@ -145,6 +144,34 @@
 
 }
 
+//71
+{
+
+    var simplifyPath = function(path) {
+
+        let pathArr = path.split('/');
+        let stack = [];
+
+
+        for (let val of pathArr){
+
+            if(val==="" || val==="."){
+                continue;
+            }
+
+            if(val===".."){
+                stack.length && stack.pop();
+            }else {
+                stack.push(val);
+            }
+
+        }
+
+
+        return '/' + stack.join('/');
+    };
+
+}
 
 //682
 {

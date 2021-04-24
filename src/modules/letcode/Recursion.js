@@ -1,3 +1,7 @@
+/**
+ * 二叉树汇总
+ */
+
 let node = function (val) {
     this.val = val;
     this.left = null;

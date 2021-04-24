@@ -1,6 +1,75 @@
 
 //双指针
 
+//5
+{
+
+    var longestPalindrome = function(s) {
+
+        let res = '';
+        let tempFunc = (str,left,right) => {
+
+
+            while (left>=0 && right<str.length && str[left]===str[right]) {
+
+                left--;
+                right++
+            }
+
+            return str.substr(left + 1, right - left - 1);
+        };
+
+
+        for (let i=0,j=s.length;i<j;i++) {
+
+            let res1 = tempFunc(s, i, i);
+            let res2 = tempFunc(s, i, i + 1);
+
+            res = res.length > res1.length ? res : res1;
+            res = res.length > res2.length ? res : res2;
+
+        }
+
+        return res;
+    };
+
+    // console.log('longestPalindrome', longestPalindrome('babad'));
+
+}
+
+//647
+{
+
+    var countSubstrings = function(s) {
+
+        let count = 0;
+        let tempFunc = (str, left, right) => {
+
+            let tempCount = 0;
+
+            while (left>=0 && right<str.length && str[left]===str[right]){
+                tempCount++;
+                left--;
+                right++;
+            }
+
+            return tempCount;
+        };
+
+        for (let i=0,j=s.length;i<j;i++) {
+
+            let count1 = tempFunc(s, i, i);
+            let count2 = tempFunc(s, i, i + 1);
+            count = count + count1 + count2;
+        }
+
+
+        return count;
+    };
+
+}
+
+
 // 88
 {
 
@@ -158,7 +227,7 @@
     };
 
 
-    console.log('threeSumClosest', threeSumClosest([1,2,4,8,16,32,64,128], 82));
+    // console.log('threeSumClosest', threeSumClosest([1,2,4,8,16,32,64,128], 82));
 }
 
 
@@ -192,7 +261,7 @@
         return nums;
     };
 
-    console.log('sortColors', sortColors([1, 2, 0]));
+    // console.log('sortColors', sortColors([1, 2, 0]));
 
 
 }
@@ -237,7 +306,7 @@
     };
 
 
-    console.log('findRadius',findRadius([1,2,3,4],[1,4]))
+    // console.log('findRadius',findRadius([1,2,3,4],[1,4]))
 }
 
 
@@ -379,6 +448,6 @@
     };
 
 
-    console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("pwwkew"));
+    // console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("pwwkew"));
 
 }
