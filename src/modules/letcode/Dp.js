@@ -484,25 +484,59 @@
 //516
 {
     var longestPalindromeSubseq = function(s) {
-        let len = s.length;
-        let dp = new Array(len);
-        dp.fill(1, 0, len);
 
-        for (let i=1;i<len;i++) {
-            for (let m=0;m<i;m++) {
-                if(s[i]===s[m]){
-                    dp[i] = Math.max(dp[i], 1 + dp[m]);
-                }
-            }
+        let len = s.length;
+
+        if(len<2){
+            return len;
         }
 
-        return Math.max(...dp);
+        let dp = new Array(len);
+        for (let i=0;i<len;i++) {
+            dp[i] = new Array(len);
+            dp[i].fill(0);
+
+            dp[i][i] = 1;
+        }
+
+
+        for (let i=len-2;i>=0;i--) {
+
+            for (let j=i+1;j<=len-1;j++) {
+
+                if (s[i] === s[j]) {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                } else {
+                    dp[i][j] = Math.max(
+                        dp[i + 1][j],
+                        dp[i][j - 1]
+                    );
+                }
+
+            }
+
+        }
+
+
+        return dp[0][len - 1];
+
     };
 
-    // console.log('longestPalindromeSubseq', longestPalindromeSubseq('aabaa'));
+    // console.log('longestPalindromeSubseq', longestPalindromeSubseq('bbbab'));
 
 }
 
+
+//877
+{
+
+    var stoneGame = function(piles) {
+
+
+
+    };
+
+}
 
 //123
 {
