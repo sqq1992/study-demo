@@ -1,66 +1,108 @@
 
 // 回溯
 
+//698
+{
+
+    var canPartitionKSubsets = function(nums, k) {
+
+        let res = [];
+        let len = nums.length;
+
+        let tempFunc = (arr,allSum) => {
+
+
+            if(arr.length===k){
+                res.push(arr.slice());
+                return;
+            }
+
+            let numArr = [];
+            for (let i=0;i<len;i++) {
+
+                numArr.push(nums[i]);
+                let sum = numArr.reduce((prev, next) => {
+                    return prev + next;
+                }, 0);
+                if(allSum!=='' && allSum!==sum){
+                    continue;
+                }
+
+                arr.push(numArr.slice());
+                tempFunc(arr, sum);
+                arr.pop();
+                numArr.pop();
+            }
+
+        };
+
+        tempFunc([], '');
+        console.log('res', res);
+    };
+
+    console.log('canPartitionKSubsets', canPartitionKSubsets([4, 3, 2, 3, 5, 2, 1], 4));
+
+}
+
+//93
+{
+
+    var restoreIpAddresses = function(s) {
+
+
+        let res = [];
+        let len = s.length;
+
+        let tempFunc = (arr) => {
+
+
+            for (let i=0;i<len;i++) {
+
+
+
+            }
+
+        };
+
+
+
+
+    };
+
+}
+
 
 //46
 {
 
-    var permute = function(nums) {
 
+    var permute = function(nums) {
 
         let res = [];
         let len = nums.length;
 
         let tempFunc = (arr) => {
 
-            if(arr.length===len) {
+            if(arr.length===len){
                 res.push(arr.slice());
                 return;
             }
+
 
             for (let i=0;i<len;i++) {
 
                 if(arr.includes(nums[i])){
                     continue;
                 }
-
                 arr.push(nums[i]);
                 tempFunc(arr);
                 arr.pop();
             }
-
         };
-        tempFunc([]);
+
+        tempFunc([])
         return res;
     };
-
-    // var permute = function(nums) {
-    //
-    //
-    //     let res = [];
-    //     let temp = [];
-    //
-    //
-    //     let tempFunc = (temp) => {
-    //
-    //         if(temp.length===nums.length) {
-    //             res.push(temp.slice());
-    //             return;
-    //         }
-    //
-    //         for (let i=0,j=nums.length;i<j;i++) {
-    //
-    //             if(temp.includes(nums[i])){
-    //                 continue;
-    //             }
-    //             temp.push(nums[i]);
-    //             tempFunc(temp);
-    //             temp.pop();
-    //         }
-    //     };
-    //     tempFunc(temp);
-    //     return res;
-    // };
 
     // console.log('permute', permute([1, 2, 3]));
 
@@ -228,12 +270,49 @@
     var solveNQueens = function(n) {
 
         let res = [];
+        let board = new Array(n);
+        for (let i=0;i<n;i++) {
+            board[i] = new Array(n);
+            board[i].fill('.');
+        }
 
+        let isValid = (row, col) => {
 
-        let tempFunc = () => {
+            for (let i=0;i<n;i++) {
+                for (let j=0;j<n;j++) {
+                    if(board[i][j]==="Q" && (j===col || i+j===row+col || i-j===row-col)){
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        };
+
+        let tempFunc = (row) => {
+
+            if(row===n){
+                res.push(board.map((elem)=>{
+                    return elem.join('');
+                }))
+                return;
+            }
+
+            for (let col=0;col<n;col++) {
+
+                if(!isValid(row,col)) continue;
+
+                board[row][col] = "Q"
+                tempFunc(row + 1);
+                board[row][col] = "."
+            }
 
 
         };
 
+
+        tempFunc(0);
+        return res;
     };
+    // console.log('solveNQueens',solveNQueens(4))
 }
