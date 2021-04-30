@@ -35,7 +35,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css/,
-                use: [{ loader: MiniCssExtractPlugin.loader}, 'css-loader'],
+                use: ['css-loader'],
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
             },
@@ -53,7 +53,7 @@ module.exports = {
             },
             {
                 test: /\.less/,
-                use: [{ loader: MiniCssExtractPlugin.loader }, 'css-loader', 'less-loader'],
+                use: ['style-loader','css-loader', 'less-loader'],
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src')
             },
@@ -77,10 +77,14 @@ module.exports = {
     },
     optimization: {
         minimizer: [
+            // new MiniCssExtractPlugin({
+            //     filename: '[name].css',
+            //     chunkFilename: "[id].css"
+            // }),
             new UglifyWebpackPlugin({
                 parallel: 4
             }),
-            new OptimizeCssAssetsWebpackPlugin()
+            new OptimizeCssAssetsWebpackPlugin(),
         ]
     }
 }

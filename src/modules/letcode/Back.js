@@ -6,9 +6,34 @@
 
     var generateParenthesis = function(n) {
 
+        let res = [];
+        let tempFunc = (left,right,str) => {
+
+            if(right>left){
+                return;
+            }
+
+            if(right===n && left===n){
+                res.push(str);
+                return;
+            }
 
 
+            if(left<n){
+                tempFunc(left + 1, right, str + '(');
+            }
+
+            if(left>right){
+                tempFunc(left, right + 1, str + ')');
+            }
+
+
+        };
+        tempFunc(0, 0, '');
+        return res;
     };
+
+    // console.log('generateParenthesis', generateParenthesis(3));
 
 }
 

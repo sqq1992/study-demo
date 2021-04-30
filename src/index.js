@@ -41,7 +41,8 @@ import store from './modules/redux/store';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
 // import './modules/letcode/LinkedList';
-import './modules/letcode/Back';
+// import './modules/letcode/Back';
+import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
 
 //  JS高级程序设计(第四版)
@@ -81,11 +82,13 @@ import './modules/letcode/Back';
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
 // import Flex from './modules/css/flex/Flex';
+import CssCombine from './modules/css/cssCombine/CssCombine';
 
 //hooks
 // import UseState from './modules/hooks/UseState';
 // import TestClassAndFun from './modules/hooks/TestClassAndFun';
 // import './modules/hooks/HooksSourceCode';
+// import './modules/hooks/MiniHooks';
 
 //react define
 // import reactIndex from './modules/react/reactIndex';
@@ -114,6 +117,7 @@ class App  extends Component{
                 {/*<Bfc />*/}
                 {/*<Flex />*/}
                 {/*<Strategies />*/}
+                <CssCombine />
 
                 {/*<TestClassAndFun />*/}
                 {/*<SuspenseTest />*/}
