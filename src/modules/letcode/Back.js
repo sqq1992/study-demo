@@ -1,46 +1,68 @@
 
 // 回溯
 
+//22
+{
+
+    var generateParenthesis = function(n) {
+
+
+
+    };
+
+}
+
 //698
 {
 
     var canPartitionKSubsets = function(nums, k) {
 
-        let res = [];
-        let len = nums.length;
+        let sum = nums.reduce((prev, next) => {
+            return prev + next;
+        }, 0);
 
-        let tempFunc = (arr,allSum) => {
+        if(sum % k !==0) return false;
+
+        let target = sum / k;
+        let bucket = new Array(k).fill(0);
 
 
-            if(arr.length===k){
-                res.push(arr.slice());
-                return;
+        let tempFunc = (index) => {
+
+            if(index===nums.length){
+                for (let i=0,j=bucket.length;i<j;i++) {
+                    if(bucket[i]!==target){
+                        return false;
+                    }
+                }
+                return true;
             }
 
-            let numArr = [];
-            for (let i=0;i<len;i++) {
 
-                numArr.push(nums[i]);
-                let sum = numArr.reduce((prev, next) => {
-                    return prev + next;
-                }, 0);
-                if(allSum!=='' && allSum!==sum){
+            for (let i=0,j=bucket.length;i<j;i++) {
+
+                if(bucket[i]+nums[index]>target){
                     continue;
                 }
 
-                arr.push(numArr.slice());
-                tempFunc(arr, sum);
-                arr.pop();
-                numArr.pop();
+                bucket[i] += nums[index];
+
+                if(tempFunc(index+1)){
+                    return true;
+                }
+
+                bucket[i] -= nums[index];
             }
 
+            return false;
         };
 
-        tempFunc([], '');
-        console.log('res', res);
+
+        return tempFunc(0);
+
     };
 
-    console.log('canPartitionKSubsets', canPartitionKSubsets([4, 3, 2, 3, 5, 2, 1], 4));
+    // console.log('canPartitionKSubsets', canPartitionKSubsets([4, 3, 2, 3, 5, 2, 1], 4));
 
 }
 
@@ -74,7 +96,6 @@
 
 //46
 {
-
 
     var permute = function(nums) {
 

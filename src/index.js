@@ -24,6 +24,7 @@ import store from './modules/redux/store';
 // import './modules/compute/copy';
 // import './modules/compute/middleWare';
 // import './modules/compute/back';
+// import './modules/compute/dp';
 
 //webpack
 // import './modules/webpack/testWebpack';
@@ -84,6 +85,7 @@ import './modules/letcode/Back';
 //hooks
 // import UseState from './modules/hooks/UseState';
 // import TestClassAndFun from './modules/hooks/TestClassAndFun';
+// import './modules/hooks/HooksSourceCode';
 
 //react define
 // import reactIndex from './modules/react/reactIndex';

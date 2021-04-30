@@ -526,6 +526,79 @@
 
 }
 
+//416
+{
+
+    var canPartition = function(nums) {
+
+        let sumCount = nums.reduce((prev, next) => {
+            return prev + next;
+        }, 0);
+
+        if(sumCount%2!==0) return false;
+
+        let sum = sumCount / 2;
+        let len = nums.length;
+        let dp = new Array(len + 1);
+        for (let i=0;i<len+1;i++) {
+            dp[i] = new Array(sum + 1).fill(false);
+            dp[i][0] = true;
+        }
+
+
+        for (let i=1;i<=len;i++) {
+
+            for (let j=1;j<=sum;j++) {
+
+                if(j<nums[i-1]){
+                    dp[i][j] = dp[i - 1][j];
+                }else {
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
+                }
+
+            }
+
+        }
+
+
+        return dp[len][sum];
+    };
+
+
+    // console.log('canPartition',canPartition([1,5,11,5]))
+}
+
+//518
+{
+
+    var change = function(amount, coins) {
+
+        let len = coins.length;
+        let dp = new Array(len + 1);
+        for (let i=0;i<len+1;i++){
+            dp[i] = new Array(amount + 1).fill(0);
+            dp[i][0] = 1;
+        }
+
+
+        for (let i=1;i<=len;i++){
+            for (let j=1;j<=amount;j++) {
+
+                if(j>=coins[i-1]){
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1]];
+                }else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+
+            }
+        }
+
+        return dp[len][amount];
+    };
+
+    console.log('change', change(5, [1, 2, 5]));
+}
+
 
 //877
 {
