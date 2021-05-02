@@ -451,3 +451,135 @@
     // console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("pwwkew"));
 
 }
+
+/**
+ *  n sum target类型的题目
+ */
+//15, 18
+{
+
+    var threeSum = function(nums) {
+
+
+        nums = nums.sort((a, b) => {
+            return a - b
+        });
+
+
+        let nSumTarget = (nums, n, start, target) => {
+            let size = nums.length;
+            let res = [];
+
+            if (n < 2 || size < n) return res;
+
+            if (n === 2) {
+                let left = start;
+                let right = size - 1;
+
+                while (left<right){
+                    let leftVal = nums[left];
+                    let rightVal = nums[right];
+                    let tempSum = leftVal + rightVal;
+
+                    if(tempSum<target){
+                        while (left<right && nums[left]===leftVal) left++;
+                    }else if(tempSum>target){
+                        while (left<right && nums[right]===rightVal) right--;
+                    }else {
+                        res.push([leftVal, rightVal]);
+                        while (left<right && nums[left]===leftVal) left++;
+                        while (left<right && nums[right]===rightVal) right--;
+                    }
+                }
+            }else {
+                for (let i=start;i<size;i++) {
+
+                    let tempResArr = nSumTarget(nums, n - 1, i + 1, target - nums[i]);
+                    if(tempResArr.length){
+                        res = res.concat(tempResArr.map((elem) => {
+                            return elem.concat(nums[i])
+                        }))
+                    }
+
+                    while (i<size-1 && nums[i]===nums[i+1]) i++;
+                }
+
+            }
+
+
+            return res;
+        };
+
+        return nSumTarget(nums, 3, 0, 0);
+    };
+
+
+    var fourSum = function(nums, target) {
+
+        nums = nums.sort((a, b) => {
+            return a - b
+        });
+
+        let nSumTarget = (nums, n, start, target) => {
+            let size = nums.length;
+            let res = [];
+
+            if (n < 2 || size < n) return res;
+
+            if (n === 2) {
+                let left = start;
+                let right = size - 1;
+
+                while (left<right){
+                    let leftVal = nums[left];
+                    let rightVal = nums[right];
+                    let tempSum = leftVal + rightVal;
+
+                    if(tempSum<target){
+                        while (left<right && nums[left]===leftVal) left++;
+                    }else if(tempSum>target){
+                        while (left<right && nums[right]===rightVal) right--;
+                    }else {
+                        res.push([leftVal, rightVal]);
+                        while (left<right && nums[left]===leftVal) left++;
+                        while (left<right && nums[right]===rightVal) right--;
+                    }
+                }
+            }else {
+                for (let i=start;i<size;i++) {
+
+                    let tempResArr = nSumTarget(nums, n - 1, i + 1, target - nums[i]);
+                    if(tempResArr.length){
+                        res = res.concat(tempResArr.map((elem) => {
+                            return elem.concat(nums[i])
+                        }))
+                    }
+
+                    while (i<size-1 && nums[i]===nums[i+1]) i++;
+                }
+
+            }
+
+            return res;
+        };
+
+        return nSumTarget(nums, 4, 0, target);
+    };
+
+    console.log('threeSum',threeSum([-1,0,1,2,-1,-4]))
+
+
+
+}
+
+
+
+
+//392
+{
+
+    var isSubsequence = function(s, t) {
+
+    };
+
+}

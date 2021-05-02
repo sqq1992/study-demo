@@ -34,6 +34,7 @@ import store from './modules/redux/store';
 // import "./modules/letcode/Queue";
 // import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
+// import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
 // import './modules/letcode/greedCompute';
@@ -42,7 +43,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Stack.js';
 // import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
-import './modules/letcode/Bfs';
+// import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
 
 //  JS高级程序设计(第四版)

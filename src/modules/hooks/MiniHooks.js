@@ -21,13 +21,13 @@ const MyReact = (function() {
 
             let isOwnedDeps = !depsArray;
             let _deps = hooks[useHookIndex];
-            let isDepsUpdate = _deps ? _deps.every((elem, index) => {
+            let isDepsUpdate = _deps ? _deps.length && _deps.every((elem, index) => {
                 return elem !== depsArray[index];
             }) : true;
 
             if(isOwnedDeps || isDepsUpdate){
                 callBack();
-                _deps = depsArray
+                hooks[useHookIndex] = depsArray
             }
 
         },
@@ -53,8 +53,12 @@ function Counter() {
     const [name, setName] = MyReact.useState('sun')
 
     MyReact.useEffect(() => {
-        console.log('count', count);
-    }, [count]);
+
+        setInterval(() => {
+            console.log('count', count);
+        }, 2500);
+
+    }, []);
 
     return {
         click: () => setCount(count + 1),
@@ -66,6 +70,5 @@ let app;
 app = MyReact.render(Counter);
 app.click();
 app = MyReact.render(Counter);
-app.noop();
-app = MyReact.render(Counter);
+// app = MyReact.render(Counter);
 
