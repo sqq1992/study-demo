@@ -41,7 +41,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-// import './modules/letcode/LinkedList';
+import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';

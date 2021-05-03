@@ -1,79 +1,182 @@
+/**
+ *  滑动窗口
+ */
 
+//438
+{
+
+    var findAnagrams = function(s, p) {
+
+        let left = 0;
+        let right = 0;
+        let sLen = s.length;
+        let pLen = p.length;
+        let sRecordMap = new Map();
+        let pRecordMap = new Map();
+        let res = [];
+
+
+        for (let str of p){
+            pRecordMap.set(str, (pRecordMap.get(str) || 0) + 1);
+        }
+
+        let isEqual = function (pRecordMap,sRecordMap) {
+            for (let [key,value] of pRecordMap){
+                if(sRecordMap.get(key)!==value){
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        while (right<sLen){
+
+            if(right-left+1>pLen){
+                sRecordMap.set(s[left], sRecordMap.get(s[left]) - 1);
+                left++;
+            }
+
+            sRecordMap.set(s[right], (sRecordMap.get(s[right]) || 0) + 1);
+
+            if ((right - left + 1 === pLen) && isEqual(pRecordMap, sRecordMap)) {
+                res.push(left);
+            }
+
+            right++;
+        }
+
+        return res;
+    };
+
+    // console.log('findAnagrams', findAnagrams("cbaebabacd", "abc"));
+}
+
+//567
+{
+
+    var checkInclusion = function(s1, s2) {
+
+        let left = 0;
+        let right = 0;
+        let s1Len = s1.length;
+        let s2Len = s2.length;
+        let s1RecordMap = new Map();
+        let s2RecordMap = new Map();
+
+        for (let str of s1){
+            s1RecordMap.set(str, (s1RecordMap.get(str) || 0) + 1);
+        }
+
+        let isEqual = function (s1Record,s2Record) {
+            for (let [key,value] of s1Record){
+                if(s2Record.get(key)!==value){
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        while (right<s2Len){
+
+            if(right-left+1>s1Len){
+                s2RecordMap.set(s2[left], s2RecordMap.get(s2[left]) - 1);
+                left++;
+            }
+
+            s2RecordMap.set(s2[right],(s2RecordMap.get(s2[right]) || 0) + 1)
+            if ((right - left + 1 === s1Len) && isEqual(s1RecordMap, s2RecordMap)) {
+                return true;
+            }
+
+            right++;
+        }
+
+        return false;
+    };
+
+    // console.log('checkInclusion', checkInclusion("adc", "dcda"));
+
+}
 
 //76
 {
     var minWindow = function(s, t) {
 
-
         let left = 0;
         let right = 0;
         let len = s.length;
-        let tArray = t.split('');
-        let minStr = '';
-
-        while (right <= len) {
-
-            let cacheStr = s.slice(left, right);
-            let tempStr = cacheStr;
-            let isMatch = tArray.every((elem) => {
-                let tempIndex = tempStr.indexOf(elem);
-                tempStr = tempStr.slice(0, tempIndex) + tempStr.slice(tempIndex + 1);
-
-                return tempIndex!==-1;
-            });
-
-            if(isMatch){
-                if(minStr===""){
-                    minStr = cacheStr;
-                }else {
-                    minStr = cacheStr.length < minStr.length ? cacheStr : minStr;
-                }
-                left++;
+        let minLen = s.length+1;
+        let start = s.length;
+        let map = {};
+        let missingType = 0;
+        for (let str of t){
+            if(!map[str]){
+                map[str] = 1;
+                missingType++;
             }else {
-                right++;
+                map[str]++;
+            }
+        }
+
+        while (right<len) {
+
+            let rightStr = s[right];
+            if(map[rightStr]!==undefined) map[rightStr]--;
+            if(map[rightStr]===0) missingType--;
+
+            while (missingType===0){
+
+                if(right-left+1<minLen) {
+                    minLen = right - left + 1;
+                    start = left;
+                }
+
+                let leftStr = s[left];
+                if(map[leftStr]!==undefined) map[leftStr]++;
+                if(map[leftStr]>0) missingType++;
+                left++;
             }
 
-
+            right++;
         }
 
 
-        return minStr;
-
+        if(start===len) return '';
+        return s.substring(start, start + minLen);
     };
 
-    console.log('minWindow', minWindow("ADOBECODEBANC", "ABC"));
+    // console.log('minWindow', minWindow("a", "a"));
 }
 
 
 //3
 {
+
     var lengthOfLongestSubstring = function(s) {
 
-
-        let start = 0;
-        let end = 0;
+        let left = 0;
+        let right = 0;
         let len = s.length;
-        let record = new Map();
         let maxLen = 0;
+        let record = new Map();
 
-        while (end<len) {
-            let tempStr = s[end];
+        while (right<len){
+            let str = s[right];
 
-            if(record.has(tempStr)){
-                let prevIndex = record.get(tempStr);
-                start = start <= prevIndex ? prevIndex + 1 : start;
+            if(record.has(str)){
+                let prevIndex = record.get(str);
+                left = prevIndex < left ? left : prevIndex + 1;
             }
 
-            record.set(tempStr, end);
-            maxLen = Math.max(end - start + 1, maxLen);
-            end++
+            maxLen = Math.max(maxLen, right - left + 1);
+            record.set(str, right);
+            right++;
         }
 
         return maxLen;
     };
 
-
-    console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("abcabcbb"));
+    // console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("abcabcbb"));
 
 }
 
@@ -255,7 +358,7 @@
         return maxLen;
     };
 
-    console.log('longestMountain', longestMountain([0,2,0,2,1,2,3,4,4,1]));
+    // console.log('longestMountain', longestMountain([0,2,0,2,1,2,3,4,4,1]));
 
 
 

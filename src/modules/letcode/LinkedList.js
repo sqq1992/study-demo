@@ -59,29 +59,24 @@ LList.prototype = {
 
     var reverseBetween = function(head, left, right) {
 
+        let successor = null;
         let reverseN = function (head, n) {
-            let successor = null;
-            let tempFunc = (head,n) => {
-                if(n===1){
-                    successor = head.next;
-                    return head;
-                }
-                let last = tempFunc(head.next, n - 1);
-                head.next.next = head;
-                head.next = successor;
+            if(n===1){
+                successor = head.next;
+                return head;
+            }
+            let last = reverseN(head.next, n - 1);
+            head.next.next = head;
+            head.next = successor;
 
-                return last;
-            };
-
-            return tempFunc(head, n);
+            return last;
         };
 
         if(left===1){
             return reverseN(head, right);
         }
 
-
-        head.next = reverseBetween(head.next, left - 1, right - 1);
+        head.next = reverseBetween(head.next, left - 1, right - 1)
         return head;
     };
 
@@ -259,16 +254,6 @@ LList.prototype = {
         return head;
     };
 
-
-
-
-
-
-
-
-
-
-
     // var deleteDuplicates = function(head) {
     //
     //     if(head == null) {
@@ -291,22 +276,20 @@ LList.prototype = {
 //206
 {
 
-
-
     var reverseList = function(head) {
 
-        if(head===null || head.next===null) return head;
-        let last = reverseList(head.next);
+        let prev = null;
+        let cur = head;
+        while (cur!==null){
+            let next = cur.next;
 
-        head.next.next = head;
-        head.next = null;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
 
-        return last;
+        return prev
     };
-
-
-
-
 
 
     //todo test
@@ -314,25 +297,21 @@ LList.prototype = {
     // console.log('list1', list1);
     // console.log('list1-reverse', reverseList(list1));
 
-
-    // var reverseList = function(head) {
-    //
-    //     let prev = null;
-    //     let curr = head;
-    //     while (curr!==null){
-    //         let tempNext = curr.next;
-    //         curr.next = prev;
-    //         prev = curr;
-    //         curr = tempNext;
-    //     }
-    //
-    //     return prev;
-    // };
-
 }
 
 //206-2
 {
+
+    var reverseList = function(head) {
+        if(head===null || head.next===null){
+            return head;
+        }
+        let last = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return last;
+    };
 
     var reverseList = function(head,n) {
 
@@ -686,6 +665,44 @@ LList.prototype = {
         };
 
         return tempFunc(head);
+    };
+
+}
+
+//25
+{
+
+    var reverseKGroup = function(head, k) {
+
+        let first = head;
+        let last = head;
+        for (let i=0;i<k;i++) {
+
+            if(last===null) return head;
+            last = last.next;
+        }
+
+        let reverseArea = function (first, last) {
+
+            let pre = null;
+            let cur = first;
+
+            while (cur!==last){
+                let next = cur.next;
+
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+
+            return pre;
+        };
+
+
+        let reverseHead = reverseArea(first, last);
+        first.next = reverseKGroup(last, k);
+
+        return reverseHead
     };
 
 }
