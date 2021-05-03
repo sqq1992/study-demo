@@ -706,29 +706,32 @@ Bst.prototype.init = function (dataList) {
         return root;
     };
 
-    // var connect = function(root) {
-    //
-    //     if(root===null) return root;
-    //
-    //     let tempFunc = (leftNode, rightNode) => {
-    //
-    //         if(leftNode===null || rightNode===null) return;
-    //
-    //         leftNode.next = rightNode;
-    //
-    //         tempFunc(leftNode.left, leftNode.right);
-    //         tempFunc(rightNode.left, rightNode.right);
-    //         tempFunc(leftNode.right, rightNode.left);
-    //
-    //     };
-    //     tempFunc(root.left, root.right);
-    //
-    //     return root;
-    // };
 }
 
 //114
 {
+
+    var flatten = function(root) {
+        if(!root){
+            return root;
+        }
+
+        flatten(root.left);
+        flatten(root.right);
+
+
+        let leftNode = root.left;
+        let rightNode = root.right;
+
+        root.left = null;
+        root.right = leftNode;
+
+        let p = root;
+        while (p.right!==null){
+            p = p.right;
+        }
+        p.right = rightNode;
+    };
 
     var flatten = function(root) {
         let list = [];
@@ -773,6 +776,7 @@ Bst.prototype.init = function (dataList) {
 
 //105
 {
+
     var buildTree = function(preorder, inorder) {
 
         if(!preorder.length && !inorder.length) return null;

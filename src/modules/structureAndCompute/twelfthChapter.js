@@ -141,6 +141,7 @@ CArray.prototype = {
     },
 
 
+    //快速排序
     quickSort: function () {
 
         let tempFunc = (array) => {

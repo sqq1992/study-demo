@@ -32,7 +32,7 @@ import store from './modules/redux/store';
 
 //letcode
 // import "./modules/letcode/Queue";
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
@@ -41,7 +41,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-import './modules/letcode/LinkedList';
+// import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
@@ -52,12 +52,12 @@ import './modules/letcode/LinkedList';
 
 
 //structureAndCompute 数据结构与算法
-// import './modules/structureAndCompute/tenthChapter';
+// import './modules/structureAndCompute/tenthChapter';     //二叉树
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/fifthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
-// import './modules/structureAndCompute/twelfthChapter';
+// import './modules/structureAndCompute/twelfthChapter';  //排序
 
 //学习数据结构与算法  第三版
 // import './modules/structureAndComputeThird/fifthChapter';   //队列
