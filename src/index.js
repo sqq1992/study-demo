@@ -100,6 +100,7 @@ import CssCombine from './modules/css/cssCombine/CssCombine';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
 // import ReactSequence from './modules/react/ReactSequence';
 // import ReactUpdateState from './modules/react/ReactUpdateState';
+// import './modules/react/timeSlice'
 
 
 //redux

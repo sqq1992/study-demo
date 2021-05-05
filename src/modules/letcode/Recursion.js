@@ -213,15 +213,6 @@ Bst.prototype.init = function (dataList) {
         return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     };
 
-    // var maxDepth = function(root) {
-    //
-    //     if(!root){
-    //         return 0;
-    //     }
-    //
-    //     return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
-    // };
-
 }
 
 
@@ -291,25 +282,6 @@ Bst.prototype.init = function (dataList) {
     };
     // console.log('preorderTraversal', preorderTraversal(bst1.root));
 
-
-    // var preorderTraversal = function(root) {
-    //     let result = [];
-    //     let tempFunc = (tempRoot) => {
-    //         if(tempRoot){
-    //             if(tempRoot.val!==null){
-    //                 result.push(tempRoot.val);
-    //             }
-    //             tempFunc(tempRoot.left);
-    //             tempFunc(tempRoot.right);
-    //         }
-    //     };
-    //     tempFunc(root);
-    //
-    //     return result;
-    // };
-
-
-    // console.log('preorderTraversal', preorderTraversal(bst1.root));
 }
 
 
@@ -522,32 +494,6 @@ Bst.prototype.init = function (dataList) {
 
         return tempFunc(root, null, null);
     };
-
-
-
-
-
-
-    // var isValidBST = function(root) {
-    //
-    //     let tempFunc = (tempRoot, lower, upper) => {
-    //
-    //         if(tempRoot===null) return true;
-    //
-    //         let val = tempRoot.val;
-    //
-    //         if(lower!==null && val<=lower) return false;
-    //         if(upper!==null && val>=upper) return false;
-    //
-    //         if(!tempFunc(tempRoot.right, val, upper)) return false;
-    //         if(!tempFunc(tempRoot.left,lower,val)) return false;
-    //
-    //         return true;
-    //     };
-    //
-    //
-    //     return tempFunc(root, null, null);
-    // };
 
 }
 
@@ -882,6 +828,7 @@ Bst.prototype.init = function (dataList) {
 
 //230
 {
+
     var kthSmallest = function(root, k) {
         let res = [];
 
@@ -953,6 +900,7 @@ Bst.prototype.init = function (dataList) {
 
 //450
 {
+
     var deleteNode = function(root, key) {
 
         let getSmallest = (root) => {
@@ -1021,4 +969,41 @@ Bst.prototype.init = function (dataList) {
         return left === null ? right : left;
     };
 
+}
+
+//1373
+{
+    var maxSumBST = function(root) {
+
+        let maxSum = 0;
+        let tempFunc = (root) => {
+
+            if(!root){
+                return [1, Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER, 0];
+            }
+
+            let left = tempFunc(root.left);
+            let right = tempFunc(root.right)
+
+
+            let res = [];
+
+
+            if(left[0]===1 && right[0]===1 && left[2]<root.val && right[1]>root.val){
+
+                res[0] = 1;
+                res[1] = Math.min(left[1],root.val);
+                res[2] = Math.max(right[2],root.val);
+                res[3] = left[3] + right[3] + root.val;
+
+                maxSum = Math.max(maxSum, res[3]);
+            }else {
+                res[0] = 0;
+            }
+
+            return res;
+        };
+        tempFunc(root);
+        return maxSum;
+    };
 }
