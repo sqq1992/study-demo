@@ -37,7 +37,6 @@
 //509
 {
 
-
     var fib = function(n) {
 
         let dp = new Array(n+1);
@@ -483,6 +482,41 @@
 
 //516
 {
+
+    var longestPalindromeSubseq = function(s) {
+
+        let len = s.length;
+        let dp = new Array(len);
+        for (let i=0;i<len;i++) {
+            dp[i] = new Array(len).fill(0);
+            dp[i][i] = 1;
+        }
+
+        for (let m=len-2;m>=0;m--) {
+
+            for (let n=m+1;n<len;n++) {
+
+                if(s[m]===s[n]){
+                    dp[m][n] = dp[m + 1][n - 1] + 2;
+                }else {
+                    dp[m][n] = Math.max(
+                        dp[m + 1][n],
+                        dp[m][n -1],
+                    );
+                }
+            }
+
+        }
+
+
+        return dp[0][len-1]
+    };
+
+
+
+
+
+
     var longestPalindromeSubseq = function(s) {
 
         let len = s.length;
@@ -597,6 +631,59 @@
     };
 
     console.log('change', change(5, [1, 2, 5]));
+}
+
+//931
+{
+
+    var minFallingPathSum = function(matrix) {
+        let len = matrix.length;
+        let dp = new Array(len);
+        for (let i=0;i<len;i++) {
+            dp[i] = new Array(len).fill(Number.MAX_SAFE_INTEGER);
+        }
+
+
+        for (let n=0;n<len;n++) {
+            for (let m=0;m<len;m++) {
+
+                let val = matrix[n][m];
+                if(n===0){      //第一行
+                    dp[n][m] = Math.min(dp[n][m], val);
+                }else{
+                    if (m > 0 && m  < len-1) {
+                        dp[n][m] = Math.min(
+                            dp[n - 1][m],
+                            dp[n - 1][m + 1],
+                            dp[n - 1][m - 1],
+                        ) + val;
+                    } else if (m===0) {
+                        dp[n][m] = Math.min(
+                            dp[n - 1][m],
+                            dp[n - 1][m + 1],
+                        ) + val;
+                    } else if (m===len-1) {
+                        dp[n][m] = Math.min(
+                            dp[n - 1][m],
+                            dp[n - 1][m - 1],
+                        ) + val;
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        let min = Number.MAX_SAFE_INTEGER;
+        for (let i=0;i<len;i++) {
+            min = Math.min(min, dp[len - 1][i]);
+        }
+
+        return min;
+    };
+
 }
 
 

@@ -1,5 +1,5 @@
 
-// 回溯
+// 回溯 (DFS算法)
 
 //22
 {
@@ -95,27 +95,40 @@
 {
 
     var restoreIpAddresses = function(s) {
-
-
         let res = [];
-        let len = s.length;
+        let sumLen = s.length;
 
-        let tempFunc = (arr) => {
+        let tempFunc = (arr, str) => {
+
+            if(arr.length===4){
+                if(arr.join('').length===sumLen){
+                    res.push(arr.join('.'));
+                }
+                return;
+            }
 
 
-            for (let i=0;i<len;i++) {
+            let len = str.length >= 3 ? 3 : str.length;
+            for (let i = 0; i < len; i++) {
+                let endIndex = i + 1;
+                let tempStr = str.slice(0, endIndex);
 
+                if(Number(tempStr)>255 || (tempStr[0]==="0" && tempStr.length>=2)){
+                    continue;
+                }
 
+                arr.push(tempStr);
+                tempFunc(arr, str.slice(endIndex));
+                arr.pop();
 
             }
 
         };
-
-
-
-
+        tempFunc([], s);
+        return res;
     };
 
+    // console.log('restoreIpAddresses', restoreIpAddresses('25525511135'));
 }
 
 
@@ -181,30 +194,6 @@
         tempFunc(0,[]);
         return res;
     };
-
-
-    // var subsets = function(nums) {
-    //
-    //
-    //     let tempFunc = (res,nums,index,temp) => {
-    //         res.push(temp.slice());
-    //
-    //         for(let i=index;i<nums.length;i++) {
-    //             temp.push(nums[i]);
-    //             tempFunc(res, nums, i + 1, temp);
-    //             temp.pop();
-    //         }
-    //
-    //
-    //     };
-    //
-    //     let res = [];
-    //     let temp = [];
-    //
-    //
-    //     tempFunc(res, nums, 0, temp);
-    //     return res;
-    // };
 
     // console.log('subsets',subsets([1,2,3]))
 
@@ -309,10 +298,9 @@
 }
 
 
-
-
 //51
 {
+
     var solveNQueens = function(n) {
 
         let res = [];
@@ -361,4 +349,37 @@
         return res;
     };
     // console.log('solveNQueens',solveNQueens(4))
+}
+
+//494
+{
+
+    var findTargetSumWays = function(nums, target) {
+
+        let result = 0;
+        let len = nums.length;
+
+        let tempFunc = (sum, index) => {
+
+
+            if(index===len){
+
+                if(sum===target){
+                    result++;
+                }
+
+                return;
+            }
+
+            tempFunc(sum - nums[index], index + 1);
+
+            tempFunc(sum + nums[index], index + 1);
+
+
+        };
+        tempFunc(0, 0);
+
+        return result;
+    };
+
 }
