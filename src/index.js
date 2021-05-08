@@ -42,7 +42,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
 // import './modules/letcode/LinkedList';
-import './modules/letcode/Back';
+// import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
 
@@ -83,7 +83,7 @@ import './modules/letcode/Back';
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
 // import Flex from './modules/css/flex/Flex';
-import CssCombine from './modules/css/cssCombine/CssCombine';
+// import CssCombine from './modules/css/cssCombine/CssCombine';
 
 //hooks
 // import UseState from './modules/hooks/UseState';
@@ -100,6 +100,8 @@ import CssCombine from './modules/css/cssCombine/CssCombine';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
 // import ReactSequence from './modules/react/ReactSequence';
 // import ReactUpdateState from './modules/react/ReactUpdateState';
+// import TestRouter from './modules/react/TestRouter';
+// import TestHistoryRouter from './modules/react/TestHistoryRouter';
 // import './modules/react/timeSlice'
 
 
@@ -119,8 +121,10 @@ class App  extends Component{
                 {/*<Bfc />*/}
                 {/*<Flex />*/}
                 {/*<Strategies />*/}
-                <CssCombine />
+                {/*<CssCombine />*/}
 
+                {/*<TestHistoryRouter />*/}
+                {/*<TestRouter />*/}
                 {/*<TestClassAndFun />*/}
                 {/*<SuspenseTest />*/}
                 {/*<ReactPortals />*/}
