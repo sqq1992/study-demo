@@ -149,11 +149,6 @@
 
 
 
-
-
-
-
-
     // var coinChange = function(coins, amount) {
     //
     //     let dp = (remain) => {
@@ -179,25 +174,6 @@
     //     return dp(amount);
     // };
 
-
-    // var coinChange = function(coins, amount) {
-    //
-    //     let dp = new Array(amount + 1);
-    //     dp.fill(amount + 1, 0, amount + 1);
-    //
-    //
-    //     dp[0] = 0;
-    //     for (let i=0,j=dp.length;i<j;i++) {
-    //         for (let coin of coins){
-    //             if(i-coin){
-    //                 continue;
-    //             }
-    //             dp[i] = Math.min(dp[i], 1+dp[i - coin]);
-    //         }
-    //     }
-    //
-    //     return dp[amount] === amount + 1 ? -1 : dp[amount];
-    // };
 
     // console.log('coinChange', coinChange([1, 2, 5], 11));
     // console.log('coinChange2', coinChange2([1, 2, 5], 11));
@@ -226,52 +202,14 @@
         return len < 2 ? 1 : Math.max(...dp);
     };
 
-    // var lengthOfLIS = function(nums) {
-    //     let len = nums.length;
-    //     let dp = new Array(len);
-    //     dp.fill(1, 0, len);
-    //
-    //     dp[0] = 1;
-    //
-    //     for (let i=1;i<len;i++) {
-    //
-    //         for (let j=0;j<i;j++) {
-    //             if(nums[i]>nums[j]){
-    //                 dp[i] = Math.max(dp[i], dp[j] + 1);
-    //             }
-    //         }
-    //
-    //     }
-    //
-    //     return len < 2 ? 1 : Math.max(...dp);
-    // };
-
-
-
-    // var lengthOfLIS = function(nums) {
-    //
-    //     let dp = new Array(nums.length);
-    //     dp.fill(1, 0, nums.length);
-    //
-    //
-    //     for (let i=1;i<nums.length;i++) {
-    //
-    //         for (let j=0;j<i;j++) {
-    //             if(nums[i]>nums[j]){
-    //                 dp[i] = Math.max(dp[i], dp[j] + 1);
-    //             }
-    //         }
-    //
-    //     }
-    //
-    //     return nums.length < 2 ? nums.length : Math.max(...dp);
-    // };
-
     // console.log('lengthOfLIS', lengthOfLIS([10,9,2,5,3,7,101,18]));
 
 }
 
 
+/**
+ * 股票买卖
+ */
 
 //121
 {
@@ -332,13 +270,95 @@
 
 }
 
+//123
+{
+
+    var maxProfit = function(prices) {
+
+        let len = prices.length;
+        let dp = new Array(len);
+        for (let i=0;i<len;i++){
+            dp[i] = [[0, 0], [0, 0], [0, 0]];
+        }
+
+        dp[0][0][0] = 0;
+        dp[0][1][1] = -prices[0];
+        dp[0][2][1] = -prices[0];
+
+        for (let i=1;i<len;i++) {
+
+            for (let k=1;k<=2;k++) {
+
+                dp[i][k][0] = Math.max(
+                    dp[i - 1][k][0],
+                    dp[i - 1][k][1] + prices[i]
+                );
+
+                dp[i][k][1] = Math.max(
+                    dp[i - 1][k][1],
+                    dp[i - 1][k - 1][0] - prices[i]
+                );
+
+            }
+        }
+
+
+        return dp[len - 1][2][0];
+    };
+
+    // console.log('maxProfit',maxProfit([1,2,3,4,5]))
+
+}
+
+//188
+{
+
+    var maxProfit = function(k, prices) {
+
+        let len = prices.length;
+
+        if(len<=1){
+            return 0;
+        }
+
+        let dp = new Array(len);
+
+        for (let i=0;i<len;i++) {
+            dp[i] = [];
+            for (let j=0;j<=k;j++){
+                dp[i].push([0, -prices[0]]);
+            }
+        }
+
+
+        for (let i=1;i<len;i++) {
+            for (let j=1;j<=k;j++) {
+
+                dp[i][j][0] = Math.max(
+                    dp[i - 1][j][0],
+                    dp[i - 1][j][1] + prices[i]
+                );
+
+                dp[i][j][1] = Math.max(
+                    dp[i - 1][j][1],
+                    dp[i - 1][j - 1][0] - prices[i]
+                );
+
+            }
+        }
+
+        return dp[len - 1][k][0];
+    };
+
+    // console.log('maxProfit', maxProfit(1, [1,2]));
+
+}
+
 
 //309
 {
 
     var maxProfit = function(prices) {
-
-
 
         let n = prices.length;
 
@@ -377,43 +397,43 @@
         }
 
         return dp[n - 1][0];
-
-
-
-
-
     };
 
-    var maxProfit2 = (prices) => {
+}
 
-        let n = prices.length;
+//714
+{
+    var maxProfit = function(prices, fee) {
 
-        if(n<=1){
-            return 0;
+        let len = prices.length;
+        if(len<2) {
+            return 0
         }
 
-        let dp = [];
-        for (let i=0;i<n;i++) {
-            dp.push([0, 0]);
+        let dp = new Array(len);
+        for (let i=0;i<len;i++){
+            dp[i] = [0, 0];
         }
 
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0];
-        dp[1][0] = Math.max(dp[0][0], dp[0][1] + prices[1]);
-        dp[1][1] = Math.max(dp[0][1], dp[0][0] - prices[1]);
 
-        for (let i=2;i<n;i++) {
-            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
-            dp[i][1] = Math.max(dp[i-1][1],dp[i-2][0]-prices[i])
+        dp[0][1] = -prices[0] - fee;
+
+        for (let i=1;i<len;i++) {
+
+            dp[i][0] = Math.max(
+                dp[i-1][0],
+                dp[i-1][1] + prices[i]
+            )
+            dp[i][1] = Math.max(
+                dp[i-1][1],
+                dp[i-1][0]-prices[i]-fee
+            )
+
         }
 
-        return dp[n - 1][0];
+        return dp[len-1][0]
 
     };
-
-    // console.log('maxProfit', maxProfit([1, 2, 3, 0, 2]));
-    // console.log('maxProfit2', maxProfit2([1, 2, 3, 0, 2]));
-
 }
 
 //72
@@ -459,7 +479,7 @@
 
     };
 
-    console.log('minDistance', minDistance('intention', 'execution'));
+    // console.log('minDistance', minDistance('intention', 'execution'));
 
 }
 
@@ -630,7 +650,7 @@
         return dp[len][amount];
     };
 
-    console.log('change', change(5, [1, 2, 5]));
+    // console.log('change', change(5, [1, 2, 5]));
 }
 
 //931
@@ -687,28 +707,215 @@
 }
 
 
-//877
+/**
+ *  打家劫舍
+ */
+//198
 {
 
-    var stoneGame = function(piles) {
+    var rob = function(nums) {
+
+        let len = nums.length;
+        let dp = new Array(len + 2);
+        dp.fill(0);
+
+        for (let i=len-1;i>=0;i--){
+            dp[i] = Math.max(
+                dp[i + 1],
+                nums[i] + dp[i + 2]
+            );
+        }
+
+        return dp[0];
+
+    };
+
+    var rob2 = function(nums) {
+
+        let len = nums.length;
 
 
+        let dp_i = 0
+        let dp_i_1 = 0;
+        let dp_i_2 = 0;
+
+        for (let i=len-1;i>=0;i--){
+            dp_i = Math.max(
+                dp_i_1,
+                nums[i] + dp_i_2
+            );
+            dp_i_2 = dp_i_1;
+            dp_i_1 = dp_i;
+        }
+
+        return dp_i;
+
+    };
+
+    // console.log('rob', rob([1, 2, 3, 1]));
+
+}
+
+//213
+{
+
+    var rob = function(nums) {
+
+        let len = nums.length;
+        if(len<2){
+            return nums[0];
+        }
+
+        let tempFunc = (nums,start,end) => {
+
+            let dp_i = 0;
+            let dp_i_1 = 0;
+            let dp_i_2 = 0;
+            for (let i=end;i>=start;i--){
+                dp_i = Math.max(
+                    dp_i_1,
+                    nums[i] + dp_i_2
+                );
+                dp_i_2 = dp_i_1;
+                dp_i_1 = dp_i;
+            }
+
+            return dp_i;
+        };
+
+
+        return Math.max(
+            tempFunc(nums,0, len-2),
+            tempFunc(nums,1, len-1),
+        )
 
     };
 
 }
 
-//123
+//887
 {
 
+    var superEggDrop = function(k, n) {
 
+        let memo = {};
+        let dp = (K,N) => {
+
+            if(K===1) return N;
+            if(N===0) return 0;
+
+            let key = K + ',' + N;
+            if(memo[key]!==undefined){
+                return memo[key]
+            }
+
+
+            let res = Infinity;
+            // 穷举所有的可能的选择
+            for (let i = 1; i < N + 1; i++) {
+                res = Math.min(
+                    res,
+                    Math.max(
+                        dp(K, N - i),
+                        dp(K - 1, i - 1)
+                    ) + 1
+                )
+            }
+
+            // 记入备忘录
+            memo[key] = res;
+            return res;
+        };
+
+        return dp(k, n);
+    };
+
+    
+    // console.log('superEggDrop', superEggDrop(3, 15));
 
 }
 
-
-//124
+//354
 {
 
+    var maxEnvelopes = function(envelopes) {
 
+        let len = envelopes.length;
+        if(len<2){
+            return 1;
+        }
+        envelopes = envelopes.sort((a,b)=>{
+
+            if(a[0]!==b[0]){
+                return a[0]-b[0]
+            }
+            return a[1] - b[1];
+        })
+        let dp = new Array(len).fill(1);
+
+        for (let i=1;i<len;i++){
+
+            let rightArr = envelopes[i];
+            for (let j=0;j<i;j++) {
+                let leftArr = envelopes[j];
+                if(rightArr[0]>leftArr[0] && rightArr[1]>leftArr[1]){
+                    dp[i] = Math.max(
+                        dp[i],
+                        dp[j]+1
+                    )
+                }
+            }
+        }
+
+
+        return Math.max(...dp);
+    };
+
+    // console.log('maxEnvelopes',maxEnvelopes([[10,8],[1,12],[6,15],[2,18]]))
 
 }
+
+//877
+{
+
+    var stoneGame = function(piles) {
+
+        let len = piles.length;
+        let dp = new Array(len);
+        for (let i=0;i<len;i++){
+            dp[i] = [];
+            for (let j=0;j<len;j++){
+                dp[i][j] = [0, 0];
+            }
+        }
+        for (let i=0;i<len;i++){
+            dp[i][i] = [piles[i], 0];
+        }
+
+
+        for (let m=len-2;m>=0;m--){
+
+            for (let n=m+1;n<len;n++) {
+
+                let left = piles[m] + dp[m + 1][n][1];
+                let right = piles[n] + dp[m][n - 1][1];
+
+                if(left>right){
+                    dp[m][n][0] = left;
+                    dp[m][n][1] = dp[m + 1][n][0];
+                }else {
+                    dp[m][n][0] = right;
+                    dp[m][n][1] = dp[m][n - 1][0];
+                }
+
+            }
+
+        }
+
+        return (dp[0][len - 1][0] - dp[0][len - 1][1]) >= 0;
+    };
+
+    console.log('stoneGame', stoneGame([3, 9, 1, 2]));
+
+}
+

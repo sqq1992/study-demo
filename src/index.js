@@ -14,6 +14,7 @@ import store from './modules/redux/store';
 // import './modules/es6/promise/MyPromise';
 // import './modules/es6/prototype/prototype';
 // import './modules/es6/extraFuns/curring';
+// import './modules/es6/extraFuns/compose';
 // import './modules/es6/extraFuns/array';
 // import './modules/es6/extraFuns/debounceAndThrottle';
 
@@ -45,6 +46,8 @@ import store from './modules/redux/store';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
+// import './modules/letcode/LRU';
+import './modules/letcode/Area';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';

@@ -1007,3 +1007,31 @@ Bst.prototype.init = function (dataList) {
         return maxSum;
     };
 }
+
+//337
+{
+
+    var rob = function(root) {
+        let tempFunc = (root) => {
+            if(!root){
+                return [0, 0];
+            }
+
+            let left = tempFunc(root.left);
+            let right = tempFunc(root.right);
+
+
+            let rob = root.val + left[0] + right[0];
+
+            let notRob = Math.max(left[0],left[1]) + Math.max(right[0],right[1])
+
+            return [notRob, rob];
+        };
+
+        return Math.max(
+            ...tempFunc(root)
+        )
+    };
+
+
+}

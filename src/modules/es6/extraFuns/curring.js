@@ -59,15 +59,33 @@
     }
 
 
-    //todo test1
-    let add = function () {
-        let args = Array.prototype.slice.call(arguments);
-        return args.reduce((prev,next)=>{
-            return prev + next;
-        },0)
+    // //todo test1
+    // let add = function () {
+    //     let args = Array.prototype.slice.call(arguments);
+    //     return args.reduce((prev,next)=>{
+    //         return prev + next;
+    //     },0)
+    // }
+    //
+    // let sum = currying(add);
+    // console.log(sum(1)(2)(3)())
+
+}
+
+
+{
+
+    function curring(targetFunc) {
+        let argsLen = targetFunc.length;
+        return function func(...rest) {
+            return rest.length < argsLen ? func.bind(null, ...rest) : targetFunc.apply(null, rest);
+        }
     }
 
-    let sum = currying(add);
-    console.log(sum(1)(2)(3)())
+    function add(a,b,c,d) {
+        return a + b + c + d;
+    }
+
+    console.log('add', curring(add)(1, 2));
 
 }
