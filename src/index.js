@@ -10,6 +10,7 @@ import store from './modules/redux/store';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
+// import './modules/es6/commonJsAndModules/es6A';
 // import './modules/es6/promise/promise';
 // import './modules/es6/promise/MyPromise';
 // import './modules/es6/prototype/prototype';
@@ -47,7 +48,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
 // import './modules/letcode/LRU';
-import './modules/letcode/Area';
+// import './modules/letcode/Area';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
