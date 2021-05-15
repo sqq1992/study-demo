@@ -233,20 +233,18 @@ LList.prototype = {
 
     var deleteDuplicates = function(head) {
 
-        if(head===null) return null;
-
+       if(!head) return null;
         let left = head;
         let right = head.next;
 
         while (right!==null){
 
-            if(left.val!==right.val) {
-
+            if(left.val!==right.val){
                 left.next = right;
                 left = left.next;
             }
-            right = right.next;
 
+            right = right.next;
         }
 
         left.next = null;

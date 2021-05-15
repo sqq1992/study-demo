@@ -401,7 +401,33 @@
         return res;
     };
 
-    console.log('maxNumber', maxNumber([3,4,6,5], [9,1,2,5,8,3], 5));
-    console.log('maxNumber', maxNumber2([3,4,6,5], [9,1,2,5,8,3], 5));
+    // console.log('maxNumber', maxNumber([3,4,6,5], [9,1,2,5,8,3], 5));
+    // console.log('maxNumber', maxNumber2([3,4,6,5], [9,1,2,5,8,3], 5));
+
+}
+
+
+//1081
+{
+
+    var smallestSubsequence = function(s) {
+
+        let stack = [];
+
+
+        for (let i=0,j=s.length;i<j;i++) {
+            let str = s[i];
+
+            if(stack.includes(str)) continue;
+            while (stack.length && stack[stack.length-1]>str && s.indexOf(stack[stack.length-1],i+1)>-1){
+                stack.pop();
+            }
+
+            stack.push(str);
+        }
+
+
+        return stack.join('')
+    };
 
 }

@@ -23,6 +23,8 @@
         return left + 1;
     };
 
+    // console.log('removeDuplicates',removeDuplicates([1,1,2]))
+
 }
 
 
@@ -102,7 +104,7 @@
         return false;
     };
 
-    console.log('hasGroupsSizeX',hasGroupsSizeX([1,1,1,1,2,2,2,2,2,2]))
+    // console.log('hasGroupsSizeX',hasGroupsSizeX([1,1,1,1,2,2,2,2,2,2]))
 }
 
 
@@ -165,26 +167,6 @@
 //316
 {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var removeDuplicateLetters = function(s) {
 
         let stack = [];
@@ -203,7 +185,124 @@
     };
 
 
-    console.log('removeDuplicateLetters', removeDuplicateLetters("cbacdcbc"));
+    // console.log('removeDuplicateLetters', removeDuplicateLetters("cbacdcbc"));
 
 }
 
+
+//380
+{
+
+
+    var RandomizedSet = function() {
+        this.map = {};
+        this.arr = [];
+    };
+
+    /**
+     * Inserts a value to the set. Returns true if the set did not already contain the specified element.
+     * @param {number} val
+     * @return {boolean}
+     */
+    RandomizedSet.prototype.insert = function(val) {
+        let map = this.map;
+        let arr = this.arr;
+
+        if(map.hasOwnProperty(val)) return false;
+
+        map[val] = arr.length;
+        arr.push(val);
+
+        return true;
+    };
+
+    /**
+     * Removes a value from the set. Returns true if the set contained the specified element.
+     * @param {number} val
+     * @return {boolean}
+     */
+    RandomizedSet.prototype.remove = function(val) {
+        let map = this.map;
+        let arr = this.arr;
+
+        if(!map.hasOwnProperty(val)) return false;
+
+        let index = map[val];
+        let lastIndex = arr.length - 1;
+        let last = arr[lastIndex];
+
+        [arr[index], arr[lastIndex]] = [arr[lastIndex], arr[index]];
+        arr.pop();
+        map[last] = index;
+        delete map[val];
+        return true;
+    };
+
+    /**
+     * Get a random element from the set.
+     * @return {number}
+     */
+    RandomizedSet.prototype.getRandom = function() {
+        let arr = this.arr;
+        return arr[Math.floor(Math.random() * arr.length)];
+    };
+
+}
+
+//27
+{
+
+    var removeElement = function(nums, val) {
+
+        let len = nums.length;
+        let slow = 0;
+        let fast = 0;
+
+        while (fast<len){
+            if(nums[fast]!==val){
+                nums[slow] = nums[fast];
+                slow++;
+            }
+            fast++;
+        }
+
+        return slow;
+    };
+
+    // console.log('removeElement', removeElement([3, 2, 2, 3], 3));
+
+}
+
+//283
+{
+
+    var moveZeroes = function(nums) {
+
+
+        let removeElements = function (nums,val) {
+
+            let len = nums.length;
+            let slow = 0;
+            let fast = 0;
+
+            while (fast<len){
+
+                if(nums[fast]!==val){
+                    nums[slow] = nums[fast];
+                    slow++;
+                }
+                fast++;
+            }
+
+            return slow;
+        };
+
+        let index = removeElements(nums, 0);
+        for (let len = nums.length;index<len;index++){
+            nums[index] = 0;
+        }
+
+        return nums;
+    };
+
+}

@@ -439,19 +439,6 @@
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     // var searchRange = function(nums, target) {
     //
     //     let start = 0;
@@ -493,7 +480,7 @@
     //     return [start, end];
     // };
 
-    console.log('searchRange', searchRange([2, 2], 2));
+    // console.log('searchRange', searchRange([2, 2], 2));
 
 }
 
@@ -501,41 +488,38 @@
 //875
 {
 
-    var minEatingSpeed = function(piles, H) {
+    var minEatingSpeed = function(piles, h) {
 
-
-        piles = piles.sort((a, b) => {
-            return a - b
-        });
-        let sumPiles = piles.reduce((prev, next) => {
+        piles = piles.sort((a,b)=>{
+            return a - b;
+        })
+        let sum = piles.reduce((prev, next) => {
             return prev + next;
         }, 0);
+        let left = Math.floor(sum / h);
+        let right = piles[piles.length - 1];
 
-        let min = Math.ceil(sumPiles / H);
-        let max = piles[piles.length - 1];
-        let minSpeed = max;
 
-        while (min<=max){
-
-            let tempMid = Math.floor((min + max) / 2);
-            let tempHour = piles.reduce((prev, next) => {
-                return prev + Math.ceil(next / tempMid);
+        while (left<right){
+            let mid = left + Math.floor((right - left) / 2);
+            let needHour = piles.reduce((prev, next) => {
+                return prev + Math.ceil(next / mid);
             }, 0);
 
-
-            if(tempHour>H){
-                min = tempMid + 1;
+            if(needHour<=h){
+                right = mid;
             }else {
-                max = tempMid - 1;
-                minSpeed = Math.min(minSpeed, tempMid);
+                left = mid + 1;
             }
+
+
         }
 
-
-        return minSpeed;
+        return left;
     };
 
-    console.log('minEatingSpeed', minEatingSpeed([3, 6, 7, 11], 8));
+
+    // console.log('minEatingSpeed', minEatingSpeed([3, 6, 7, 11], 8));
 }
 
 //1011
@@ -543,50 +527,42 @@
 
     var shipWithinDays = function(weights, D) {
 
-        let groups = Math.ceil(weights.length / D);
-        let min = weights[0];
-        let max = weights.slice(-groups).reduce((prev, next) => {
+        let left = Math.max(...weights);
+        let right = weights.reduce((prev, next) => {
             return prev + next;
         }, 0);
-        let minLoad = max;
 
-        while (min<=max){
+        let canFinish = (weights, D, cap) => {
 
-            let tempMid = Math.floor((min + max) / 2);
+            let index = 0;
+            for (let day=0;day<D;day++) {
+                let maxCap = cap;
 
-            let combineObj = weights.reduce((prev, next) => {
-
-                let isUpdateDay;
-                if(prev.remain<=next){
-
-                    isUpdateDay = true;
-                }else {
-                    isUpdateDay = false;
+                while ((maxCap-=weights[index])>=0){
+                    index++
+                    if(index===weights.length){
+                        return true;
+                    }
                 }
 
+            }
 
-                // let isUpdateDay = prev.remain <= next;
+            return false;
+        };
 
+        while (left<right){
 
-                return {
-                    needDays: isUpdateDay ? prev.needDays + 1 : prev.needDays,
-                    remain: isUpdateDay ? tempMid : prev.remain - next
-                };
-            }, {
-                needDays: 0,
-                remain: tempMid,
-            });
+            let mid = left + Math.floor((right - left) / 2);
 
-            if(combineObj.needDays>D){
-                min = tempMid + 1;
+            if(canFinish(weights,D,mid)){
+                right = mid;
             }else {
-                max = tempMid - 1;
-                minLoad = Math.min(minLoad, tempMid);
+                left = mid + 1;
             }
 
         }
 
-        return minLoad;
+        return left;
     };
 
     // console.log('shipWithinDays', shipWithinDays([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));

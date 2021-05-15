@@ -142,6 +142,18 @@ class App  extends Component{
     }
 }
 
+
+const App2 = () => {
+
+    return(
+        <div id="app2">
+
+        </div>
+    )
+};
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+
 ReactDOM.render(<Provider store={store}>
-    <App />
+    <App2 />
 </Provider>, document.getElementById('root'));
