@@ -39,7 +39,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
-// import './modules/letcode/greedCompute';
+import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
@@ -106,6 +106,7 @@ import store from './modules/redux/store';
 // import ReactUpdateState from './modules/react/ReactUpdateState';
 // import TestRouter from './modules/react/TestRouter';
 // import TestHistoryRouter from './modules/react/TestHistoryRouter';
+import SameState from './modules/react/SameState';
 // import './modules/react/timeSlice'
 
 
@@ -127,6 +128,7 @@ class App  extends Component{
                 {/*<Strategies />*/}
                 {/*<CssCombine />*/}
 
+                <SameState />
                 {/*<TestHistoryRouter />*/}
                 {/*<TestRouter />*/}
                 {/*<TestClassAndFun />*/}
@@ -152,8 +154,8 @@ const App2 = () => {
     )
 };
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
-ReactDOM.render(<Provider store={store}>
-    <App2 />
-</Provider>, document.getElementById('root'));
+// ReactDOM.render(<Provider store={store}>
+//     <App2 />
+// </Provider>, document.getElementById('root'));

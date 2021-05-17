@@ -1,4 +1,6 @@
-
+/**
+ * 贪心算法
+ */
 
 
 //122
@@ -67,5 +69,106 @@
     };
 
 
-    console.log('lemonadeChange', lemonadeChange([5,5,5,10,20]));
+    // console.log('lemonadeChange', lemonadeChange([5,5,5,10,20]));
+}
+
+//435
+{
+
+    var eraseOverlapIntervals = function(intervals) {
+
+        let tempFunc = (intervals) => {
+
+            intervals = intervals.sort((a, b) => {
+                return a[1] - b[1]
+            });
+
+            let count = 1;
+            let end = intervals[0][1];
+            for (let i=1,j=intervals.length;i<j;i++) {
+
+                if(intervals[i][0]>=end){
+                    count++;
+                    end = intervals[i][1]
+                }
+
+            }
+
+            return count;
+        };
+
+        return intervals.length - tempFunc(intervals)
+
+    };
+
+}
+
+//452
+{
+
+    var findMinArrowShots = function(points) {
+
+        points = points.sort((a, b) => {
+            return a[1] - b[1]
+        });
+
+        let count = 1;
+        let end = points[0][1];
+
+        for (let i=1,j=points.length;i<j;i++) {
+            let point = points[i];
+
+            if(point[0]>end){
+                count++;
+                end = point[1];
+            }
+        }
+
+
+        return count;
+    };
+
+}
+
+//55
+{
+
+    var canJump = function(nums) {
+
+        let len = nums.length;
+        let farthest = 0;
+        for (let i=0;i<len-1;i++) {
+            farthest = Math.max(farthest, i + nums[i]);
+
+            if(farthest<=i) return false;
+        }
+
+        return farthest >= len - 1;
+    };
+
+}
+
+//45
+{
+
+    var jump = function(nums) {
+
+        let jumps = 0;
+        let end = 0;
+        let farthest = 0;
+        for (let i=0,j=nums.length;i<j-1;i++){
+
+            farthest = Math.max(nums[i]+i, farthest);
+
+            if(end === i){
+                jumps++;
+                end = farthest;
+            }
+
+        }
+
+        return jumps;
+
+    };
+
 }

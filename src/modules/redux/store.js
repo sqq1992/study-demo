@@ -57,7 +57,7 @@ function reducer(state = {}, action) {
     return state;
 }
 
-// const store2 = createStore(reducer, applyMiddleware(middleware1, middleware2, middleware3));
+const store2 = createStore(reducer, applyMiddleware(middleware1, middleware2, middleware3));
 // store2.dispatch({
 //     type:'aa'
-// });s
+// });

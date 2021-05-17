@@ -581,9 +581,6 @@
 //658
 {
 
-
-
-
     var findClosestElements = function(arr, k, x) {
 
         let len = arr.length;
@@ -608,16 +605,6 @@
 
         return res;
     };
-
-
-
-
-
-
-
-
-
-
 
     // var findClosestElements = function(arr, k, x) {
     //     let len = arr.length;
@@ -652,6 +639,59 @@
     //     return res;
     // };
 
+
+
+}
+
+//392
+{
+
+    var isSubsequence = function(s, t) {
+
+        let map = {};
+        for (let i=0,j=t.length;i<j;i++) {
+            let st = t[i];
+            if(!map[st]){
+                map[st] = [];
+            }
+            map[st].push(i);
+        }
+
+        let leftBound = (arr,val) => {
+            let left = 0;
+            let right = arr.length;
+
+            while (left<right){
+                let mid = left + Math.floor((right - left) / 2);
+
+                if(arr[mid] === val){
+                    right = mid;
+                }else if(arr[mid] > val){
+                    right = mid;
+                }else if(arr[mid]<val){
+                    left = mid + 1;
+                }
+
+            }
+
+            return left;
+        };
+
+        let index = 0;
+        for (let i=0,j=s.length;i<j;i++) {
+            let ss = s[i];
+
+            if(!map[ss]) return false;
+
+            let pos = leftBound(map[ss], index);
+
+            if(pos === map[ss].length) return false;
+
+            index = map[ss][pos] + 1;
+        }
+
+        return true;
+    };
 
 
 }
