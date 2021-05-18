@@ -39,7 +39,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
-import './modules/letcode/greedCompute';
+// import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
@@ -154,8 +154,8 @@ const App2 = () => {
     )
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
 
-// ReactDOM.render(<Provider store={store}>
-//     <App2 />
-// </Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}>
+    <App2 />
+</Provider>, document.getElementById('root'));

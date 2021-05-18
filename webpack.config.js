@@ -86,5 +86,10 @@ module.exports = {
             }),
             new OptimizeCssAssetsWebpackPlugin(),
         ]
+    },
+    resolve:{
+        alias:{
+            'react-redux': path.resolve(__dirname, './src/modules/source-react-redux')
+        },
     }
 }
