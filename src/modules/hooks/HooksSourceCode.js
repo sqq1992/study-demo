@@ -23,6 +23,8 @@ function dispatchAction(queue,action) {
         next:null
     };
 
+
+    // 1->2->3->4->1   todo update为单向链表 新的更新从左往右, 最后一个update又指向第一个update
     if(queue.pending === null) {
         update.next = update;
     }else {
@@ -31,7 +33,9 @@ function dispatchAction(queue,action) {
     }
     queue.pending = update;
 
-    run();
+    setTimeout(()=>{
+        run();
+    },10)
 }
 
 

@@ -39,6 +39,22 @@
 
     var fib = function(n) {
 
+        if(n===0) return 0;
+        if(n===1) return 1;
+
+        let pre = 0;
+        let cur = 1;
+        for (let i=2;i<=n;i++){
+            let sum = pre + cur;
+            pre = cur;
+            cur = sum;
+        }
+
+        return cur;
+    };
+
+    var fib = function(n) {
+
         let dp = new Array(n+1);
         dp.fill(0, 0, n+1);
 
@@ -653,39 +669,84 @@
     // console.log('change', change(5, [1, 2, 5]));
 }
 
+//64
+{
+
+    var minPathSum = function(grid) {
+
+        let mLen = grid.length;
+        let nLen = grid[0].length;
+
+        let dp = new Array(mLen);
+        for (let i=0;i<mLen;i++){
+            dp[i] = new Array(nLen).fill(0);
+        }
+        dp[0][0] = grid[0][0];
+
+        for (let i=1;i<mLen;i++){
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+
+        for (let j=1;j<nLen;j++){
+            dp[0][j] = dp[0][j-1] + grid[0][j];
+        }
+
+        for (let m=1;m<mLen;m++){
+
+            for (let n=1;n<nLen;n++){
+
+                dp[m][n] = Math.min(
+                    dp[m - 1][n],
+                    dp[m][n - 1]
+                ) + grid[m][n];
+
+            }
+
+        }
+
+
+        return dp[mLen-1][nLen-1]
+    };
+
+
+    // console.log('minPathSum',minPathSum([[1,2,3],[4,5,6]]))
+}
+
 //931
 {
 
     var minFallingPathSum = function(matrix) {
+
         let len = matrix.length;
         let dp = new Array(len);
-        for (let i=0;i<len;i++) {
+        for (let i=0;i<len;i++){
             dp[i] = new Array(len).fill(Number.MAX_SAFE_INTEGER);
         }
 
+        for (let m=0;m<len;m++){
 
-        for (let n=0;n<len;n++) {
-            for (let m=0;m<len;m++) {
+            for (let n=0;n<len;n++){
 
-                let val = matrix[n][m];
-                if(n===0){      //第一行
-                    dp[n][m] = Math.min(dp[n][m], val);
-                }else{
-                    if (m > 0 && m  < len-1) {
-                        dp[n][m] = Math.min(
-                            dp[n - 1][m],
-                            dp[n - 1][m + 1],
-                            dp[n - 1][m - 1],
+                let val = matrix[m][n];
+                if(m===0){
+                    dp[m][n] = Math.min(dp[m][n], val);
+                }else {
+
+                    if(n>0 && n<len-1){
+                        dp[m][n] = Math.min(
+                            dp[m - 1][n],
+                            dp[m - 1][n - 1],
+                            dp[m - 1][n + 1],
                         ) + val;
-                    } else if (m===0) {
-                        dp[n][m] = Math.min(
-                            dp[n - 1][m],
-                            dp[n - 1][m + 1],
+                    }else if(n===0){
+                        dp[m][n] = Math.min(
+                            dp[m - 1][n],
+                            dp[m - 1][n + 1],
                         ) + val;
-                    } else if (m===len-1) {
-                        dp[n][m] = Math.min(
-                            dp[n - 1][m],
-                            dp[n - 1][m - 1],
+                    }else if(n===len-1){
+                        dp[m][n] = Math.min(
+                            dp[m - 1][n],
+                            dp[m - 1][n - 1],
                         ) + val;
                     }
 
@@ -696,12 +757,7 @@
         }
 
 
-        let min = Number.MAX_SAFE_INTEGER;
-        for (let i=0;i<len;i++) {
-            min = Math.min(min, dp[len - 1][i]);
-        }
-
-        return min;
+        return Math.min(...dp[len - 1]);
     };
 
 }
@@ -915,7 +971,40 @@
         return (dp[0][len - 1][0] - dp[0][len - 1][1]) >= 0;
     };
 
-    console.log('stoneGame', stoneGame([3, 9, 1, 2]));
+    // console.log('stoneGame', stoneGame([3, 9, 1, 2]));
+
+}
+
+//174
+{
+
+    var calculateMinimumHP = function(dungeon) {
+
+        let row = dungeon.length;
+        let col = dungeon[0].length;
+
+        let dp = new Array(row+1).fill(null).map(()=>{
+            return new Array(col + 1).fill(Infinity);
+        })
+        dp[row][col-1] = dp[row-1][col] = 1;
+
+        for (let i = row-1;i >= 0;i --) {
+            for (let j = col-1;j >= 0;j --) {
+                let min = Math.min(dp[i + 1][j], dp[i][j + 1]);
+                dp[i][j] = Math.max(min - dungeon[i][j], 1);
+            }
+        }
+
+        return dp[0][0]
+
+    };
+
+
+    console.log('calculateMinimumHP',calculateMinimumHP([
+        [-2,3,3],
+        [-5,10,1],
+        [10,30,5],
+    ]))
 
 }
 

@@ -4,6 +4,46 @@
 //22
 {
 
+
+    var generateParenthesis = function(n) {
+
+        let res = [];
+
+        let tempFunc = (left,right,track) => {
+
+            if(right<left) return;
+
+            if(left<0 || right<0) return;
+
+            if(left===0 && right===0){
+                res.push(track.join(''));
+                return;
+            }
+
+            track.push('(');
+            tempFunc(left - 1, right, track);
+            track.pop();
+
+
+            track.push(')');
+            tempFunc(left , right-1, track);
+            track.pop();
+        };
+        tempFunc(n, n, []);
+
+        return res;
+    };
+
+
+
+
+
+
+
+
+
+
+
     var generateParenthesis = function(n) {
 
         let res = [];

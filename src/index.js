@@ -49,6 +49,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Dp';
 // import './modules/letcode/LRU';
 // import './modules/letcode/Area';
+import './modules/letcode/ExtraFunc';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
@@ -106,7 +107,8 @@ import store from './modules/redux/store';
 // import ReactUpdateState from './modules/react/ReactUpdateState';
 // import TestRouter from './modules/react/TestRouter';
 // import TestHistoryRouter from './modules/react/TestHistoryRouter';
-import SameState from './modules/react/SameState';
+// import SameState from './modules/react/SameState';
+// import TestReactRedux from './modules/react/TestReactRedux';
 // import './modules/react/timeSlice'
 
 
@@ -128,7 +130,8 @@ class App  extends Component{
                 {/*<Strategies />*/}
                 {/*<CssCombine />*/}
 
-                <SameState />
+                {/*<TestReactRedux />*/}
+                {/*<SameState />*/}
                 {/*<TestHistoryRouter />*/}
                 {/*<TestRouter />*/}
                 {/*<TestClassAndFun />*/}
@@ -154,8 +157,10 @@ const App2 = () => {
     )
 };
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-
 ReactDOM.render(<Provider store={store}>
-    <App2 />
+    <App />
 </Provider>, document.getElementById('root'));
+
+// ReactDOM.render(<Provider store={store}>
+//     <App2 />
+// </Provider>, document.getElementById('root'));
