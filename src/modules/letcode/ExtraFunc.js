@@ -131,19 +131,26 @@
 {
     var findDisappearedNumbers = function(nums) {
 
-        let len = nums.length;
-        let res = 0;
-        res += len - 0;
-
-        //todo mock
-        // res = 0;
-        for (let i=0;i<len;i++){
-            res += i - nums[i];
+        for (let i = 0; i < nums.length; i++) {
+            let newIndex = Math.abs(nums[i]) - 1;
+            if (nums[newIndex] > 0) {
+                nums[newIndex] *= -1;
+            }
         }
 
-        return res;
+
+        let result = [];
+        for (let i=1,j=nums.length;i<=j;i++){
+
+            if(nums[i-1]>0){
+                result.push(i);
+            }
+
+        }
+
+        return result;
     };
 
-    console.log('findDisappearedNumbers',findDisappearedNumbers([0,1,3]))
+    console.log('findDisappearedNumbers',findDisappearedNumbers([4,3,2,7,8,2,3,1]))
 
 }
