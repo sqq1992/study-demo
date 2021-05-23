@@ -126,3 +126,24 @@
 
 
 }
+
+//448
+{
+    var findDisappearedNumbers = function(nums) {
+
+        let len = nums.length;
+        let res = 0;
+        res += len - 0;
+
+        //todo mock
+        // res = 0;
+        for (let i=0;i<len;i++){
+            res += i - nums[i];
+        }
+
+        return res;
+    };
+
+    console.log('findDisappearedNumbers',findDisappearedNumbers([0,1,3]))
+
+}

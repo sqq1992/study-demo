@@ -68,6 +68,7 @@ import './modules/letcode/ExtraFunc';
 // import './modules/structureAndComputeThird/fifthChapter';   //队列
 // import './modules/structureAndComputeThird/sixthChapter';   //链表
 // import './modules/structureAndComputeThird/ninthChapter';   //递归
+// import './modules/structureAndComputeThird/eleventhChapter';   //二叉堆
 
 // javascript设计模式
 // import './modules/jsDesign/prototype'

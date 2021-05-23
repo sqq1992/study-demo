@@ -1000,11 +1000,21 @@
     };
 
 
-    console.log('calculateMinimumHP',calculateMinimumHP([
-        [-2,3,3],
-        [-5,10,1],
-        [10,30,5],
-    ]))
+    // console.log('calculateMinimumHP',calculateMinimumHP([
+    //     [-2,3,3],
+    //     [-5,10,1],
+    //     [10,30,5],
+    // ]))
 
 }
 
+
+//494
+{
+
+    var findTargetSumWays = function(nums, target) {
+
+
+    };
+
+}
