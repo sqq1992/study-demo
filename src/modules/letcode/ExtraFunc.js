@@ -151,6 +151,39 @@
         return result;
     };
 
-    console.log('findDisappearedNumbers',findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+    // console.log('findDisappearedNumbers',findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+
+}
+
+//645
+{
+
+    var findErrorNums = function(nums) {
+
+        let dup = -1;
+        let len = nums.length;
+        for (let i=0;i<len;i++){
+            let index = Math.abs(nums[i]) - 1;
+
+            if(nums[index]<0){
+                dup = Math.abs(nums[i]);
+            }else {
+                nums[index] = nums[index] * -1;
+            }
+
+        }
+
+        let missing = -1;
+        for (let i=0;i<len;i++){
+            if(nums[i]>0){
+                missing = i + 1;
+            }
+        }
+
+
+        return [dup, missing];
+    };
+
+    console.log('findErrorNums', findErrorNums([2, 2]));
 
 }
