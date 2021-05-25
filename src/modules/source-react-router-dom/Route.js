@@ -47,9 +47,7 @@ class Route extends React.Component {
               {props.match
                 ? children
                   ? typeof children === "function"
-                    ? __DEV__
-                      ? evalChildrenDev(children, props, this.props.path)
-                      : children(props)
+                    ? children(props)
                     : children
                   : component
                   ? React.createElement(component, props)
@@ -57,9 +55,7 @@ class Route extends React.Component {
                   ? render(props)
                   : null
                 : typeof children === "function"
-                ? __DEV__
-                  ? evalChildrenDev(children, props, this.props.path)
-                  : children(props)
+                ? children(props)
                 : null}
             </RouterContext.Provider>
           );

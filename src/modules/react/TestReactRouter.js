@@ -1,8 +1,26 @@
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect,Link } from '../source-react-router-dom'
 
-import Detail from '../src/page/detail'
-import List from '../src/page/list'
-import Index from '../src/page/home/index'
+const Detail = () => {
+
+    return(
+        <div>我是Detail</div>
+    )
+};
+
+const List = () => {
+
+    return(
+        <div>我是List</div>
+    )
+};
+
+const Index = () => {
+
+    return(
+        <div>我是Index</div>
+    )
+};
 
 const menusList = [
     {
@@ -18,7 +36,7 @@ const menusList = [
         path: '/detail'
     },
 ]
-const index = () => {
+const TestReactRouter = () => {
     return <div >
         <div >
 
@@ -40,3 +58,5 @@ const index = () => {
         </div>
     </div>
 }
+
+export default TestReactRouter

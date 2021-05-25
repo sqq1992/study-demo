@@ -27,6 +27,7 @@ import store from './modules/redux/store';
 // import './modules/compute/middleWare';
 // import './modules/compute/back';
 // import './modules/compute/dp';
+import './modules/compute/heap';
 
 //webpack
 // import './modules/webpack/testWebpack';
@@ -49,7 +50,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Dp';
 // import './modules/letcode/LRU';
 // import './modules/letcode/Area';
-import './modules/letcode/ExtraFunc';
+// import './modules/letcode/ExtraFunc';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';
@@ -110,6 +111,7 @@ import './modules/letcode/ExtraFunc';
 // import TestHistoryRouter from './modules/react/TestHistoryRouter';
 // import SameState from './modules/react/SameState';
 // import TestReactRedux from './modules/react/TestReactRedux';
+import TestReactRouter from './modules/react/TestReactRouter';
 // import './modules/react/timeSlice'
 
 
@@ -131,6 +133,7 @@ class App  extends Component{
                 {/*<Strategies />*/}
                 {/*<CssCombine />*/}
 
+                {/*<TestReactRouter />*/}
                 {/*<TestReactRedux />*/}
                 {/*<SameState />*/}
                 {/*<TestHistoryRouter />*/}
