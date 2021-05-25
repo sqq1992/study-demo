@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createLocation, createPath } from "history";
+import { createLocation, createPath } from "../source-history";
 
 import Router from "./Router.js";
 

@@ -8,9 +8,14 @@ export { default as StaticRouter } from "./StaticRouter.js";
 export { default as Switch } from "./Switch.js";
 export { default as generatePath } from "./generatePath.js";
 export { default as matchPath } from "./matchPath.js";
-export { default as withRouter } from "./withRouter.js";
+// export { default as withRouter } from "./withRouter.js";
 
 export { default as __HistoryContext } from "./HistoryContext.js";
 export { default as __RouterContext } from "./RouterContext.js";
 
 export { useHistory, useLocation, useParams, useRouteMatch } from "./hooks.js";
+
+export { default as BrowserRouter } from "./BrowserRouter.js";
+export { default as HashRouter } from "./HashRouter.js";
+export { default as Link } from "./Link.js";
+export { default as NavLink } from "./NavLink.js";

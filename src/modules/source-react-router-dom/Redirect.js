@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createLocation, locationsAreEqual } from "history";
+import { createLocation, locationsAreEqual } from "../source-history";
 
 import Lifecycle from "./Lifecycle.js";
 import RouterContext from "./RouterContext.js";
@@ -57,14 +57,6 @@ function Redirect({ computedMatch, to, push = false }) {
       }}
     </RouterContext.Consumer>
   );
-}
-
-if (__DEV__) {
-  Redirect.propTypes = {
-    push: PropTypes.bool,
-    from: PropTypes.string,
-    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
-  };
 }
 
 export default Redirect;

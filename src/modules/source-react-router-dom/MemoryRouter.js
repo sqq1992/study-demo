@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createMemoryHistory as createHistory } from "history";
+import { createMemoryHistory as createHistory } from "../source-history";
 
 import Router from "./Router.js";
 
