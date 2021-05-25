@@ -27,7 +27,8 @@ import store from './modules/redux/store';
 // import './modules/compute/middleWare';
 // import './modules/compute/back';
 // import './modules/compute/dp';
-import './modules/compute/heap';
+// import './modules/compute/heap';
+import './modules/compute/LRU';
 
 //webpack
 // import './modules/webpack/testWebpack';

@@ -75,7 +75,7 @@ class LRUCache {
         }
 
         if(this.capacity===this.cache.getSize()){
-            this.removeLeastRecently;
+            this.removeLeastRecently();
         }
 
         this.addRecently(key, value);
