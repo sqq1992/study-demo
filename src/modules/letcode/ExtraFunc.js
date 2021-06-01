@@ -3,16 +3,6 @@
  *  小方式tips
  **/
 
-//645
-{
-
-    var findErrorNums = function(nums) {
-
-
-    };
-
-}
-
 //560
 {
 
@@ -184,6 +174,60 @@
         return [dup, missing];
     };
 
-    console.log('findErrorNums', findErrorNums([2, 2]));
+    // console.log('findErrorNums', findErrorNums([2, 2]));
+
+}
+
+//384
+{
+
+    /**
+     * @param {number[]} nums
+     */
+    var Solution = function(nums) {
+        this.resetNums = [...nums]
+        this.nums = [...nums];
+    };
+
+    /**
+     * Resets the array to its original configuration and return it.
+     * @return {number[]}
+     */
+    Solution.prototype.reset = function() {
+
+        this.nums = [...this.resetNums];
+        return this.nums
+    };
+
+    /**
+     * Returns a random shuffling of the array.
+     * @return {number[]}
+     */
+    Solution.prototype.shuffle = function() {
+
+        let swap=(arr,a,b)=>{
+            let temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+        }
+        let rand = (min,max) => {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        };
+
+        let len = this.nums.length;
+
+        for (let i=0;i<len;i++){
+            let randNum = rand(i, len - 1);
+            swap(this.nums, i, randNum);
+        }
+        return this.nums;
+    };
+
+    /**
+     * Your Solution object will be instantiated and called as such:
+     * var obj = new Solution(nums)
+     * var param_1 = obj.reset()
+     * var param_2 = obj.shuffle()
+     */
 
 }

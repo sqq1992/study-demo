@@ -7,33 +7,70 @@
     var longestPalindrome = function(s) {
 
         let res = '';
-        let tempFunc = (str,left,right) => {
+        let tempFunc = (s, l, r) => {
 
-
-            while (left>=0 && right<str.length && str[left]===str[right]) {
-
-                left--;
-                right++
+            while (l>=0 && r<s.length && s[l]===s[r]){
+                l--;
+                r++;
             }
 
-            return str.substr(left + 1, right - left - 1);
+            return s.slice(l + 1, r);
         };
-
 
         for (let i=0,j=s.length;i<j;i++) {
 
             let res1 = tempFunc(s, i, i);
             let res2 = tempFunc(s, i, i + 1);
 
+
             res = res.length > res1.length ? res : res1;
             res = res.length > res2.length ? res : res2;
 
         }
 
-        return res;
+
+        return res
     };
 
-    // console.log('longestPalindrome', longestPalindrome('babad'));
+
+
+
+
+
+
+
+
+
+    // var longestPalindrome = function(s) {
+    //
+    //     let res = '';
+    //     let tempFunc = (str,left,right) => {
+    //
+    //
+    //         while (left>=0 && right<str.length && str[left]===str[right]) {
+    //
+    //             left--;
+    //             right++
+    //         }
+    //
+    //         return str.substr(left + 1, right - left - 1);
+    //     };
+    //
+    //
+    //     for (let i=0,j=s.length;i<j;i++) {
+    //
+    //         let res1 = tempFunc(s, i, i);
+    //         let res2 = tempFunc(s, i, i + 1);
+    //
+    //         res = res.length > res1.length ? res : res1;
+    //         res = res.length > res2.length ? res : res2;
+    //
+    //     }
+    //
+    //     return res;
+    // };
+
+    console.log('longestPalindrome', longestPalindrome("babad"));
 
 }
 

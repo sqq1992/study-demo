@@ -18,6 +18,7 @@ import store from './modules/redux/store';
 // import './modules/es6/extraFuns/compose';
 // import './modules/es6/extraFuns/array';
 // import './modules/es6/extraFuns/debounceAndThrottle';
+import './modules/es6/extraFuns/treeAndArr';
 
 
 //compute
@@ -28,7 +29,7 @@ import store from './modules/redux/store';
 // import './modules/compute/back';
 // import './modules/compute/dp';
 // import './modules/compute/heap';
-import './modules/compute/LRU';
+// import './modules/compute/LRU';
 
 //webpack
 // import './modules/webpack/testWebpack';
@@ -52,6 +53,7 @@ import './modules/compute/LRU';
 // import './modules/letcode/LRU';
 // import './modules/letcode/Area';
 // import './modules/letcode/ExtraFunc';
+// import './modules/letcode/FenZhi';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/8-Object';

@@ -289,40 +289,74 @@
 //123
 {
 
+
     var maxProfit = function(prices) {
 
-        let len = prices.length;
-        let dp = new Array(len);
-        for (let i=0;i<len;i++){
+        let n = prices.length;
+
+        if(n<=1){
+            return 0;
+        }
+        let dp = new Array(n+1);
+        for (let i=0;i<=n;i++){
             dp[i] = [[0, 0], [0, 0], [0, 0]];
+
         }
 
-        dp[0][0][0] = 0;
+
         dp[0][1][1] = -prices[0];
         dp[0][2][1] = -prices[0];
-
-        for (let i=1;i<len;i++) {
-
+        for (let i=1;i<n;i++){
             for (let k=1;k<=2;k++) {
-
                 dp[i][k][0] = Math.max(
                     dp[i - 1][k][0],
-                    dp[i - 1][k][1] + prices[i]
+                    dp[i - 1][k][1] + prices[i],
                 );
-
                 dp[i][k][1] = Math.max(
                     dp[i - 1][k][1],
-                    dp[i - 1][k - 1][0] - prices[i]
+                    dp[i - 1][k-1][0] - prices[i],
                 );
-
             }
         }
 
-
-        return dp[len - 1][2][0];
+        return dp[n-1][2][0]
     };
 
-    // console.log('maxProfit',maxProfit([1,2,3,4,5]))
+
+    // var maxProfit = function(prices) {
+    //
+    //     let len = prices.length;
+    //     let dp = new Array(len);
+    //     for (let i=0;i<len;i++){
+    //         dp[i] = [[0, 0], [0, 0], [0, 0]];
+    //     }
+    //
+    //     dp[0][0][0] = 0;
+    //     dp[0][1][1] = -prices[0];
+    //     dp[0][2][1] = -prices[0];
+    //
+    //     for (let i=1;i<len;i++) {
+    //
+    //         for (let k=1;k<=2;k++) {
+    //
+    //             dp[i][k][0] = Math.max(
+    //                 dp[i - 1][k][0],
+    //                 dp[i - 1][k][1] + prices[i]
+    //             );
+    //
+    //             dp[i][k][1] = Math.max(
+    //                 dp[i - 1][k][1],
+    //                 dp[i - 1][k - 1][0] - prices[i]
+    //             );
+    //
+    //         }
+    //     }
+    //
+    //
+    //     return dp[len - 1][2][0];
+    // };
+
+    console.log('maxProfit',maxProfit([1,2,3,4,5]))
 
 }
 
@@ -522,40 +556,6 @@
     var longestPalindromeSubseq = function(s) {
 
         let len = s.length;
-        let dp = new Array(len);
-        for (let i=0;i<len;i++) {
-            dp[i] = new Array(len).fill(0);
-            dp[i][i] = 1;
-        }
-
-        for (let m=len-2;m>=0;m--) {
-
-            for (let n=m+1;n<len;n++) {
-
-                if(s[m]===s[n]){
-                    dp[m][n] = dp[m + 1][n - 1] + 2;
-                }else {
-                    dp[m][n] = Math.max(
-                        dp[m + 1][n],
-                        dp[m][n -1],
-                    );
-                }
-            }
-
-        }
-
-
-        return dp[0][len-1]
-    };
-
-
-
-
-
-
-    var longestPalindromeSubseq = function(s) {
-
-        let len = s.length;
 
         if(len<2){
             return len;
@@ -593,6 +593,39 @@
     };
 
     // console.log('longestPalindromeSubseq', longestPalindromeSubseq('bbbab'));
+
+}
+
+//1312
+{
+
+    var minInsertions = function(s) {
+
+        let len = s.length;
+        let dp = new Array(len);
+        for (let i=0;i<len;i++) {
+            dp[i] = new Array(len).fill(0);
+        }
+
+        for (let m=len-2;m>=0;m--) {
+
+            for (let n=m+1;n<len;n++) {
+
+                if(s[m]===s[n]){
+                    dp[m][n] = dp[m + 1][n - 1];
+                }else {
+                    dp[m][n] = Math.min(
+                        dp[m + 1][n],
+                        dp[m][n - 1],
+                    ) + 1;
+                }
+
+            }
+
+        }
+
+        return dp[0][len-1]
+    };
 
 }
 
@@ -1008,6 +1041,130 @@
 
 }
 
+//1143
+{
+
+    var longestCommonSubsequence = function(text1, text2) {
+
+        let text1Len = text1.length;
+        let text2Len = text2.length;
+        let dp = new Array(text1Len + 1);
+        for (let i=0;i<=text1Len;i++) {
+            dp[i] = new Array(text2Len + 1).fill(0);
+        }
+
+        for (let m=1;m<=text1Len;m++){
+            for (let n=1;n<=text2Len;n++){
+
+                if(text1[m-1]===text2[n-1]){
+                    dp[m][n] = dp[m - 1][n - 1] + 1;
+                }else {
+                    dp[m][n] = Math.max(
+                        dp[m-1][n],
+                        dp[m][n-1],
+                    )
+                }
+
+            }
+        }
+
+        return dp[text1Len][text2Len]
+    };
+
+}
+
+//583
+{
+
+    var minDistance = function(word1, word2) {
+
+        var longestCommonSubsequence = function(text1, text2) {
+            let text1Len = text1.length;
+            let text2Len = text2.length;
+            let dp = new Array(text1Len + 1);
+            for (let i=0;i<=text1Len;i++){
+                dp[i] = new Array(text2Len + 1).fill(0);
+            }
+
+            for (let m=1;m<=text1Len;m++) {
+                for (let n=1;n<=text2Len;n++) {
+
+                    if(word1[m-1]===word2[n-1]){
+                        dp[m][n] = dp[m - 1][n - 1] + 1;
+                    }else {
+                        dp[m][n] = Math.max(
+                            dp[m][n - 1],
+                            dp[m-1][n],
+                        )
+                    }
+
+                }
+            }
+
+
+            return dp[text1Len][text2Len];
+        }
+
+        let lcs = longestCommonSubsequence(word1, word2);
+
+        return word1.length - lcs + word2.length - lcs;
+    };
+
+}
+
+//712
+{
+
+    var minimumDeleteSum = function(s1, s2) {
+
+        var longestCommonSubsequence = (s1,s2) => {
+            let s1Len = s1.length;
+            let s2Len = s2.length;
+            let dp = new Array(s1Len + 1);
+            for (let i=0;i<=s1Len;i++){
+                dp[i] = new Array(s2Len + 1).fill(0);
+            }
+
+            for (let m=1;m<=s1Len;m++){
+                for (let n=1;n<=s2Len;n++){
+
+                    if(s1[m-1]===s2[n-1]){
+                        dp[m][n] = dp[m - 1][n - 1] + s1[m-1].charCodeAt();
+                    }else {
+
+                        try {
+                            dp[m][n] = Math.max(
+                                dp[m][n - 1],
+                                dp[m-1][n],
+                            )
+                        }catch (e) {
+                            console.log('dp', dp);
+                            console.log('index', m, n);
+                            console.log('e', e);
+                        }
+
+                    }
+                }
+            }
+
+            return dp[s1Len][s2Len];
+        };
+
+        let maxLcs = longestCommonSubsequence(s1,s2)
+        let sum = 0;
+        for (let i=0,j=s1.length;i<j;i++) {
+            sum += s1[i].charCodeAt();
+        }
+        for (let i=0,j=s2.length;i<j;i++) {
+            sum += s2[i].charCodeAt();
+        }
+
+        return sum - maxLcs * 2;
+    };
+
+    // console.log('minimumDeleteSum', minimumDeleteSum("delete", "leet"));
+
+}
 
 //494
 {

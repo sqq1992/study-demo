@@ -1033,5 +1033,17 @@ Bst.prototype.init = function (dataList) {
         )
     };
 
+    let temp1 = new TreeNode(3);
+    let temp2 = new TreeNode(2);
+    let temp3 = new TreeNode(3);
+    let temp4 = new TreeNode(3);
+    let temp5 = new TreeNode(1);
+
+    temp1.left = temp2;
+    temp1.right = temp3;
+    temp2.right = temp4;
+    temp3.right = temp5;
+
+    // console.log('rob', rob(temp1));
 
 }

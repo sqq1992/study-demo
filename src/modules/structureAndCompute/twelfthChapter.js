@@ -174,5 +174,5 @@ CArray.prototype = {
 //
 var num1 = new CArray(100);
 num1.setData();
-num1.quickSort();
+num1.combineSort();
 console.log(num1.toString());

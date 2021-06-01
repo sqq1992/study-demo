@@ -1,5 +1,6 @@
-
-
+/**
+ * 栈的数据
+ */
 
 //496
 {
@@ -34,30 +35,6 @@
 
 
     };
-
-
-
-    //
-    // var nextGreaterElement = function(nums1, nums2) {
-    //
-    //     let stack = [];
-    //     let record = new Map();
-    //     for(let i=0,j=nums2.length;i<j;i++) {
-    //         while(stack.length>=1 && stack[stack.length-1]<nums2[i]){
-    //             let tempKey = stack.pop();
-    //             record.set(tempKey, nums2[i]);
-    //         }
-    //         stack.push(nums2[i]);
-    //     }
-    //
-    //     return nums1.map((elem)=>{
-    //         if(record.has(elem)){
-    //             return record.get(elem);
-    //         }
-    //         return -1
-    //     })
-    //
-    // };
 
     // console.log('nextGreaterElement',nextGreaterElement([1,3,5,2,4],[6,5,4,3,2,1,7]))
 
