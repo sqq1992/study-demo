@@ -1,5 +1,7 @@
 
-// 二分法
+/**
+ * 二分法
+ */
 
 //704
 {
@@ -696,5 +698,53 @@
 
 }
 
+//410
+{
 
+    var splitArray = function(nums, m) {
+
+        let left = Math.max(...nums);
+        let right = nums.reduce((prev, next) => {
+            return prev + next;
+        }, 0) + 1;
+
+        let split = (nums,max) => {
+            let count = 1;
+            let sum = 0;
+            for (let i=0,j=nums.length;i<j;i++) {
+
+                if(sum+nums[i]>max){
+                    count++;
+                    sum = nums[i];
+                }else {
+                    sum += nums[i];
+                }
+
+            }
+
+            return count;
+
+        };
+
+        while (left<right){
+            let mid = left + Math.floor((right - left) / 2);
+            let n = split(nums, mid);
+
+
+            if(n>m){
+                left = mid + 1;
+            }else if(n<m){
+                right = mid;
+            }else {
+                right = mid;
+            }
+
+        }
+
+        return left;
+    };
+
+    // console.log('splitArray', splitArray([1,2,3,4,5], 2));
+
+}
 
