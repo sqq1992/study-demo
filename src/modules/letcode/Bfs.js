@@ -97,3 +97,28 @@
     // console.log('openLock', openLock(["0201", "0101", "0102", "1212", "2002"], "0202"));
 
 }
+
+//104
+{
+
+    var maxDepth = function(root) {
+
+        if(!root) return 0;
+        let queue = [root];
+        let depth = 0;
+        while (queue.length){
+
+
+            for (let i=0,j=queue.length;i<j;i++){
+                let node = queue.shift();
+                if(node.left) queue.push(node.left);
+                if(node.right) queue.push(node.right);
+            }
+
+            depth++;
+        }
+
+        return depth;
+    };
+
+}

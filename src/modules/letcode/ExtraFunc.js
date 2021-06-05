@@ -231,3 +231,59 @@
      */
 
 }
+
+
+/**
+ *  水塘抽样 382 398
+ **/
+
+//382
+{
+
+    var Solution = function(head) {
+        this.head = head;
+    };
+
+    Solution.prototype.getRandom = function() {
+        let head = this.head;
+        let res;
+        let index = 0;
+
+        while (head){
+            if(Math.floor(Math.random()*(++index))===0){
+                res = head.val
+            }
+            head = head.next;
+        }
+
+        return res;
+    };
+
+}
+
+//398
+{
+    var Solution = function(nums) {
+        this.nums = nums;
+    };
+
+    /**
+     * @param {number} target
+     * @return {number}
+     */
+    Solution.prototype.pick = function(target) {
+        let res;
+        let count = 0;
+
+        this.nums.forEach((elem,index)=>{
+
+            if(elem===target){
+                if(Math.floor(Math.random()*(++count))===0){
+                    res = index;
+                }
+            }
+        })
+
+        return res;
+    };
+}

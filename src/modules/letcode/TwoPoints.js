@@ -33,44 +33,7 @@
     };
 
 
-
-
-
-
-
-
-
-
-    // var longestPalindrome = function(s) {
-    //
-    //     let res = '';
-    //     let tempFunc = (str,left,right) => {
-    //
-    //
-    //         while (left>=0 && right<str.length && str[left]===str[right]) {
-    //
-    //             left--;
-    //             right++
-    //         }
-    //
-    //         return str.substr(left + 1, right - left - 1);
-    //     };
-    //
-    //
-    //     for (let i=0,j=s.length;i<j;i++) {
-    //
-    //         let res1 = tempFunc(s, i, i);
-    //         let res2 = tempFunc(s, i, i + 1);
-    //
-    //         res = res.length > res1.length ? res : res1;
-    //         res = res.length > res2.length ? res : res2;
-    //
-    //     }
-    //
-    //     return res;
-    // };
-
-    console.log('longestPalindrome', longestPalindrome("babad"));
+    // console.log('longestPalindrome', longestPalindrome("babad"));
 
 }
 
@@ -603,7 +566,7 @@
         return nSumTarget(nums, 4, 0, target);
     };
 
-    console.log('threeSum',threeSum([-1,0,1,2,-1,-4]))
+    // console.log('threeSum',threeSum([-1,0,1,2,-1,-4]))
 
 
 
@@ -632,5 +595,45 @@
 
         return sIndex === sLen;
     };
+
+}
+
+//870
+{
+
+    var advantageCount = function(nums1, nums2) {
+
+        nums1 = nums1.sort((a, b) => {
+            return a - b
+        });
+        let nums2Detail = nums2.map((elem,index) => {
+            return {
+                index,
+                value: elem
+            }
+        }).sort((a,b)=>{
+            return b.value - a.value
+        });
+
+        let left = 0;
+        let right = nums1.length - 1;
+        let res = [];
+        while (nums2Detail.length){
+            let {index,value} = nums2Detail.shift();
+
+            if(value<nums1[right]){
+                res[index] = nums1[right];
+                right--;
+            }else {
+                res[index] = nums1[left];
+                left++;
+            }
+        }
+
+
+        return res;
+    };
+
+    // console.log('advantageCount',advantageCount([12,24,8,32],[13,25,32,11]))
 
 }

@@ -18,7 +18,7 @@ import store from './modules/redux/store';
 // import './modules/es6/extraFuns/compose';
 // import './modules/es6/extraFuns/array';
 // import './modules/es6/extraFuns/debounceAndThrottle';
-import './modules/es6/extraFuns/treeAndArr';
+// import './modules/es6/extraFuns/treeAndArr';
 
 
 //compute
@@ -42,7 +42,7 @@ import './modules/es6/extraFuns/treeAndArr';
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
-// import './modules/letcode/greedCompute';
+import './modules/letcode/greedCompute';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';

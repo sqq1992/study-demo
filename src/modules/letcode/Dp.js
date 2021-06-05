@@ -887,6 +887,24 @@
 
     var superEggDrop = function(k, n) {
 
+        let dp = new Array(k + 1);
+        for (let i=0;i<=k;i++) {
+            dp[i] = new Array(n + 1).fill(0);
+        }
+
+        let m = 0;
+        while (dp[k][m]<n){
+            m++;
+            for (let n=1;n<=k;n++) {
+                dp[k][m] = dp[k][m - 1] + dp[k - 1][m - 1] + 1;
+            }
+        }
+
+        return m;
+    };
+
+    var superEggDrop = function(k, n) {
+
         let memo = {};
         let dp = (K,N) => {
 
@@ -919,8 +937,7 @@
         return dp(k, n);
     };
 
-    
-    // console.log('superEggDrop', superEggDrop(3, 15));
+    // console.log('superEggDrop', superEggDrop(1, 2));
 
 }
 

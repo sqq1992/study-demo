@@ -133,6 +133,28 @@
 //55
 {
 
+    var jump = function(nums) {
+
+        let jumps = 0;
+        let end = 0;
+        let len = nums.length;
+        let farthest = 0;
+        for (let i=0,j=len-1;i<j;i++) {
+            farthest = Math.max(nums[i] + i, farthest);
+            if(end===i){
+                jumps++;
+                end = farthest;
+            }
+        }
+
+        return jumps;
+    };
+
+
+
+
+
+
     var canJump = function(nums) {
 
         let len = nums.length;
@@ -169,6 +191,48 @@
 
         return jumps;
 
+    };
+
+}
+
+//1024
+{
+
+    var videoStitching = function(clips, time) {
+
+        if(time===0) return 0;
+
+        clips = clips.sort((a,b)=>{
+
+            if(a[0]===b[0]){
+                return b[1] - a[1];
+            }
+
+            return a[0] - b[0];
+        })
+
+        let res = 0;
+        let index = 0;
+        let curEnd = 0;
+        let len = clips.length;
+        let nextEnd = 0;
+        while (index<len && clips[index][0]<=curEnd) {
+
+            while (index<len && clips[index][0]<=curEnd) {
+                nextEnd = Math.max(nextEnd, clips[index][1]);
+                index++;
+            }
+            res++;
+            curEnd = nextEnd;
+
+            if(curEnd>=time){
+                return res;
+            }
+
+        }
+
+
+        return -1;
     };
 
 }
