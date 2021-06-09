@@ -204,7 +204,7 @@
 
     //遍历
     // bst1.inOrder();
-    // bst1.preOrder();
+    bst1.preOrder();
     // bst1.postOrder();
 
 
@@ -215,7 +215,7 @@
     // console.log('new', bst1.root);
 
 
-    bst1.remove(9);
+    // bst1.remove(9);
 
 
 }

@@ -38,7 +38,7 @@ import store from './modules/redux/store';
 //letcode
 // import "./modules/letcode/Queue";
 // import "./modules/letcode/Recursion";
-import "./modules/letcode/BinarySearch";
+// import "./modules/letcode/BinarySearch";
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
 // import './modules/letcode/SlideWindow';
@@ -46,7 +46,7 @@ import "./modules/letcode/BinarySearch";
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-// import './modules/letcode/LinkedList';
+import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
@@ -104,7 +104,8 @@ import "./modules/letcode/BinarySearch";
 //react define
 // import reactIndex from './modules/react/reactIndex';
 // import ReactPortals from './modules/react/ReactPortals';
-// import SuspenseTest from './modules/react/SuspenseTest';
+import SuspenseTest from './modules/react/SuspenseTest';
+import AsyncComponent from './modules/react/AsyncComponent';
 // import ReactState from './modules/react/ReactState';
 // import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
@@ -143,6 +144,7 @@ class App  extends Component{
                 {/*<TestRouter />*/}
                 {/*<TestClassAndFun />*/}
                 {/*<SuspenseTest />*/}
+                {/*<AsyncComponent />*/}
                 {/*<ReactPortals />*/}
                 {/*<ReactState />*/}
                 {/*<ReactPublicState />*/}

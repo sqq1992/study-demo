@@ -152,36 +152,6 @@ LList.prototype = {
     // };
 
 
-    var reverseBetween = function(head, left, right) {
-
-
-        let reverseN = (head,n) => {
-            let successor = null;
-
-            let tempFunc = (head, n) => {
-
-                if(n===1){
-                    successor = head.next;
-                    return head;
-                }
-
-                let last = tempFunc(head.next, n - 1);
-                head.next.next = head;
-                head.next = successor;
-                return last;
-            };
-
-        };
-
-        if(left===1){
-            return reverseN(head, right);
-        }
-
-        head.next = reverseBetween(head.next, left - 1, right - 1);
-        return head;
-    };
-
-
     // var reverseBetween2 = function(head, left, right) {
     //
     //     let dummyNode = new ListNode(-1);

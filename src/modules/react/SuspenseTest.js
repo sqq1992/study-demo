@@ -8,14 +8,6 @@ function useSWR() {
 
     useEffect(() => {
         setLoading(true);
-        // fetcher(url)
-        //     .then(result => {
-        //         setData(result);
-        //     })
-        //     .finally(() => {
-        //         setLoading(false);
-        //     });
-
         setTimeout(() => {
             setData({
                 name: "sun",
