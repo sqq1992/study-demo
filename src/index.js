@@ -46,7 +46,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-import './modules/letcode/LinkedList';
+// import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
@@ -104,8 +104,8 @@ import './modules/letcode/LinkedList';
 //react define
 // import reactIndex from './modules/react/reactIndex';
 // import ReactPortals from './modules/react/ReactPortals';
-import SuspenseTest from './modules/react/SuspenseTest';
-import AsyncComponent from './modules/react/AsyncComponent';
+// import SuspenseTest from './modules/react/SuspenseTest';
+// import AsyncComponent from './modules/react/AsyncComponent';
 // import ReactState from './modules/react/ReactState';
 // import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
@@ -116,7 +116,7 @@ import AsyncComponent from './modules/react/AsyncComponent';
 // import SameState from './modules/react/SameState';
 // import TestReactRedux from './modules/react/TestReactRedux';
 import TestReactRouter from './modules/react/TestReactRouter';
-// import './modules/react/timeSlice'
+import './modules/react/timeSlice'
 
 
 //redux
