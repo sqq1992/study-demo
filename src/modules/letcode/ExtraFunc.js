@@ -287,3 +287,54 @@
         return res;
     };
 }
+
+//895
+{
+
+    var FreqStack = function() {
+        this.maxFreq = 0;
+        this.valsToFreq = {};    //{a:1}
+        this.freqToVals = {};   //{1:[a,b]}
+    };
+
+    /**
+     * @param {number} val
+     * @return {void}
+     */
+    FreqStack.prototype.push = function(val) {
+
+        let freq = (this.valsToFreq[val] || 0) + 1;
+        this.valsToFreq[val] = freq;
+
+        if(!this.freqToVals[freq]){
+            this.freqToVals[freq] = [];
+        }
+        this.freqToVals[freq].push(val);
+        this.maxFreq = Math.max(this.maxFreq, freq);
+    };
+
+    /**
+     * @return {number}
+     */
+    FreqStack.prototype.pop = function() {
+
+        let valsArr = this.freqToVals[this.maxFreq];
+        let val = valsArr.pop();
+
+        let freq = this.valsToFreq[val] - 1;
+        this.valsToFreq[val] = freq;
+
+        if(!valsArr.length){
+            this.maxFreq--;
+        }
+        return val;
+    };
+
+    /**
+     * Your FreqStack object will be instantiated and called as such:
+     * var obj = new FreqStack()
+     * obj.push(val)
+     * var param_2 = obj.pop()
+     */
+
+}

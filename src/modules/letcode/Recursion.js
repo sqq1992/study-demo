@@ -595,34 +595,33 @@ Bst.prototype.init = function (dataList) {
 
     var insertIntoBST = function(root, val) {
 
-        var tempNode = new TreeNode(val);
+        let newNode = new TreeNode(val);
+        if(!root) return newNode;
 
-        let current = root;
-        while (true) {
+        let currentNode = root;
+        while (true){
 
-            if(val<current.val){
+            if(val<currentNode.val){
 
-                if(current.left===null){
-                    current.left = tempNode;
+                if(!currentNode.left){
+                    currentNode.left = newNode;
                     break;
                 }else {
-                    current = current.left;
+                    currentNode = currentNode.left;
                 }
 
             }else {
-                if(current.right===null){
-                    current.right = tempNode;
+                if(!currentNode.right){
+                    currentNode.right = newNode;
                     break;
                 }else {
-                    current = current.right;
+                    currentNode = currentNode.right;
                 }
             }
 
-
         }
 
-
-        return root;
+        return root
     };
 
 }
@@ -830,6 +829,23 @@ Bst.prototype.init = function (dataList) {
 {
 
     var kthSmallest = function(root, k) {
+
+        let index = 0;
+        let result;
+        let tempFunc = (root) => {
+            if(!root) return root;
+
+            tempFunc(root.left);
+            if(k === ++index){
+                result = root.val
+            }
+            tempFunc(root.right);
+        };
+        tempFunc(root);
+        return result;
+    };
+
+    var kthSmallest = function(root, k) {
         let res = [];
 
         let tempFunc = (currentNode) => {
@@ -851,6 +867,7 @@ Bst.prototype.init = function (dataList) {
 
 //538
 {
+
 
     var convertBST = function(root) {
 
@@ -878,6 +895,7 @@ Bst.prototype.init = function (dataList) {
 //700
 {
 
+
     var searchBST = function(root, val) {
 
         let cur = root;
@@ -900,6 +918,7 @@ Bst.prototype.init = function (dataList) {
 
 //450
 {
+
 
     var deleteNode = function(root, key) {
 
@@ -973,6 +992,7 @@ Bst.prototype.init = function (dataList) {
 
 //1373
 {
+
     var maxSumBST = function(root) {
 
         let maxSum = 0;
@@ -1045,5 +1065,79 @@ Bst.prototype.init = function (dataList) {
     temp3.right = temp5;
 
     // console.log('rob', rob(temp1));
+
+}
+
+//96
+{
+    var numTrees = function(n) {
+
+        let record = {};
+        let count = function (low,high) {
+
+            if(low>high) return 1;
+            let key = low + "" + high;
+            if(record[key]){
+                return record[key];
+            }
+
+            let res = 0;
+            for (let mid = low;mid<=high;mid++) {
+
+                let left = count(low, mid - 1);
+                let right = count(mid + 1, high);
+                res += left * right;
+            }
+            record[key] = res;
+            return res;
+        }
+
+
+        return count(1, n);
+    };
+}
+
+//95
+{
+
+    var generateTrees = function(n) {
+
+        if(n===0) return [];
+
+        let record = {};
+        let generate = function (low,high) {
+
+            let key = low + "" + high;
+            if(record[key]){
+                return record[key];
+            }
+
+            if(low>high){
+                return [null];
+            }
+
+            let res = [];
+            for (let mid=low;mid<=high;mid++) {
+                let leftArr = generate(low, mid - 1);
+                let rightArr = generate(mid + 1, high);
+
+                for (let leftStr of leftArr){
+                    for (let rightStr of rightArr){
+
+                        let rootNode = new TreeNode(mid);
+                        rootNode.left = leftStr;
+                        rootNode.right = rightStr;
+                        res.push(rootNode);
+                    }
+                }
+
+            }
+
+            record[key] = res;
+            return res;
+        };
+
+        return generate(1, n);
+    };
 
 }

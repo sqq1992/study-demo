@@ -408,3 +408,137 @@
     };
 
 }
+
+//232
+{
+
+    var MyQueue = function() {
+
+        this.stackIn = [];
+        this.iLen = 0;
+
+        this.stackOut = [];
+        this.oLen = 0;
+    };
+
+    /**
+     * Push element x to the back of queue.
+     * @param {number} x
+     * @return {void}
+     */
+    MyQueue.prototype.push = function(x) {
+        this.stackIn.push(x);
+        this.iLen = this.stackIn.length;
+    };
+
+    /**
+     * Removes the element from in front of queue and returns that element.
+     * @return {number}
+     */
+    MyQueue.prototype.pop = function() {
+
+        this.iLen = this.stackIn.length;
+        if(this.oLen===0){
+            while (this.stackIn.length){
+                this.stackOut.push(this.stackIn.pop())
+            }
+        }
+        this.iLen = 0;
+        this.oLen = this.stackOut.length - 1;
+        return this.stackOut.pop();
+
+    };
+
+    /**
+     * Get the front element.
+     * @return {number}
+     */
+    MyQueue.prototype.peek = function() {
+
+        if(this.oLen===0){
+            return this.stackIn[0];
+        }else {
+            return this.stackOut[this.oLen - 1];
+        }
+
+
+    };
+
+    /**
+     * Returns whether the queue is empty.
+     * @return {boolean}
+     */
+    MyQueue.prototype.empty = function() {
+
+        if(this.iLen===0 && this.oLen===0){
+            return true;
+        }else {
+            return false;
+        }
+
+    };
+
+
+    //todo
+    // let a1 = new MyQueue();
+    // a1.push(1);
+    // a1.push(2);
+    // a1.push(3);
+    // console.log('1-1', a1.pop());
+    // a1.push(4);
+    // console.log('1-1', a1.peek());
+
+}
+
+//225
+{
+    /**
+     * Initialize your data structure here.
+     */
+    var MyStack = function() {
+        this.queue = [];
+        this.topNum = 0;
+    };
+
+    /**
+     * Push element x onto stack.
+     * @param {number} x
+     * @return {void}
+     */
+    MyStack.prototype.push = function(x) {
+        this.queue.push(x);
+    };
+
+    /**
+     * Removes the element on top of the stack and returns that element.
+     * @return {number}
+     */
+    MyStack.prototype.pop = function() {
+        return this.queue.pop();
+    };
+
+    /**
+     * Get the top element.
+     * @return {number}
+     */
+    MyStack.prototype.top = function() {
+        return this.queue[this.queue.length-1];
+    };
+
+    /**
+     * Returns whether the stack is empty.
+     * @return {boolean}
+     */
+    MyStack.prototype.empty = function() {
+        return this.queue.length === 0;
+    };
+
+    /**
+     * Your MyStack object will be instantiated and called as such:
+     * var obj = new MyStack()
+     * obj.push(x)
+     * var param_2 = obj.pop()
+     * var param_3 = obj.top()
+     * var param_4 = obj.empty()
+     */
+}
