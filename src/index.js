@@ -46,14 +46,14 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-// import './modules/letcode/LinkedList';
+import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
 // import './modules/letcode/LRU';
 // import './modules/letcode/LFU';
 // import './modules/letcode/Area';
-import './modules/letcode/ExtraFunc';
+// import './modules/letcode/ExtraFunc';
 // import './modules/letcode/FenZhi';
 
 //  JS高级程序设计(第四版)

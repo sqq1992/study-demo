@@ -338,3 +338,66 @@
      */
 
 }
+
+
+//215
+{
+
+    var findKthLargest = function(nums, k) {
+
+        let swap = function (nums,i,j) {
+            let temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        };
+
+        let partition = function (nums,low,high) {
+            if(low===high) return low;
+
+            let pivot = nums[low];
+            let i = low;
+            let j = high + 1;
+            while (true){
+
+                while (nums[++i]<pivot){
+                    if(i===high) break;
+                }
+
+                while (nums[--j]>pivot){
+                    if(j===low) break;
+                }
+
+                if(i>=j) break;
+
+                swap(nums, i, j);
+            }
+
+
+            swap(nums, j, low);
+            return j;
+        }
+
+
+        let lo = 0;
+        let hi = nums.length - 1;
+        let minK = nums.length - k;
+
+        while (lo<=hi){
+
+            let p = partition(nums, lo, hi);
+            if(p<minK){
+                lo = p + 1;
+            }else if(p>minK){
+                hi = p - 1;
+            }else {
+                return nums[p]
+            }
+
+        }
+
+        return -1;
+    };
+
+    // console.log('findKthLargest', findKthLargest([3, 2, 1, 5, 6, 4], 2));
+
+}

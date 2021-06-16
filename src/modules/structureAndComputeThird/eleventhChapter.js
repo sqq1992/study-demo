@@ -136,6 +136,6 @@ class MinHeap {
         return minHeap.extract();
     };
 
-    console.log('findKthLargest', findKthLargest([3,2,3,1,2,4,5,5,6], 4));
+    // console.log('findKthLargest', findKthLargest([3,2,3,1,2,4,5,5,6], 4));
 
 }

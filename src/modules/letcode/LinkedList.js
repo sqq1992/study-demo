@@ -565,6 +565,30 @@ LList.prototype = {
 //19
 {
 
+    var removeNthFromEnd = function(head, n) {
+
+        if(!head) return head;
+
+        let index = 0;
+        let prev = new ListNode(0);
+        prev.next = head;
+
+        let tempFunc = (root,prev) => {
+            if(!root){
+                return root;
+            }
+
+            let nextNode = tempFunc(root.next, root);
+            if(n===++index){
+                prev.next = nextNode;
+            }
+            return root;
+        };
+
+        tempFunc(head, prev);
+        return prev.next;
+    };
+
 
     var removeNthFromEnd = function (head, n) {
 
