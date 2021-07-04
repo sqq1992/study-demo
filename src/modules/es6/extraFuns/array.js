@@ -28,7 +28,7 @@
             let tempValue = stack.pop();
 
             if(Array.isArray(tempValue)){
-                stack.push(tempValue);
+                stack.push(...tempValue);
             }else {
                 result.push(tempValue);
             }

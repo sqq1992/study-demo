@@ -34,6 +34,8 @@ import store from './modules/redux/store';
 //webpack
 // import './modules/webpack/testWebpack';
 
+//微前端
+// import './modules/qiankun/qiankun'
 
 //letcode
 // import "./modules/letcode/Queue";
@@ -46,7 +48,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/Array';
 // import './modules/letcode/Regex.js';
 // import './modules/letcode/Stack.js';
-import './modules/letcode/LinkedList';
+// import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
 // import './modules/letcode/Dp';
@@ -89,7 +91,11 @@ import './modules/letcode/LinkedList';
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
 
+//JavaScript正则表达式迷你书
+// import './modules/regExp/firstChapter'  //正则表达式字符匹配攻略
+
 //interview
+// import './modules/interview/promise'
 // import './modules/interview/jsonUtils'
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
@@ -116,7 +122,7 @@ import './modules/letcode/LinkedList';
 // import TestHistoryRouter from './modules/react/TestHistoryRouter';
 // import SameState from './modules/react/SameState';
 // import TestReactRedux from './modules/react/TestReactRedux';
-import TestReactRouter from './modules/react/TestReactRouter';
+// import TestReactRouter from './modules/react/TestReactRouter';
 // import './modules/react/timeSlice'
 
 
@@ -124,6 +130,7 @@ import TestReactRouter from './modules/react/TestReactRouter';
 // import './modules/redux/demoRedux';
 // import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
+import './modules/interview'
 
 class App  extends Component{
     render() {

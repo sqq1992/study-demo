@@ -356,7 +356,7 @@
     //     return dp[len - 1][2][0];
     // };
 
-    console.log('maxProfit',maxProfit([1,2,3,4,5]))
+    // console.log('maxProfit',maxProfit([1,2,3,4,5]))
 
 }
 
@@ -1190,5 +1190,22 @@
 
 
     };
+
+}
+
+//787
+{
+
+    var findCheapestPrice = function(n, flights, src, dst, k) {
+
+    };
+
+    // console.log('findCheapestPrice',findCheapestPrice(
+    //     3,
+    //     [[0,1,100],[1,2,100],[0,2,500]],
+    //     0,
+    //     2,
+    //     1
+    // ))
 
 }

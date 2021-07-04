@@ -3,19 +3,7 @@
  *  二叉堆
  **/
 
-function getLeft(index) {
-    return index * 2 + 1;
-}
 
-function getRight(index) {
-    return index * 2 + 2;
-}
-
-function swap(arr,i,j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-}
 
 class MaxHeap {
     constructor(arr) {
@@ -23,44 +11,71 @@ class MaxHeap {
         this.size = this.data.length;
     }
 
-    isHeap() {
-        const L = Math.floor(this.size / 2);
-        for (let i = L - 1; i >= 0; i--) {
-            const l = this.data[getLeft(i)] !== undefined ? this.data[getLeft(i)] : Number.MIN_SAFE_INTEGER;
-            const r = this.data[getRight(i)] !== undefined ? this.data[getRight(i)] : Number.MIN_SAFE_INTEGER;
+    getLeft(index){
+        return index * 2 + 1;
+    }
 
-            const max = Math.max(this.data[i], l, r);
+    getRight(index){
+        return index * 2 + 2;
+    }
 
-            if (max !== this.data[i]) {
-                return false;
-            }
-        }
-        return true;
+    swap(arr,a,b){
+        let temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 
     rebuildHeap(){
         const L = Math.floor(this.size / 2);
-        for (let i = L - 1; i >= 0; i--) {
+        for (let i=L-1;i>=0;i--) {
             this.maxHeapify(i);
         }
     }
 
+    sort(){
+        for (let i=this.size-1;i>0;i--) {
+            this.swap(this.data, 0, i);
+            this.size--;
+            this.maxHeapify(0);
+        }
+    }
+
+    isHeap() {
+        const L = Math.floor(this.size / 2);
+
+        for (let i=L-1;i>=0;i--) {
+            const leftVal = this.data[this.getLeft(i)] !== undefined ? this.data[this.getLeft(i)] : Number.MIN_SAFE_INTEGER;
+            const rightVal = this.data[this.getRight(i)] !== undefined ? this.data[this.getRight(i)] : Number.MIN_SAFE_INTEGER;
+
+            const max = Math.max(this.data[i], leftVal, rightVal);
+
+            if(max!==this.data[i]){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     insert(key){
-        this.data[this.size++] = key;
-        if(this.isHeap()){
-            return
+        this.data[this.size] = key;
+        this.size++;
+
+        if(!this.isHeap()){
+            return;
         }
         this.rebuildHeap();
     }
 
     delete(index){
+
         if(index>=this.size){
             return;
         }
         this.data.splice(index, 1);
         this.size--;
-        if(this.isHeap()){
-            return
+        if(!this.isHeap()){
+            return;
         }
         this.rebuildHeap();
     }
@@ -77,14 +92,14 @@ class MaxHeap {
             return;
         }
 
-        const left = getLeft(index);
-        const right = getRight(index);
+        const left = this.getLeft(index);
+        const right = this.getRight(index);
 
-        if(left<this.size && this.data[max]<this.data[left]){
+        if(left<this.size && this.data[left]>this.data[max]) {
             max = left;
         }
 
-        if(right<this.size && this.data[max]<this.data[right]){
+        if(right<this.size && this.data[right]>this.data[max]) {
             max = right;
         }
 
@@ -92,10 +107,9 @@ class MaxHeap {
             return;
         }
 
-        swap(this.data, index, max);
+        this.swap(this.data, max, index);
         return this.maxHeapify(max);
     }
-
 }
 
 
@@ -203,6 +217,13 @@ class MinHeap {
 
 //todo test
 {
+
+    let heap2 = new MaxHeap([1, 8, 3, 4, 5, 6, 7]);
+    heap2.rebuildHeap();
+    heap2.sort();
+    console.log('heap2', heap2.data);
+
+
     // let heap1 = new MinHeap([1, 8, 3, 4, 5, 6, 7]);
     // heap1.rebuildHeap();
     // heap1.insert(100);
