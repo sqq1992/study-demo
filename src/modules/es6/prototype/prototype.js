@@ -135,17 +135,33 @@
 {
 
     function myInstanceOf(instanceOfObj,constructorFun) {
-        let resultPrototype = constructorFun.prototype;
-        let proto = instanceOfObj.__proto__;
+        let proto = constructorFun.prototype;
+        let __proto = instanceOfObj.__proto__;
 
-        while (proto){
-            if(proto===resultPrototype){
+        while (__proto){
+            if(__proto===proto){
                 return true;
             }
-            proto = proto.__proto__;
+            __proto = __proto.__proto__;
         }
 
-        return false;
+        return true;
     }
 
 }
+
+// Object.is和===的区别
+{
+
+    function is(x, y) {
+
+        if (x === y) {
+            return x !== 0 || y !== 0 || 1 / x === 1 / y;
+        } else {
+            return x !== x && y !== y;
+        }
+
+    }
+
+}
+

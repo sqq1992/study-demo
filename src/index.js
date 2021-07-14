@@ -15,6 +15,10 @@ import store from './modules/redux/store';
 // import './modules/es6/promise/MyPromise';
 // import './modules/es6/prototype/prototype';
 // import './modules/es6/extraFuns/curring';
+// import './modules/es6/extraFuns/partial';
+// import './modules/es6/extraFuns/unique';
+// import './modules/es6/extraFuns/equal';
+import './modules/es6/extraFuns/typeOf';
 // import './modules/es6/extraFuns/compose';
 // import './modules/es6/extraFuns/array';
 // import './modules/es6/extraFuns/debounceAndThrottle';
@@ -59,6 +63,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/FenZhi';
 
 //  JS高级程序设计(第四版)
+// import './modules/jsHigherDesign/3-DataType';
 // import './modules/jsHigherDesign/8-Object';
 // import './modules/jsHigherDesign/10-Function';
 
@@ -130,7 +135,7 @@ import store from './modules/redux/store';
 // import './modules/redux/demoRedux';
 // import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
-import './modules/interview'
+// import './modules/interview'
 
 class App  extends Component{
     render() {
