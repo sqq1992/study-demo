@@ -30,37 +30,20 @@ CArray.prototype = {
     //冒泡排序
     bubbleSort: function () {
 
+
         let arr = this.dataStore;
         let len = this.dataStore.length;
-
         let temp;
-        for(let i=0;i<len;i++) {
-            for (let m = 1; m < len - i + 1; m++) {
-                if (arr[m] < arr[m - 1]) {
-                    temp = arr[m - 1];
-                    arr[m - 1] = arr[m];
-                    arr[m] = temp;
+
+        for (let i=0;i<len;i++) {
+            for (let j=1;j<len-i;j++) {
+                if(arr[j]<arr[j-1]){
+                    temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     },
@@ -70,14 +53,12 @@ CArray.prototype = {
         let arr = this.dataStore;
         let len = this.dataStore.length;
 
-        for(let i=0;i<len;i++) {
+        for (let i=0;i<len;i++) {
             let min = i;
             let flag = false;
-
-
-            for(let m=i+1;m<len;m++) {
-                if(arr[m]<arr[min]){
-                    min = m;
+            for (let j=i+1;j<len;j++) {
+                if(arr[min]>arr[j]){
+                    min = j;
                     flag = true;
                 }
             }
@@ -90,6 +71,8 @@ CArray.prototype = {
 
         }
 
+
+
     },
 
     //插入排序
@@ -97,19 +80,19 @@ CArray.prototype = {
 
         let arr = this.dataStore;
         let len = this.dataStore.length;
-        let temp, inner;
 
-        for(let outer=1;outer<=len-1;outer++) {
-            temp = arr[outer];
-            inner = outer;
 
-            while (inner>0 && arr[inner-1]>temp) {
+        for (let outer=1;outer<len;outer++) {
+            let inner = outer;
+            let temp = arr[outer];
+
+            while (inner>0 && arr[inner-1]>temp){
                 arr[inner] = arr[inner - 1];
-                --inner;
+                inner--;
             }
-
             arr[inner] = temp;
         }
+
     },
 
 
@@ -193,5 +176,5 @@ CArray.prototype = {
 //
 var num1 = new CArray(100);
 num1.setData();
-num1.combineSort();
+num1.insertSort();
 console.log(num1.toString());
