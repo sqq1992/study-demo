@@ -762,7 +762,7 @@
         return result;
     };
 
-    console.log('minWindow', minWindow("ADOBECODEBANC", "ABC"));
+    // console.log('minWindow', minWindow("ADOBECODEBANC", "ABC"));
 
 
 }

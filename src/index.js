@@ -18,11 +18,13 @@ import store from './modules/redux/store';
 // import './modules/es6/extraFuns/partial';
 // import './modules/es6/extraFuns/unique';
 // import './modules/es6/extraFuns/equal';
-import './modules/es6/extraFuns/typeOf';
+// import './modules/es6/extraFuns/typeOf';
 // import './modules/es6/extraFuns/compose';
 // import './modules/es6/extraFuns/array';
 // import './modules/es6/extraFuns/debounceAndThrottle';
 // import './modules/es6/extraFuns/treeAndArr';
+// import './modules/es6/extraFuns/copy';
+// import './modules/es6/extraFuns/eachAndFind';
 
 
 //compute
@@ -74,7 +76,7 @@ import './modules/es6/extraFuns/typeOf';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/fifthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
-// import './modules/structureAndCompute/twelfthChapter';  //排序
+import './modules/structureAndCompute/twelfthChapter';  //排序
 
 //学习数据结构与算法  第三版
 // import './modules/structureAndComputeThird/fifthChapter';   //队列
@@ -119,6 +121,8 @@ import './modules/es6/extraFuns/typeOf';
 // import SuspenseTest from './modules/react/SuspenseTest';
 // import AsyncComponent from './modules/react/AsyncComponent';
 // import ReactState from './modules/react/ReactState';
+// import ReactProps from './modules/react/ReactProps';
+// import ReactPropsForm from './modules/react/ReactPropsForm';
 // import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
 // import ReactSequence from './modules/react/ReactSequence';
@@ -150,6 +154,8 @@ class App  extends Component{
                 {/*<Strategies />*/}
                 {/*<CssCombine />*/}
 
+                {/*<ReactPropsForm />*/}
+                {/*<ReactProps />*/}
                 {/*<TestReactRouter />*/}
                 {/*<TestReactRedux />*/}
                 {/*<SameState />*/}
