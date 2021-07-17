@@ -764,5 +764,25 @@
 
     // console.log('minWindow', minWindow("ADOBECODEBANC", "ABC"));
 
+    var minDepth = function(root) {
+        if(!root) return 0;
+
+        let queue = [root];
+        let depth = 0;
+
+        while (queue.length){
+
+            for (let i=0,j=queue.length;i<j;i++) {
+                let node = queue.shift();
+                if(!node.left && !node.right) return depth + 1;
+                if(node.left) queue.push(node.left);
+                if(node.right) queue.push(node.right);
+            }
+            depth++;
+        }
+
+        return depth;
+    };
+
 
 }

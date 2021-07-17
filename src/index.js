@@ -67,6 +67,7 @@ import store from './modules/redux/store';
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/3-DataType';
 // import './modules/jsHigherDesign/8-Object';
+// import './modules/jsHigherDesign/6-map';
 // import './modules/jsHigherDesign/10-Function';
 
 
@@ -76,7 +77,7 @@ import store from './modules/redux/store';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/fifthChapter';
 // import './modules/structureAndCompute/thirteenthChapter';
-import './modules/structureAndCompute/twelfthChapter';  //排序
+// import './modules/structureAndCompute/twelfthChapter';  //排序
 
 //学习数据结构与算法  第三版
 // import './modules/structureAndComputeThird/fifthChapter';   //队列
