@@ -25,6 +25,9 @@ import store from './modules/redux/store';
 // import './modules/es6/extraFuns/treeAndArr';
 // import './modules/es6/extraFuns/copy';
 // import './modules/es6/extraFuns/eachAndFind';
+// import './modules/es6/extraFuns/eventEmitter';
+// import './modules/es6/extraFuns/jsCommons';
+// import './modules/es6/extraFuns/generator';
 
 
 //compute
@@ -66,9 +69,10 @@ import store from './modules/redux/store';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/3-DataType';
-// import './modules/jsHigherDesign/8-Object';
+import './modules/jsHigherDesign/8-Object';
 // import './modules/jsHigherDesign/6-map';
 // import './modules/jsHigherDesign/10-Function';
+// import './modules/jsHigherDesign/7-iterator';
 
 
 //structureAndCompute 数据结构与算法
@@ -134,6 +138,7 @@ import store from './modules/redux/store';
 // import TestReactRedux from './modules/react/TestReactRedux';
 // import TestReactRouter from './modules/react/TestReactRouter';
 // import './modules/react/timeSlice'
+// import './modules/react/ReactTimeSlice'
 
 
 //redux

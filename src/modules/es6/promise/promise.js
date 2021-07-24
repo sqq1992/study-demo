@@ -18,7 +18,7 @@
     const FULFILLED = "FULFILLED";
     const REJECTED = "REJECTED";
 
-    class MyPromise2{
+    class MyPromise{
         constructor(executor) {
             this.state = PENDING;
             this.fulfilledQueue = [];
@@ -67,7 +67,7 @@
             };
 
 
-            let tempPromise = new MyPromise2(function (resolve,rejected) {
+            let tempPromise = new MyPromise(function (resolve,rejected) {
 
                 if(_this.state===PENDING){
 
@@ -120,6 +120,16 @@
             return tempPromise;
         }
 
+        finally(callback){
+
+            return this.then((value)=>{
+                return Promise.resolve(callback()).then(()=>{
+                    return value;
+                })
+            })
+
+        }
+
 
         _handlePromise(currentValue, currentPromise, resolve, rejected) {
 
@@ -127,8 +137,7 @@
                 rejected(new TypeError('不能是同一个promise对象'))
             }
 
-
-            if(currentValue instanceof MyPromise2){
+            if(currentValue instanceof MyPromise){
                 currentValue.then((json) => {
                     this._handlePromise(json, currentPromise, resolve, rejected);
                 }, (json) => {
@@ -145,11 +154,13 @@
         }
 
 
+
+
         static resolve(params) {
 
-            return new MyPromise2(function (resolve, rejected) {
+            return new MyPromise(function (resolve, rejected) {
 
-                if(params instanceof MyPromise2){
+                if(params instanceof MyPromise){
                     params.then(resolve, rejected);
                 }else {
                     resolve(params);
@@ -158,23 +169,25 @@
         }
 
         static rejected(params){
-            return new MyPromise2(function (resolve,innerRejected) {
+            return new MyPromise(function (resolve,innerRejected) {
                 innerRejected(params);
             })
         }
 
         static all(params){
 
-            return new MyPromise2(function (resolve,rejected) {
+            return new MyPromise(function (resolve,rejected) {
                 let result = [];
+                let index = 0;
                 if(params.length===0){
                     resolve(result);
                 }else {
                     for(let i=0,j=params.length;i<j;i++) {
-                        MyPromise2.resolve(params[i]).then((json)=>{
+                        MyPromise.resolve(params[i]).then((json)=>{
+                            index++;
                             result[i] = json;
 
-                            if(i+1===params.length){
+                            if(index===params.length){
                                 resolve(result);
                             }
                         })
@@ -183,19 +196,40 @@
             })
         }
 
+
+        static race(promises){
+            let promiseArr = Array.from(promises);
+
+            return new MyPromise((resolve,reject)=>{
+                if(promiseArr.length===0){
+                    return;
+                }else {
+                    for (let i=0,j=promiseArr.length;i<j;i++) {
+                        MyPromise.resolve(promiseArr[i]).then((json)=>{
+                            resolve(json);
+                        },(reason)=>{
+                            reject(reason);
+                        })
+                    }
+                }
+            })
+
+        }
+
+
     }
 
 
 
     //todo test
-    // let aa = new MyPromise2(function (resolve,rejected) {
+    // let aa = new MyPromise(function (resolve,rejected) {
     //         setTimeout(() => {
     //             console.log('step-1');
     //             resolve('step-2');
     //         }, 3000);
     // }).then((json)=>{
     //     console.log(json);
-    //     return new MyPromise2(function (resolve,rejected) {
+    //     return new MyPromise(function (resolve,rejected) {
     //         setTimeout(() => {
     //             resolve('step-3');
     //         }, 3000);
@@ -217,8 +251,8 @@
     // let test2 = Promise.resolve(44).then((json)=>{
     //     console.log('test1', json);
     // })
-    // let test22 = MyPromise2.resolve(44).then((json)=>{
-    //     console.log('MyPromise2.resolve', json);
+    // let test22 = MyPromise.resolve(44).then((json)=>{
+    //     console.log('MyPromise.resolve', json);
     // })
 
 
@@ -229,9 +263,9 @@
     //     console.log('Promise.reject', json);
     // })
     //
-    // let test33 = MyPromise2.rejected(44).then(()=>{
+    // let test33 = MyPromise.rejected(44).then(()=>{
     // },(json)=>{
-    //     console.log('MyPromise2.reject', json);
+    //     console.log('MyPromise.reject', json);
     // })
 
     //todo test4
@@ -239,10 +273,44 @@
     //     console.log('promise.all', json);
     // })
     //
-    // MyPromise2.all([2]).then((json)=>{
-    //     console.log('MyPromise2.all', json);
+    // MyPromise.all([new MyPromise((resolve)=>{
+    //     setTimeout(()=>{
+    //         resolve(1)
+    //     },3300)
+    // }),2]).then((json)=>{
+    //     console.log('MyPromise.all', json);
     // })
 
+    //todo test5
+    // MyPromise.race([new MyPromise((resolve)=>{
+    //     setTimeout(()=>{
+    //         resolve(1)
+    //     },3300)
+    // }),2]).then((json)=>{
+    //     console.log('MyPromise.race', json);
+    // })
+
+    //todo test6
+    // let a1 = new Promise((resolve)=>{
+    //     resolve("111")
+    // }).then((json)=>{
+    //     return 222
+    // }).finally(()=>{
+    //     return 333
+    // }).then((json)=>{
+    //     console.log('finally', json);
+    // })
+
+
+    // let a2 = new MyPromise((resolve)=>{
+    //     resolve("111")
+    // }).then((json)=>{
+    //     return 222
+    // }).finally(()=>{
+    //     return 333
+    // }).then((json)=>{
+    //     console.log('finally', json);
+    // })
 
 }
 

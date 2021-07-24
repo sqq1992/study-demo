@@ -1,4 +1,17 @@
 
+// Object.values(), Object.entries()
+{
+
+    const o = {
+        name: "sun",
+        age: 24
+    };
+    console.log('values', Object.values(o));
+    console.log('entries', Object.entries(o));
+
+
+}
+
 
 {
 

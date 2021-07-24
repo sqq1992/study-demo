@@ -42,16 +42,16 @@
 {
 
 
-    let arr = [1, 2, 3];
-    let temp = arr.reduce((p,x)=>{
-        return p.then(()=>{
-            return new Promise((resolve)=>{
-                setTimeout(() => {
-                    resolve(console.log(x))
-                }, 1000);
-            })
-        })
-    },Promise.resolve())
+    // let arr = [1, 2, 3];
+    // let temp = arr.reduce((p,x)=>{
+    //     return p.then(()=>{
+    //         return new Promise((resolve)=>{
+    //             setTimeout(() => {
+    //                 resolve(console.log(x))
+    //             }, 1000);
+    //         })
+    //     })
+    // },Promise.resolve())
 
 }
 
@@ -784,5 +784,482 @@
         return depth;
     };
 
+
+    var canPartitionKSubsets = function(nums, k) {
+
+        let sum = nums.reduce((prev,next)=>{
+            return prev + next;
+        },0)
+        if(sum%k!==0) return false;
+
+        let numsLen = nums.length;
+        let target = sum / k;
+        let bucket = new Array(k).fill(0);
+        let bucketLen = bucket.length;
+
+        let tempFunc = (index) => {
+
+            if(index===numsLen){
+                for (let i=0,j=bucket;i<j;i++) {
+                    if(bucket[i]!==target){
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            for (let i=0;i<bucketLen;i++) {
+
+                if(bucket[i]+nums[index]>target){
+                    continue;
+                }
+
+                bucket[i] += nums[index];
+
+                if(tempFunc(index+1)){
+                    return true;
+                }
+
+                bucket[i] -= nums[index];
+
+            }
+
+            return false;
+        };
+
+        return tempFunc(0);
+    };
+
+    var subsets = function(nums) {
+
+        let res = [];
+        let tempFunc = (start,arr) => {
+
+            res.push(arr.slice());
+
+            for (let i=start,j=nums.length;i<j;i++) {
+
+                if(arr.includes(nums[i])){
+                    continue;
+                }
+                arr.push(nums[i]);
+                tempFunc(i + 1, arr);
+                arr.pop();
+
+            }
+
+        };
+        tempFunc(0,[]);
+        return res;
+    };
+
+
+    var combine = function(n, k) {
+        let res = [];
+        let tempFunc = (start,arr) => {
+
+            if(arr.length===k){
+                res.push(arr.slice());
+                return;
+            }
+
+            for (let i=start;i<=n;i++) {
+
+                arr.push(i);
+                tempFunc(i + 1, arr);
+                arr.pop();
+
+            }
+
+        };
+        tempFunc(1,[]);
+        return res;
+    };
+
+    var generateParenthesis = function(n) {
+        let res = [];
+        let tempFunc = (arr,left,right) => {
+
+            if(right<left) return;
+
+            if(left<0 || right<0){
+                return;
+            }
+
+            if(left===0 && right===0){
+                res.push(arr.join(''));
+                return;
+            }
+
+            arr.push('(')
+            tempFunc(arr, left - 1, right);
+            arr.pop();
+
+            arr.push(')');
+            tempFunc(arr, left, right - 1);
+            arr.pop();
+
+        };
+
+        tempFunc([],n,n);
+        return res;
+    };
+
+
+    var fib = function(n) {
+
+        let dp = new Array(n+1).fill(0);
+        dp[1] = 1;
+
+        for (let i=2;i<=n;i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[n];
+    };
+
+
+    var coinChange = function(coins, amount) {
+
+        let dp = new Array(amount + 1).fill(amount + 1);
+        dp[0] = 0;
+
+        for (let i=1;i<=amount;i++) {
+            for (let coin of coins){
+                if(i-coin<0) continue;
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+            }
+        }
+
+
+        return dp[amount] === amount + 1 ? -1 : dp[amount];
+    };
+
+
+    var minPathSum = function(grid) {
+
+        let m = grid.length;
+        let n = grid[0].length;
+        let dp = new Array(m);
+        for (let i=0;i<m;i++) {
+            dp[i] = new Array(n).fill(0);
+        }
+
+
+        dp[0][0] = grid[0][0];
+        for (let i=1;i<m;i++){
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+        for (let i=1;i<n;i++){
+            dp[0][i] = dp[0][i - 1] + grid[0][i];
+        }
+
+        for (let i=1;i<m;i++) {
+            for (let j=1;j<n;j++) {
+                dp[i][j] = Math.min(
+                    dp[i - 1][j],
+                    dp[i][j - 1]
+                ) + grid[i][j];
+            }
+        }
+
+        return dp[m-1][n-1]
+    };
+
+    var minFallingPathSum = function(matrix) {
+
+        let m = matrix.length;
+        let n = matrix[0].length;
+
+        let dp = new Array(m);
+        for (let i=0;i<m;i++) {
+            dp[i] = new Array(n).fill(Number.MAX_SAFE_INTEGER);
+        }
+
+        for (let row=0;row<m;row++) {
+            for (let col=0;col<n;col++) {
+                let val = matrix[row][col];
+                if(row===0){
+                    dp[row][col] = Math.min(dp[row][col], val);
+                }else {
+
+                    if(col===0){
+                        dp[row][col] = Math.min(
+                            dp[row - 1][col],
+                            dp[row - 1][col + 1],
+                        ) + val;
+                    }else if(col>0 && col<n-1){
+                        dp[row][col] = Math.min(
+                            dp[row - 1][col - 1],
+                            dp[row - 1][col],
+                            dp[row - 1][col + 1],
+                        ) + val;
+                    }else if(col===n-1){
+                        dp[row][col] = Math.min(
+                            dp[row - 1][col],
+                            dp[row - 1][col - 1],
+                        ) + val;
+                    }
+                }
+
+            }
+        }
+
+        return dp[m-1][n-1]
+
+    };
+
+
+    function b() {
+        return new Promise((resolve, reject) => {
+            throw Error(10);
+            setTimeout(resolve, 200)
+        });
+    }
+    function c() {
+        throw Error(10);
+    }
+    const a = () => {
+        b().then(() => c());
+    };
+
+    //todo 1
+    // a();
+
+    //todo 2
+    const m = async () => {
+        try {
+            await b();
+        }catch (e) {
+            console.log('e', e);
+        }
+
+        console.log('323');
+        // c();
+    };
+    // m();
+
+
+    var longestPalindromeSubseq = function(s) {
+
+        let n = s.length;
+        let dp = new Array(n);
+        for (let i=0;i<n;i++){
+            dp[i] = new Array(n).fill(0);
+            dp[i][i] = 1;
+        }
+
+        for (let row=n-2;row>=0;row--){
+            for (let col=row+1;col<n;col++){
+
+                if(s[row]===s[col]){
+                    dp[row][col] = dp[row + i][col - 1] + 2;
+                }else {
+                    dp[row][col] = Math.max(
+                        dp[row+1][col],
+                        dp[row][col-1],
+                    )
+                }
+
+            }
+        }
+
+        return dp[0][n - 1];
+    };
+
+
+    Function.prototype.myBind = () => {
+        let args = Array.prototype.slice.call(arguments);
+        let context = args.shift();
+        let self = this;
+
+        let fBind = function () {
+            return self.apply(this instanceof fBind ? this : context || window, args.concat(arguments));
+        };
+        fBind.prototype = Object.create(this.prototype);
+
+        return fBind;
+    };
+
+
+    var maxSubArray = function(nums) {
+
+        let len = nums.length;
+        let dp = new Array(len).fill(Number.MIN_SAFE_INTEGER);
+        dp[0] = nums[0];
+
+        for (let i=1;i<len;i++){
+            dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+        }
+
+
+        return Math.max(...dp)
+    };
+
+    var minDistance = function(word1, word2) {
+
+        let word1Len = word1.length;
+        let word2Len = word2.length;
+        let dp = new Array(word1Len + 1);
+        for (let i=0;i<=word1Len;i++){
+            dp[i] = new Array(word2Len + 1).fill(0);
+        }
+        for (let i=1;i<=word1Len;i++){
+            dp[i][0] = i;
+        }
+        for (let i=1;i<=word2Len;i++){
+            dp[0][i] = i;
+        }
+
+        for (let row=1;row<=word1Len;row++) {
+            for (let col=1;col<=word2Len;col++) {
+
+                if(word1[row-1]===word2[col-1]){
+                    dp[row][col] = dp[row - 1][col - 1];
+                }else {
+                    dp[row][col] = Math.min(
+                        dp[row][col - 1],
+                        dp[row - 1][col],
+                        dp[row - 1][col - 1]
+                    ) + 1;
+                }
+
+            }
+        }
+
+        return dp[word1Len][word2Len]
+    };
+
+    // console.log('minDistance', minDistance("horse", "ros"));
+
+
+    var maxEnvelopes = function(envelopes) {
+
+        let len = envelopes.length;
+        envelopes = envelopes.sort((function (a,b) {
+            if(a[0]!==b[0]){
+                return a[0] - b[0];
+            }
+            return a[1] - b[1];
+        }))
+        let dp = new Array(len).fill(1);
+
+        for (let i=1;i<len;i++){
+
+            let rightArr = envelopes[i];
+            for (let m = 0; m < i; m++) {
+                let leftArr = envelopes[m];
+
+                if(rightArr[0]>leftArr[0] && rightArr[1]>leftArr[1]){
+                    dp[i] = Math.max(
+                        dp[i],
+                        dp[m]+1
+                    );
+                }
+            }
+        }
+
+
+        return Math.max(...dp)
+    };
+
+    var removeCoveredIntervals = function(intervals) {
+
+        let fullLen = intervals.length;
+        intervals = intervals.sort(function (a,b) {
+            if(a[0]===b[0]){
+                return a[1] - b[1];
+            }
+            return a[0] - b[0];
+        })
+
+        let combineLen = 0;
+        let left = intervals[0][0];
+        let right = intervals[0][1];
+        for (let i=1;i<fullLen;i++) {
+            let nowIntervals = intervals[i];
+            if (left <= nowIntervals[0] && right >= nowIntervals[1]) {
+                combineLen++;
+            }
+
+            if(right>=nowIntervals[0] && right<=nowIntervals[1]){
+                right = nowIntervals[1];
+            }
+
+            if(right<nowIntervals[0]){
+                left = nowIntervals[0];
+                right = nowIntervals[1];
+            }
+
+        }
+
+        return fullLen - combineLen;
+    };
+
+
+    var merge2 = function(intervals) {
+
+        let res = [];
+        intervals = intervals.sort(function (a,b) {
+            if(a[0]===b[0]){
+                return a[1] - b[1];
+            }
+            return a[0] - b[0];
+        })
+
+    };
+
+    var eraseOverlapIntervals = function(intervals) {
+        if(intervals.length<2){
+            return 0;
+        }
+
+
+        let noMergeLen = (intervals) => {
+            intervals = intervals.sort(function (a,b) {
+                return a[1] - b[1];
+            })
+
+            let len = 1;
+            let end = intervals[0][1];
+
+            for (let i=1,j=intervals.length;i<j;i++) {
+                let interval = intervals[i];
+
+                if(interval[0]>=end){
+                    len++;
+                    end = interval[1];
+                }
+
+            }
+
+            return len;
+        };
+
+
+        return intervals.length - noMergeLen(intervals);
+    };
+
+    var findMinArrowShots = function(points) {
+        if(points.length<2){
+            return 1;
+        }
+        let len = 1;
+        points = points.sort(function (a,b) {
+            return a[1] - b[1];
+        })
+        let end = points[0][1];
+        for (let i=1,j=points.length;i<j;i++) {
+            let point = points[i];
+
+            if(point[0]>end){
+                len++;
+                end = point[1];
+            }
+
+        }
+
+        return len
+    };
 
 }
