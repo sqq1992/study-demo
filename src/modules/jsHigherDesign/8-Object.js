@@ -6,9 +6,54 @@
         name: "sun",
         age: 24
     };
-    console.log('values', Object.values(o));
-    console.log('entries', Object.entries(o));
+    // console.log('values', Object.values(o));
+    // console.log('entries', Object.entries(o));
 
+}
+
+//继承
+{
+
+    //1 借助call
+    // function Parent1(){
+    //     this.name = 'parent1';
+    //     this.say = function () {
+    //         console.log('name', this.name);
+    //     };
+    // }
+    // function Child1(){
+    //     Parent1.call(this);
+    //     this.type = 'child1'
+    // }
+    // let child1 = new Child1()
+
+    //2 借助原型链
+    // function Parent2() {
+    //     this.name = 'parent2';
+    //     this.play = [1, 2, 3]
+    // }
+    // function Child2() {
+    //     this.type = 'child2';
+    // }
+    // Child2.prototype = new Parent2();
+    //
+    // var s1 = new Child2();
+    // var s2 = new Child2();
+    // s1.play.push(4);
+    // console.log(s1.play, s2.play);
+
+
+    //3 组合继承的优化
+    function Parent5 () {
+        this.name = 'parent5';
+        this.play = [1, 2, 3];
+    }
+    function Child5() {
+        Parent5.call(this);
+        this.type = 'child5';
+    }
+    Child5.prototype = Object.create(Parent5.prototype);
+    Child5.prototype.constructor = Child5;
 
 }
 
@@ -83,9 +128,10 @@
 {
 
     function object(o) {
-        function F() {
-        }
-        F.prototype = o;
+      function F() {
+
+      }
+      F.prototype = o;
         return new F();
     }
 
@@ -180,6 +226,29 @@
 
 }
 
+
+//迭代器与生成器方法
+{
+
+    class Person{
+        constructor() {
+            this.nicknames = ["sun", "sun1", "sun2"];
+        }
+
+        *[Symbol.iterator](){
+            yield* this.nicknames.entries();
+        }
+    }
+
+    //
+    // let p = new Person();
+    // for (let [idx,nickname] of p){
+    //     console.log('nickname', nickname);
+    // }
+
+
+}
+
 //抽象基类
 {
 
@@ -219,14 +288,16 @@
 // 继承内置类型
 {
 
+
     class SuperArray extends Array{
         shuffle(){
-            for(let i=this.length-1;i>0;i--) {
+            for (let i=this.length-1;i>0;i--){
                 let j = Math.floor(Math.random() * (i + 1));
                 [this[i], this[j]] = [this[j], this[i]];
             }
         }
     }
+
 
 
     // let a = new SuperArray(1, 2, 3, 4, 5);
@@ -268,9 +339,9 @@
     }
 
     //todo test
-    let a = new Bus();
-    a.first();
-    a.second();
+    // let a = new Bus();
+    // a.first();
+    // a.second();
 
 
 }

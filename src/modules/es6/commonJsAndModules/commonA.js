@@ -19,6 +19,7 @@
 console.log('a starting');
 exports.done = false;
 const b = require('./commonB');
+console.log(module.paths)
 console.log('in a, b.done =', b.done);
 exports.done = true;
 console.log('a done');

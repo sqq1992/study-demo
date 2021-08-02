@@ -64,12 +64,12 @@ import store from './modules/redux/store';
 // import './modules/letcode/LRU';
 // import './modules/letcode/LFU';
 // import './modules/letcode/Area';
-// import './modules/letcode/ExtraFunc';
+import './modules/letcode/ExtraFunc';
 // import './modules/letcode/FenZhi';
 
 //  JS高级程序设计(第四版)
 // import './modules/jsHigherDesign/3-DataType';
-import './modules/jsHigherDesign/8-Object';
+// import './modules/jsHigherDesign/8-Object';
 // import './modules/jsHigherDesign/6-map';
 // import './modules/jsHigherDesign/10-Function';
 // import './modules/jsHigherDesign/7-iterator';
@@ -126,7 +126,7 @@ import './modules/jsHigherDesign/8-Object';
 // import SuspenseTest from './modules/react/SuspenseTest';
 // import AsyncComponent from './modules/react/AsyncComponent';
 // import ReactState from './modules/react/ReactState';
-// import ReactProps from './modules/react/ReactProps';
+import ReactProps from './modules/react/ReactProps';
 // import ReactPropsForm from './modules/react/ReactPropsForm';
 // import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
@@ -145,7 +145,7 @@ import './modules/jsHigherDesign/8-Object';
 // import './modules/redux/demoRedux';
 // import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
-// import './modules/interview'
+import './modules/interview'
 
 class App  extends Component{
     render() {

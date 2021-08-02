@@ -46,7 +46,6 @@
     }
 
     // test1();
-
 }
 
 //Symbol.iterator
@@ -70,6 +69,27 @@
         }
     }
 
-    test1();
+    // test1();
 
+}
+
+//判断一个构造器函数是否是它的实例
+{
+
+    class MyNumber{
+        static [Symbol.hasInstance](instance){
+            return typeof instance === "number";
+        }
+    }
+
+    //todo 放在原型上了
+    class MyNumber2{
+        [Symbol.hasInstance](instance){
+            return typeof instance === "number";
+        }
+    }
+
+    // var num = 3;
+    // console.log('MyNumber', num instanceof MyNumber)
+    // console.log('MyNumber2', num instanceof MyNumber2.prototype)
 }

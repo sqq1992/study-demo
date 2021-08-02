@@ -204,5 +204,153 @@
         }
     }
 
+}
+
+//7
+{
+
+    const getData = () => new Promise(resolve => setTimeout(() => { resolve('data') }, 1000))
+
+
+    //1
+    // async function test () {
+    //     const data = await getData();
+    //     console.log('data: ', data);
+    //     const data2 = await getData();
+    //     console.log('data2: ', data2);
+    //     return 'success';
+    // }
+    // test().then(res => console.log(res));
+
+    //2
+    function* testG () {
+        const data = yield getData();
+        console.log('data: ', data);
+        const data2 = yield getData();
+        console.log('data2: ', data2);
+        return 'success';
+    }
+    var gen = testG();
+
+    // // 2.1 之后手动调用3次
+    // console.log(gen.next())
+    // console.log(gen.next())
+    // console.log(gen.next())
+
+    // // 2.2
+    // var dataPromise= gen.next();
+    // console.log(dataPromise);
+    // var dataPromise2 = gen.next('这个参数才会被赋给data变量');
+    // console.log(dataPromise2);
+    // var dataPromise3 = gen.next('这个参数才会被赋给data2变量');
+    // console.log(dataPromise3);
+
+}
+
+
+//8
+{
+
+    function* gen() {
+
+        while (true){
+            try {
+                yield "sun1992"
+            }catch (e) {
+                console.log(e)
+            }
+        }
+
+    }
+
+    let g = gen();
+    // console.log(g.next());
+    // console.log(g.next());
+    // g.throw(new Error('错误'))
+
+
+}
+
+//9
+{
+
+    const getData = () => new Promise(resolve => setTimeout(() => { resolve('data') }, 1000))
+
+    function* testG () { // 这个就是上面的那个案例
+        const data = yield getData();
+        console.log('data: ', data);
+        const data2 = yield getData();
+        console.log('data2: ', data2);
+        return 'success';
+    }
+
+    function asyncToGenerator (genFunc) {
+
+        return function () {
+            let gen = genFunc.apply(this, arguments);
+            return new Promise((resolve,reject)=>{
+
+                function step(key,arg) {
+
+                    let generateResult = gen[key](arg);
+                    let {value,done} = generateResult
+
+                    if(done){
+                        resolve(value);
+                    }else {
+                        Promise.resolve(value).then((val)=>{
+                            step('next', val);
+                        })
+                    }
+
+                }
+                step("next")
+
+            })
+        }
+    }
+
+
+    async function span(gen) {
+        return new Promise(((resolve, reject) => {
+            let g = gen();
+
+            let step = (nextF) => {
+                let genResult;
+                try {
+                    genResult = nextF();
+                }catch (e) {
+                    return reject(e);
+                }
+                let {value, done} = genResult;
+                if(done){
+                    return resolve(value);
+                }
+
+                Promise.resolve(value).then((val)=>{
+                    step(function () {
+                        return g.next(val);
+                    })
+                })
+
+            };
+
+            step(function () {
+                return g.next(undefined);
+            })
+        }));
+    }
+
+
+    //1
+    // var gen = asyncToGenerator(testG)
+    // gen().then(res => console.log(res))
+
+    //2
+    // let a = span(testG);
+    // a.then((val)=>{
+    //     console.log('a', val);
+    // })
+
 
 }

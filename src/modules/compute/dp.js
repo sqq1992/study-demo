@@ -11,6 +11,7 @@
 // 算法返回 6，选择前两件物品装进背包，总重量 3 小于W，可以获得最大价值 6。
 {
 
+
     var maxVal = function(N,W,wt,val) {
 
         let dp = new Array(N+1);

@@ -1262,4 +1262,311 @@
         return len
     };
 
+    var canJump = function(nums) {
+        let n = nums.length;
+        let farthest = 0;
+        for (let i=0;i<n-1;i++) {
+            farthest = Math.max(farthest, i+nums[i]);
+            if(farthest<=i) return false;
+        }
+
+        return farthest >= n - 1;
+    };
+
+
+    var jump = function(nums) {
+        let n = nums.length;
+        let jumps = 0;
+        let farthest = 0;
+        let end = 0;
+        for (let i=0;i<n-1;i++) {
+            farthest = Math.max(farthest, nums[i] + i);
+            if(end===i){
+                jumps++;
+                end = farthest;
+            }
+        }
+        return jumps;
+
+    };
+
+    var canPartition = function(nums) {
+
+        let sum = nums.reduce((prev, next) => {
+            return prev + next;
+        }, 0);
+        if(sum%2!==0) return false;
+        let n = nums.length;
+        sum = sum / 2;
+        let dp = new Array(n + 1);
+        for (let i=0;i<=n;i++){
+            dp[i] = new Array(sum + 1).fill(false);
+            dp[i][0] = true;
+        }
+
+        for (let i=1;i<=n;i++) {
+            for (let j=1;j<=sum;j++) {
+
+                if(j-nums[i-1]<0) {
+                    dp[i][j] = dp[i - 1][j];
+                }else {
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
+                }
+
+            }
+        }
+
+
+
+        return dp[n][sum]
+    };
+
+    var merge2 = function(intervals) {
+
+        intervals = intervals.sort(function (a,b) {
+            return a[0] - b[0];
+        })
+        let res = [intervals[0]];
+        for (let i=1,j=intervals.length;i<j;i++) {
+            let cur = intervals[i];
+            let last = res[res.length - 1];
+
+            if(cur[0]<=last[1]){
+                last[1] = Math.max(cur[1], last[1]);
+            }else {
+                res.push(cur);
+            }
+        }
+
+        return res;
+    };
+
+
+    var intervalIntersection = function(firstList, secondList) {
+
+        let res = [];
+        let firstIndex = 0;
+        let secondIndex = 0;
+
+        while (firstIndex<firstList.length && secondIndex<secondList.length) {
+            let firstArr = firstList[firstIndex];
+            let secondArr = secondList[secondIndex];
+
+            if(firstArr[0]<=secondArr[1] && firstArr[1]>=secondArr[0]){
+                res.push([Math.max(firstArr[0],secondArr[0]),Math.min(firstArr[1],secondArr[1])])
+            }
+
+            if(firstArr[1]<=secondArr[1]){
+                firstIndex++;
+            }else {
+                secondIndex++
+            }
+
+        }
+
+        return res;
+    };
+
+
+    var threeSum = function(nums) {
+
+        nums = nums.sort(function (a,b) {
+            return a-b;
+        })
+        let nsums = (nums,n,start,target) => {
+            let size = nums.length;
+            let res = [];
+            if(n<2 || size<n) return res;
+
+            if(n===2){
+                let left = start;
+                let right = size - 1;
+                while (left<right){
+                    let leftVal = nums[left];
+                    let rightVal = nums[right];
+                    let sumVal = leftVal + rightVal;
+
+                    if(sumVal<target){
+                        while (left<right && nums[left]===leftVal) left++;
+                    }else if(sumVal>target){
+                        while (left<right && nums[right]===rightVal) right--;
+                    }else {
+                        res.push([leftVal, rightVal]);
+                        while (left<right && nums[left]===leftVal) left++;
+                        while (left<right && nums[right]===rightVal) right--;
+                    }
+
+                }
+
+            }else {
+                for (let i=start;i<size;i++) {
+                    let tempArr = nsums(nums, n - 1, i + 1, target - nums[i]);
+
+                    res = res.concat(tempArr.map((elem)=>{
+                        return elem.concat(nums[i])
+                    }))
+
+                    while (i<size-1 && nums[i]===nums[i+1]) i++;
+                }
+            }
+
+
+            return res;
+        };
+
+        return nsums(nums,3,0,0)
+    };
+
+    // console.log('threeSum', threeSum([-1, 0, 1, 2, -1, -4]));
+
+
+    var generate = function (list) {
+
+        let record = {};
+        let result = [];
+
+        for (let obj of list) {
+
+            record[obj.id] = !record[obj.id] ? obj : {...obj, ...record[obj.id]};
+            const treeDom = record[obj.id];
+
+            if(obj.parentId!==undefined){
+
+                if(!record[obj.parentId]){
+                    record[obj.parentId] = {};
+                }
+
+                if(!record[obj.parentId].children){
+                    record[obj.parentId].children = [];
+                }
+
+                record[obj.parentId].children.push(treeDom);
+            }else {
+                result.push(treeDom);
+            }
+
+        }
+
+        return result;
+    };
+
+    // console.log('generate', generate([
+    //     {id: '001', name: '节点1'},
+    //     {id: '0011', parentId: '001', name: '节点1-1'},
+    //     {id: '00111', parentId: '0011', name: '节点1-1-1'},
+    //     {id: '002', name: '节点2'},
+    // ]));
+
+
+    function debounce(fn,delay) {
+        let timer = null;
+        return function () {
+            let args = arguments;
+            if(timer) return;
+            timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = null;
+            }, delay);
+        };
+    }
+
+    function throttle(fn,delay) {
+        let timer = null;
+        return function () {
+            let args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                fn.apply(this, args);
+            }, delay);
+        };
+    }
+
+    Function.prototype.MyCall = function (context = window, args) {
+        let func = this;
+        let fn = Symbol.for('fn');
+        context[fn] = func;
+
+        let res = context[fn](...args);
+        delete context[fn]
+        return res;
+    };
+
+    Function.prototype.MyApply = function (context=window,args=[]) {
+        let func = this;
+        let fn = Symbol.for('fn');
+        context[fn] = func;
+
+        let res = context[fn](args);
+        delete context[fn];
+        return res;
+    }
+
+    var nextGreaterElement = function(nums1, nums2) {
+
+        let stack = [];
+        let record = new Map();
+        for (let i=0,j=nums2.length;i<j;i++) {
+            let nums2Val = nums2[i];
+
+            while (stack.length && stack[stack.length-1]<nums2Val){
+                let tempVal = stack.pop();
+                record.set(tempVal, nums2Val);
+            }
+
+            stack.push(nums2Val);
+        }
+
+        return nums1.map((elem)=>{
+            if(record.has(elem)){
+                return record.get(elem);
+            }
+            return -1;
+        })
+    };
+
+    var dailyTemperatures = function(temperatures) {
+
+        let len = temperatures.length;
+        let stack = [];
+        let result = Array.from(temperatures).fill(0);
+        for (let i=0;i<len;i++) {
+            let temperature = temperatures[i];
+
+            while (stack.length && temperatures[stack[stack.length-1]]<temperature){
+                let previousIndex = stack.pop();
+                result[previousIndex] = i - previousIndex;
+            }
+
+            stack.push(i);
+        }
+
+        return result
+    };
+
+    console.log('dailyTemperatures',dailyTemperatures([73,74,75,71,69,72,76,73]))
+
+
+    var nextGreaterElements = function(nums) {
+
+        let len = nums.length;
+        let stack = [];
+        let result = Array.from(nums).fill(-1);
+
+        for (let i=0,j=len*2;i<j;i++) {
+            let index = i % len;
+            let num = nums[index];
+
+            while (stack.length && nums[stack[stack.length-1]]<num) {
+                result[stack.pop()] = num;
+            }
+
+            stack.push(index);
+        }
+
+        return result;
+    };
+
+
+
+
 }

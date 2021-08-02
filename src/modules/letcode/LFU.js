@@ -111,6 +111,15 @@ class LFUCache {
 
 }
 
+
+
+
+
+
+
+
+
+
 //todo test
 {
     let lfu1 = new LFUCache(2);
