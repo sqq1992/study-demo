@@ -6,16 +6,19 @@ function createStore(reducer,initState) {
     let state;
     let listeners = [];
 
-    if(typeof initState==="function"){
-        return initState(createStore)(reducer, null);
-    }
 
-    let getState = function(){
+    const getState = () => {
         return state;
-    }
+    };
 
-    let subscribable = function (fn) {
+    const dispatch = (action) => {
+        state = reducer(state,action);
+        listeners.forEach((fn)=>{
+            fn();
+        })
+    };
 
+    const subscribable = (fn) => {
         listeners.push(fn);
         return () => {
             listeners = listeners.filter((elem)=>{
@@ -24,80 +27,37 @@ function createStore(reducer,initState) {
         };
     };
 
-    let dispatch = function (action) {
-        state = reducer(state, action);
-        listeners.forEach((fn)=>{
-            fn && fn();
-        })
-    };
 
-    dispatch({type:`sun${Math.random()}`})
+    dispatch(`sun${Math.random()}`);
 
     return{
-        dispatch,
         getState,
+        dispatch,
         subscribable
     }
+
 }
 
 function combineReducers(reducers) {
     return function (state = {}, action) {
-        let newState = {};
-        let hasChanged = false;
-        for(let key in reducers){
-            const prevState = state[key];
-            const currentNewState = reducers[key](prevState, action);
-            newState[key] = currentNewState;
 
-            hasChanged = hasChanged || prevState !== currentNewState;
+        let newState = {};
+        for (let key in reducers){
+
+            newState[key] = reducers[key](state, action);
+
         }
 
-        return hasChanged ? newState : state;
     };
 }
 
 function compose(...func) {
 
-    if(func.length===0){
-        return arg => arg;
-    }
 
-    if(func.length===1){
-        return func[0]
-    }
-
-    return func.reduce((prev,next)=>{
-        return function (...args) {
-            return prev(next(...args))
-        };
-    })
 }
 
 function applyMiddleware(...middleWares) {
-    return function (createStore) {
-        return function (...args) {
-            let store = createStore(...args);
-            let dispatch = function () {
-                throw Error('还未初始化')
-            };
 
-            const middlewareApi = {
-                getState:store.getState,
-                dispatch: (...args) => dispatch(...args)
-            };
-
-            let middles = middleWares.map((elem)=>{
-                return elem(middlewareApi);
-            })
-
-            dispatch = compose(...middles)(store.dispatch);
-
-            return{
-                ...store,
-                dispatch
-            }
-        }
-    }
 }
 
 function loggerMiddleWares1({dispatch,getState}) {
