@@ -1140,4 +1140,42 @@ Bst.prototype.init = function (dataList) {
         return generate(1, n);
     };
 
+
+    // var generateTrees = function(n) {
+    //
+    //     let record = {}
+    //     let tempFunc = (lo,hi)=>{
+    //
+    //         let key = lo+'.'+hi;
+    //         if(record[key]!==undefined){
+    //             return record[key]
+    //         }
+    //
+    //         if(lo>hi) return [null];
+    //
+    //         let res = []
+    //         for(let mid = lo;mid<hi;mid++){
+    //
+    //             let leftRes = tempFunc(lo,mid-1);
+    //             let rightRes = tempFunc(mid+1,hi);
+    //
+    //             for(let leftNode of leftRes){
+    //                 for(let rightNode of rightRes){
+    //                     let root = new TreeNode(mid);
+    //                     root.left = leftNode;
+    //                     root.right = rightNode;
+    //                     res.push(root);
+    //                 }
+    //             }
+    //         }
+    //
+    //         record[key] = res;
+    //         return res
+    //     }
+    //
+    //     return tempFunc(1,n);
+    // };
+
+    console.log('generateTrees',generateTrees(3));
+
 }

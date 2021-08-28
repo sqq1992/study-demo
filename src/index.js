@@ -48,7 +48,7 @@ import store from './modules/redux/store';
 
 //letcode
 // import "./modules/letcode/Queue";
-// import "./modules/letcode/Recursion";
+import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
@@ -60,7 +60,7 @@ import store from './modules/redux/store';
 // import './modules/letcode/LinkedList';
 // import './modules/letcode/Back';
 // import './modules/letcode/Bfs';
-import './modules/letcode/Dp';
+// import './modules/letcode/Dp';
 // import './modules/letcode/LRU';
 // import './modules/letcode/LFU';
 // import './modules/letcode/Area';
@@ -99,6 +99,7 @@ import './modules/letcode/Dp';
 // import Command from './modules/jsDesign/command';
 // import './modules/jsDesign/combination';
 // import './modules/jsDesign/template';
+// import './modules/jsDesign/dutyChain';
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -109,6 +110,7 @@ import './modules/letcode/Dp';
 //interview
 // import './modules/interview/promise'
 // import './modules/interview/jsonUtils'
+import './modules/interview/lodashUtils'
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
 // import Flex from './modules/css/flex/Flex';
@@ -128,7 +130,7 @@ import './modules/letcode/Dp';
 // import ReactState from './modules/react/ReactState';
 import ReactProps from './modules/react/ReactProps';
 // import ReactPropsForm from './modules/react/ReactPropsForm';
-// import ReactPublicState from './modules/react/ReactPublicState';
+import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
 // import ReactSequence from './modules/react/ReactSequence';
 // import ReactUpdateState from './modules/react/ReactUpdateState';
@@ -143,9 +145,9 @@ import ReactProps from './modules/react/ReactProps';
 
 //redux
 // import './modules/redux/demoRedux';
-import './modules/redux/demoRedux2'
+// import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
-// import './modules/interview'
+import './modules/interview'
 
 class App  extends Component{
     render() {

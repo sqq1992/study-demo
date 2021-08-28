@@ -21,7 +21,6 @@ const CtxContainer = ({ children }) => {
         }, 1000)
         return () => clearInterval(timer)
     }, [setCnt])
-
     return <ValueCtx.Provider value={cnt}>{children}</ValueCtx.Provider>
 }
 
