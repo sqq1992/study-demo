@@ -11,6 +11,7 @@ import store from './modules/redux/store';
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
 // import './modules/es6/commonJsAndModules/es6A';
+// import './modules/es6/commonJsAndModules/mainEs6';
 // import './modules/es6/promise/promise';
 // import './modules/es6/promise/MyPromise';
 // import './modules/es6/prototype/prototype';
@@ -28,6 +29,8 @@ import store from './modules/redux/store';
 // import './modules/es6/extraFuns/eventEmitter';
 // import './modules/es6/extraFuns/jsCommons';
 // import './modules/es6/extraFuns/generator';
+// import './modules/es6/extraFuns/proxy';
+import './modules/es6/extraFuns/promise';
 
 
 //compute
@@ -48,7 +51,7 @@ import store from './modules/redux/store';
 
 //letcode
 // import "./modules/letcode/Queue";
-import "./modules/letcode/Recursion";
+// import "./modules/letcode/Recursion";
 // import "./modules/letcode/BinarySearch";
 // import './modules/letcode/Hash';
 // import './modules/letcode/TwoPoints';
@@ -110,7 +113,7 @@ import "./modules/letcode/Recursion";
 //interview
 // import './modules/interview/promise'
 // import './modules/interview/jsonUtils'
-import './modules/interview/lodashUtils'
+// import './modules/interview/lodashUtils'
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
 // import Flex from './modules/css/flex/Flex';
@@ -147,7 +150,7 @@ import ReactPublicState from './modules/react/ReactPublicState';
 // import './modules/redux/demoRedux';
 // import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
-import './modules/interview'
+// import './modules/interview'
 
 class App  extends Component{
     render() {

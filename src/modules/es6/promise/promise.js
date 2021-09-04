@@ -3,6 +3,28 @@
 //test
 {
 
+    //1
+    // let aaPro = Promise.all([
+    //     new Promise((resolve,reject)=>{
+    //         resolve("first")
+    //     }),
+    //     new Promise((resolve,reject)=>{
+    //         reject("second")
+    //     }),
+    // ]).then((json)=>{
+    //     console.log('json', json);
+    // },(error)=>{
+    //     console.log('error', error);
+    // }).catch((e)=>{
+    //     console.log('e', e);
+    // })
+
+    //2
+    new Promise((resolve)=>{
+        resolve("11")
+    }).then(32).then((json)=>{
+        console.log('json2', json);
+    })
 
 
 

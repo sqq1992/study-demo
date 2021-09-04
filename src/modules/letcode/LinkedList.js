@@ -284,6 +284,7 @@ LList.prototype = {
         return tempFunc(head, n);
     };
 
+
 }
 
 
@@ -681,4 +682,151 @@ LList.prototype = {
         return reverseHead
     };
 
+}
+
+//23
+{
+
+
+    var mergeKLists = function(lists) {
+
+        if(lists.length===0) return null;
+
+        class MinHeap{
+            constructor(data) {
+                this.arr = [...data];
+                this.size = this.arr.length;
+            }
+
+            getLeft(index){
+                return index * 2 + 1;
+            }
+
+            getRight(index){
+                return index * 2 + 2;
+            }
+
+            swap(arr,a,b){
+                let temp = arr[a];
+                arr[a] = arr[b];
+                arr[b] = temp;
+            }
+
+            minHeapify(index){
+
+                if(index>=this.size){
+                    return;
+                }
+                let min = index;
+                let left = this.getLeft(index);
+                let right = this.getRight(index);
+
+                if(left<this.size && this.arr[min].val>this.arr[left].val){
+                    min = left;
+                }
+
+                if(right<this.size && this.arr[min].val>this.arr[right].val){
+                    min = right;
+                }
+
+                if(min===index){
+                    return;
+                }
+
+                this.swap(this.arr, min, index);
+                return this.minHeapify(min);
+            }
+
+            rebuildHeap(){
+                const L = Math.floor(this.size / 2);
+                for (let i=L-1;i>=0;i--){
+                    this.minHeapify(i);
+                }
+            }
+
+
+            isHeap(){
+                const L = Math.floor(this.size / 2);
+                for (let i=L-1;i>=0;i--){
+
+                    let currentVal = this.arr[i].val;
+                    let leftVal = this.arr[this.getLeft(i)] !== undefined ? this.arr[this.getLeft(i)].val : Number.MAX_SAFE_INTEGER;
+                    let rightVal = this.arr[this.getRight(i)] !== undefined ? this.arr[this.getRight(i)].val : Number.MAX_SAFE_INTEGER;
+
+                    let min = Math.min(currentVal, leftVal, rightVal);
+
+                    if(min!==currentVal){
+                        return false;
+                    }
+
+                }
+
+                return true;
+            }
+
+            insert(node){
+
+                this.arr[this.size] = node;
+                this.size++;
+
+                if(this.isHeap()){
+                    return;
+                }
+
+                this.rebuildHeap();
+            }
+
+            delete(index){
+
+                if(index>=this.size){
+                    return;
+                }
+
+                this.arr.splice(index, 1);
+                this.size--;
+
+                if(this.isHeap()){
+                    return;
+                }
+
+                this.rebuildHeap();
+            }
+
+            extract(){
+                let removeNode = this.arr[0];
+                this.delete(0);
+                return removeNode;
+            }
+
+            getSize(){
+                return this.arr.length;
+            }
+
+
+        }
+
+        let tempHead = new ListNode(-1);
+        let p = tempHead;
+        let minHead = new MinHeap(lists);
+        for (let list of lists){
+            if((Array.isArray(list) && list.length) || list!==null){
+                minHead.insert(list);
+            }
+        }
+
+
+        while (minHead.getSize()>0) {
+
+            let node = minHead.extract();
+            p.next = node;
+            if(node.next){
+                minHead.insert(node.next)
+            }
+            p = p.next;
+        }
+
+        return tempHead.next
+    };
+
+    // console.log('mergeKLists', mergeKLists([[],[]]));
 }
