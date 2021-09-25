@@ -14,7 +14,8 @@
         return 3
     }
 
-    var g = gen();
+    //
+    // var g = gen();
     // console.log('x', typeof g);
     // console.log(g.next())
     // console.log(g.next())
@@ -78,36 +79,6 @@
 
 //4
 {
-
-    // async function test() {
-    //     let arr = [4, 2, 1]
-    //     arr.forEach(async item => {
-    //         const res = await handle(item)
-    //         console.log(res)
-    //     })
-    //     console.log('结束')
-    // }
-
-    // async function test() {
-    //     let arr = [4, 2, 1];
-    //     for (let num of arr){
-    //         const res = await handle(num);
-    //         console.log(res);
-    //     }
-    //     console.log('结束')
-    // }
-
-
-    async function test() {
-        let arr = [4, 2, 1];
-        let iterator = arr[Symbol.iterator]();
-        let res = iterator.next();
-        // while (!res.done){
-        //     let value = res.value;
-        //     console.log(value);
-        // }
-    }
-
     function handle(x) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -116,7 +87,42 @@
         })
     }
 
-    test()
+
+    async function test1() {
+        let arr = [4, 2, 1]
+        arr.forEach(async item => {
+            const res = await handle(item)
+            console.log(res)
+        })
+        console.log('结束')
+    }
+
+    //1
+    // test1();
+
+    async function test() {
+        let arr = [4, 2, 1];
+        for (let num of arr){
+            const res = await handle(num);
+            console.log(res);
+        }
+        console.log('结束')
+    }
+
+    //2
+    // test();
+
+    // async function test() {
+    //     let arr = [4, 2, 1];
+    //     let iterator = arr[Symbol.iterator]();
+    //     let res = iterator.next();
+    //     // while (!res.done){
+    //     //     let value = res.value;
+    //     //     console.log(value);
+    //     // }
+    // }
+
+    // test()
 
 
 }

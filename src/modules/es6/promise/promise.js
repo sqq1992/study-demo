@@ -20,11 +20,11 @@
     // })
 
     //2
-    new Promise((resolve)=>{
-        resolve("11")
-    }).then(32).then((json)=>{
-        console.log('json2', json);
-    })
+    // new Promise((resolve)=>{
+    //     resolve("11")
+    // }).then(32).then((json)=>{
+    //     console.log('json2', json);
+    // })
 
 
 

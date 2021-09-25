@@ -30,7 +30,7 @@ import store from './modules/redux/store';
 // import './modules/es6/extraFuns/jsCommons';
 // import './modules/es6/extraFuns/generator';
 // import './modules/es6/extraFuns/proxy';
-import './modules/es6/extraFuns/promise';
+// import './modules/es6/extraFuns/promise';
 
 
 //compute
@@ -150,7 +150,7 @@ import ReactPublicState from './modules/react/ReactPublicState';
 // import './modules/redux/demoRedux';
 // import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
-// import './modules/interview'
+import './modules/interview'
 
 class App  extends Component{
     render() {

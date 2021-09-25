@@ -11,36 +11,57 @@
 
 }
 
+// prototype
+{
+
+    function Person() {
+
+    }
+
+
+    //
+    // let person1 = new Person();
+    // console.log(Person.prototype.isPrototypeOf(person1));
+
+}
+
 //继承
 {
 
     //1 借助call
-    // function Parent1(){
-    //     this.name = 'parent1';
-    //     this.say = function () {
-    //         console.log('name', this.name);
-    //     };
-    // }
-    // function Child1(){
-    //     Parent1.call(this);
-    //     this.type = 'child1'
-    // }
+    function Parent1(){
+        this.name = 'parent1';
+        this.say = function () {
+            console.log('name', this.name);
+        };
+    }
+
+    Parent1.prototype.sayParent = function () {
+        console.log('sayParent')
+    };
+
+    function Child1(){
+        Parent1.call(this);
+        this.type = 'child1'
+    }
     // let child1 = new Child1()
 
     //2 借助原型链
-    // function Parent2() {
-    //     this.name = 'parent2';
-    //     this.play = [1, 2, 3]
-    // }
-    // function Child2() {
-    //     this.type = 'child2';
-    // }
-    // Child2.prototype = new Parent2();
+    function Parent2() {
+        this.name = 'parent2';
+        this.play = [1, 2, 3]
+    }
+    function Child2() {
+        this.type = 'child2';
+    }
+    Child2.prototype = new Parent2();
+
     //
-    // var s1 = new Child2();
-    // var s2 = new Child2();
+    // let s1 = new Child2();
+    // let s2 = new Child2();
     // s1.play.push(4);
     // console.log(s1.play, s2.play);
+    //
 
 
     //3 组合继承的优化

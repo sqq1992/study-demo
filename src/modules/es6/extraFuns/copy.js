@@ -65,6 +65,7 @@
     // let a1 = deepCopy(a);
     // console.log('', a, a1);
 
+
 }
 
 //3
@@ -118,9 +119,9 @@
 
 
     //1
-    let a = {a: 1, b: 2, c: {d:4, e: 5}};
-    a.a = a;
-    let a1 = deepCopy3(a);
-    console.log('deepCopy3', a, a1);
+    // let a = {a: 1, b: 2, c: {d:4, e: 5}};
+    // a.a = a;
+    // let a1 = deepCopy3(a);
+    // console.log('deepCopy3', a, a1);
 
 }

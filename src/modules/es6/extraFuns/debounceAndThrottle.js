@@ -16,6 +16,23 @@
         };
     }
 
+    // function debounce(func,wait) {
+    //     let timer = null;
+    //     return function () {
+    //         let context = this;
+    //         let args = arguments;
+    //         if(timer){
+    //             clearTimeout(timer);
+    //         }
+    //         timer = setTimeout(()=>{
+    //             console.log('args', args);
+    //             func.apply(context, args);
+    //         },wait)
+    //
+    //     };
+    // }
+
+
     //todo test1
     // let show = debounce(function () {
     //     console.log('show-1')
@@ -29,17 +46,36 @@
 //节流
 {
 
-    function throttle(fn, time) {
+    // function throttle(fn, time) {
+    //     let timer = null;
+    //     return function()  {
+    //         if(!timer){
+    //             timer = setTimeout(() => {
+    //                 fn.apply(this, arguments);
+    //                 timer = null;
+    //             }, time);
+    //         }
+    //     };
+    // }
+
+
+    function throttle(func,time) {
+
         let timer = null;
-        return function()  {
-            if(!timer){
-                timer = setTimeout(() => {
-                    fn.apply(this, arguments);
-                    timer = null;
-                }, time);
-            }
-        };
+        return function () {
+            let context = this;
+            let args = arguments;
+
+            if(timer) return;
+
+            timer = setTimeout(()=>{
+                func.apply(context, args);
+                timer = null;
+            },time)
+
+        }
     }
+
 
     //todo test1
     // let show = throttle(function () {
