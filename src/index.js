@@ -10,7 +10,7 @@ import store from './modules/redux/store';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
-// import './modules/es6/commonJsAndModules/es6A';
+import './modules/es6/commonJsAndModules/es6A';
 // import './modules/es6/commonJsAndModules/mainEs6';
 // import './modules/es6/promise/promise';
 // import './modules/es6/promise/MyPromise';
