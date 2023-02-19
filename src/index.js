@@ -10,7 +10,7 @@ import store from './modules/redux/store';
 
 //es6
 // import './modules/es6/commonJsAndModules/comBineIndex';
-import './modules/es6/commonJsAndModules/es6A';
+// import './modules/es6/commonJsAndModules/es6A';
 // import './modules/es6/commonJsAndModules/mainEs6';
 // import './modules/es6/promise/promise';
 // import './modules/es6/promise/MyPromise';
@@ -104,6 +104,9 @@ import './modules/es6/commonJsAndModules/es6A';
 // import './modules/jsDesign/template';
 // import './modules/jsDesign/dutyChain';
 
+// 你所不知道的javascript
+import './modules/not-know-javascript/first-chapter'
+
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
 
@@ -117,6 +120,7 @@ import './modules/es6/commonJsAndModules/es6A';
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
 // import Flex from './modules/css/flex/Flex';
+import FlexOveflow from './modules/css/flexOverflow/FlexOveflow';
 // import CssCombine from './modules/css/cssCombine/CssCombine';
 
 //hooks
@@ -131,9 +135,9 @@ import './modules/es6/commonJsAndModules/es6A';
 // import SuspenseTest from './modules/react/SuspenseTest';
 // import AsyncComponent from './modules/react/AsyncComponent';
 // import ReactState from './modules/react/ReactState';
-import ReactProps from './modules/react/ReactProps';
+// import ReactProps from './modules/react/ReactProps';
 // import ReactPropsForm from './modules/react/ReactPropsForm';
-import ReactPublicState from './modules/react/ReactPublicState';
+// import ReactPublicState from './modules/react/ReactPublicState';
 // import ReactUseMemo from './modules/react/ReactUseMemo';
 // import ReactSequence from './modules/react/ReactSequence';
 // import ReactUpdateState from './modules/react/ReactUpdateState';
@@ -150,13 +154,14 @@ import ReactPublicState from './modules/react/ReactPublicState';
 // import './modules/redux/demoRedux';
 // import './modules/redux/demoRedux2'
 // import TestRedux from "./modules/redux/TestRedux";
-import './modules/interview'
+// import './modules/interview'
 
 class App  extends Component{
     render() {
 
         return (
             <div>
+                {/*<FlexOveflow />*/}
                 {/*<Command />*/}
                 {/*<TestRedux />*/}
                 {/*<UseState />*/}

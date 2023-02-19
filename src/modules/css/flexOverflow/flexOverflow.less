@@ -1,0 +1,55 @@
+
+.zc-layout{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: auto;
+  flex: auto;
+  min-height: 0;
+  background: #f0f2f5;
+  flex-direction: row;
+
+  .left-cont{
+    height: 100vh;
+    min-height: 600px;
+    flex: 0 0 64px;
+    max-width: 64px;
+    min-width: 64px;
+    width: 64px;
+  }
+
+
+
+  ////////
+
+
+
+  .right-cont{
+    flex: auto;
+    min-height: 0;
+  }
+
+  .layout-container{
+    display: flex;
+    background: #fff;
+    height: 100vh;
+    min-height: 600px;
+    flex-direction: row;
+    overflow: hidden;
+  }
+  .layout-left{
+    display: flex;
+    width: 280px;
+    position: relative;
+    background: red;
+  }
+  .layout-middle{
+    background: #fff;
+    flex: 1;
+  }
+  .layout-right{
+    min-width: 384px;
+    position: relative;
+    max-width: 1000px;
+  }
+
+}

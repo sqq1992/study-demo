@@ -1,6 +1,29 @@
+
+
 /**
- *  map等数据结构
+ *  集合引用类型
  */
+
+//Array
+{
+
+    // let test1 = Array.from('msde');
+    // console.log(test1);
+
+
+    //
+    // let test2 = {
+    //     0:0,
+    //     1:1,
+    //     2:2,
+    //     length:3
+    // }
+    // console.log('test2',Array.from(test2));
+
+
+}
+
+
 
 //map
 
