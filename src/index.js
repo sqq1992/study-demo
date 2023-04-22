@@ -105,7 +105,9 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/dutyChain';
 
 // 你所不知道的javascript
-import './modules/not-know-javascript/first-chapter'
+// import './modules/not-know-javascript/first-chapter'
+// import './modules/not-know-javascript/third-chapter'
+import './modules/not-know-javascript/fifth-chapter'
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
@@ -120,7 +122,7 @@ import './modules/not-know-javascript/first-chapter'
 // import './modules/interview';
 // import Bfc from "./modules/css/bfc/Bfc";
 // import Flex from './modules/css/flex/Flex';
-import FlexOveflow from './modules/css/flexOverflow/FlexOveflow';
+// import FlexOveflow from './modules/css/flexOverflow/FlexOveflow';
 // import CssCombine from './modules/css/cssCombine/CssCombine';
 
 //hooks
