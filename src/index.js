@@ -150,6 +150,7 @@ import './modules/not-know-javascript/fifth-chapter'
 // import TestReactRouter from './modules/react/TestReactRouter';
 // import './modules/react/timeSlice'
 // import './modules/react/ReactTimeSlice'
+import KeepAlive from "./modules/react-keep-alive/TestKeepAlive"
 
 
 //redux
@@ -163,6 +164,7 @@ class App  extends Component{
 
         return (
             <div>
+                <KeepAlive />
                 {/*<FlexOveflow />*/}
                 {/*<Command />*/}
                 {/*<TestRedux />*/}
