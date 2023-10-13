@@ -107,13 +107,13 @@ import store from './modules/redux/store';
 // 你所不知道的javascript
 // import './modules/not-know-javascript/first-chapter'
 // import './modules/not-know-javascript/third-chapter'
-import './modules/not-know-javascript/fifth-chapter'
+// import './modules/not-know-javascript/fifth-chapter'
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
 
 //JavaScript正则表达式迷你书
-// import './modules/regExp/firstChapter'  //正则表达式字符匹配攻略
+import './modules/regExp/firstChapter'  //正则表达式字符匹配攻略
 
 //interview
 // import './modules/interview/promise'
@@ -150,7 +150,7 @@ import './modules/not-know-javascript/fifth-chapter'
 // import TestReactRouter from './modules/react/TestReactRouter';
 // import './modules/react/timeSlice'
 // import './modules/react/ReactTimeSlice'
-import KeepAlive from "./modules/react-keep-alive/TestKeepAlive"
+// import KeepAlive from "./modules/react-keep-alive/TestKeepAlive"
 
 
 //redux
@@ -164,7 +164,7 @@ class App  extends Component{
 
         return (
             <div>
-                <KeepAlive />
+                {/*<KeepAlive />*/}
                 {/*<FlexOveflow />*/}
                 {/*<Command />*/}
                 {/*<TestRedux />*/}
