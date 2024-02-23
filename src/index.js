@@ -105,15 +105,15 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/dutyChain';
 
 // 你所不知道的javascript
-// import './modules/not-know-javascript/first-chapter'
-// import './modules/not-know-javascript/third-chapter'
+import './modules/not-know-javascript/first-chapter'
+import './modules/not-know-javascript/second-chapter'
 // import './modules/not-know-javascript/fifth-chapter'
 
 //fourth compute 算法4
 // import './modules/fourthCompute/firstChapter';
 
 //JavaScript正则表达式迷你书
-import './modules/regExp/firstChapter'  //正则表达式字符匹配攻略
+// import './modules/regExp/firstChapter'  //正则表达式字符匹配攻略
 
 //interview
 // import './modules/interview/promise'
@@ -130,6 +130,7 @@ import './modules/regExp/firstChapter'  //正则表达式字符匹配攻略
 // import TestClassAndFun from './modules/hooks/TestClassAndFun';
 // import './modules/hooks/HooksSourceCode';
 // import './modules/hooks/MiniHooks';
+import { Timer } from './modules/hooks/Timer'
 
 //react define
 // import reactIndex from './modules/react/reactIndex';
@@ -164,6 +165,7 @@ class App  extends Component{
 
         return (
             <div>
+                <Timer />
                 {/*<KeepAlive />*/}
                 {/*<FlexOveflow />*/}
                 {/*<Command />*/}

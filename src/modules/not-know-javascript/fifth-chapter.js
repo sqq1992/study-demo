@@ -93,21 +93,21 @@
 {
 
     //软绑定
-    Function.prototype.softBind = function (obj){
-        let fn = this;
-        let args = [].slice.call(arguments,1);
-
-        return function (){
-            return fn.apply((!this || this === window) ? obj : this, args.concat.apply(args, arguments));
-        }
-    }
-
-    function foo(){
-        console.log("name"+this.name);
-    }
-    var obj = {name: 'obj'}
-    var obj2 = {name: 'obj2'}
-    var obj3 = {name: 'obj3'}
+    // Function.prototype.softBind = function (obj){
+    //     let fn = this;
+    //     let args = [].slice.call(arguments,1);
+    //
+    //     return function (){
+    //         return fn.apply((!this || this === window) ? obj : this, args.concat.apply(args, arguments));
+    //     }
+    // }
+    //
+    // function foo(){
+    //     console.log("name"+this.name);
+    // }
+    // var obj = {name: 'obj'}
+    // var obj2 = {name: 'obj2'}
+    // var obj3 = {name: 'obj3'}
 
     // //1
     // var fooObj = foo.softBind(obj);
