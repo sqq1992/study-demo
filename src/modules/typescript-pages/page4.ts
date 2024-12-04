@@ -17,6 +17,9 @@ type aa = number;
 
 type bb = string;
 
+type cc = any;
+
+type dd = any;
 //交叉
 type ObjType = {a: number } & {c: boolean};
 let a: ObjType = {a: 1, c: true};
