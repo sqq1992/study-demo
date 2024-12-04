@@ -83,7 +83,7 @@ import store from './modules/redux/store';
 // import './modules/structureAndCompute/sixthChapter';
 // import './modules/structureAndCompute/fourthChapter';
 // import './modules/structureAndCompute/fifthChapter';
-// import './modules/structureAndCompute/thirteenthChapter';
+import './modules/structureAndCompute/thirteenthChapter';
 // import './modules/structureAndCompute/twelfthChapter';  //排序
 
 //学习数据结构与算法  第三版
@@ -105,8 +105,8 @@ import store from './modules/redux/store';
 // import './modules/jsDesign/dutyChain';
 
 // 你所不知道的javascript
-import './modules/not-know-javascript/first-chapter'
-import './modules/not-know-javascript/second-chapter'
+// import './modules/not-know-javascript/first-chapter'
+// import './modules/not-know-javascript/second-chapter'
 // import './modules/not-know-javascript/fifth-chapter'
 
 //fourth compute 算法4
@@ -130,7 +130,7 @@ import './modules/not-know-javascript/second-chapter'
 // import TestClassAndFun from './modules/hooks/TestClassAndFun';
 // import './modules/hooks/HooksSourceCode';
 // import './modules/hooks/MiniHooks';
-import { Timer } from './modules/hooks/Timer'
+// import { Timer } from './modules/hooks/Timer'
 
 //react define
 // import reactIndex from './modules/react/reactIndex';
@@ -165,7 +165,7 @@ class App  extends Component{
 
         return (
             <div>
-                <Timer />
+                {/*<Timer />*/}
                 {/*<KeepAlive />*/}
                 {/*<FlexOveflow />*/}
                 {/*<Command />*/}

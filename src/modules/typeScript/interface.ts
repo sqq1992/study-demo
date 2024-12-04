@@ -40,7 +40,7 @@ function calculateSquare(cofig: Config):{ area: number} {
         area: square
     }
 }
-let mySquare = calculateSquare({width: 5});
+let mySquare = calculateSquare({width: 5,name:'sun'});
 console.log('mySquare', mySquare);
 
 
