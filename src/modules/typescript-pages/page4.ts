@@ -13,6 +13,8 @@ type first = First<[1,2,3]>
 //联合
 type Union = 1 | 2 | 3;
 
+
+
 //交叉
 type ObjType = {a: number } & {c: boolean};
 let a: ObjType = {a: 1, c: true};
