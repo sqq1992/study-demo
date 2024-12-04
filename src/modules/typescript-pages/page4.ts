@@ -13,7 +13,9 @@ type first = First<[1,2,3]>
 //联合
 type Union = 1 | 2 | 3;
 
+type aa = number;
 
+type bb = string;
 
 //交叉
 type ObjType = {a: number } & {c: boolean};
